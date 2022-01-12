@@ -10,11 +10,8 @@ const CommentTest = ({ post }) => {
   const dispatch = useDispatch()
   const boardId = post.boardId
   const comment_list = post.commentList
-  console.log(boardId)
-  console.log(post.commentList)
 
   const now_profile = useSelector((state) => state.user.profile)
-  console.log(now_profile)
   const [comment, setComment] = React.useState('')
 
   const onChangeComment = (e) => {
@@ -35,7 +32,18 @@ const CommentTest = ({ post }) => {
       <CommentWrite>
         <ImgInput>
           <img className="commentImg" src={now_profile && now_profile.profileImage} alt="" />
-          <input className="writebox" placeholder="댓글을 입력해주세요" type="text" value={comment} onChange={onChangeComment} onKeyPress={(e)=>{if(e.key === "Enter"){addComment()}}}></input>
+          <input
+            className="writebox"
+            placeholder="댓글을 입력해주세요"
+            type="text"
+            value={comment}
+            onChange={onChangeComment}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addComment()
+              }
+            }}
+          ></input>
         </ImgInput>
         <MdOutlineSend style={{ fontSize: '18px', cursor: 'pointer' }} onClick={addComment} />
       </CommentWrite>
@@ -66,7 +74,7 @@ const ImgInput = styled.div`
     height: 20px;
     border-radius: 150px;
     margin: 0 16px 0 0;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #e5e5e5;
   }
   .writebox {
     border: none;
