@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { imageApi } from '../../shared/api'
 import { actionCreators as imageActions } from '../../redux/modules/image'
 
+import Grid from '../../elements/Grid'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import InfinityScroll from '../../shared/InfinityScroll'
 import Masonry from 'react-masonry-css'
 import ImageUpload from '../image/ImageUpload'
@@ -29,7 +31,6 @@ const ImageList = (props) => {
     setPreview(e.target.value)
     let reader = new FileReader()
     reader.readAsDataURL(e.target.files[0])
-
     reader.onload = () => {
       const file = reader.result
 
@@ -41,11 +42,12 @@ const ImageList = (props) => {
   }
 
   useEffect(() => {
-    dispatch(imageActions.initImageList())
     setLoading(true)
-    setTimeout(() => setLoading(false), 600)
-    dispatch(imageActions.getImageListDB(0))
+    dispatch(imageActions.initImageList())
+  }, [])
 
+  useEffect(() => {
+    dispatch(imageActions.getImageListDB(0))
     imageApi
       .getBestImageList()
       .then((response) => {
@@ -54,23 +56,17 @@ const ImageList = (props) => {
       .catch((error) => {
         console.log('명예의 전당 이미지 불러오기 문제 발생', error.response)
       })
+    setTimeout(() => setLoading(false), 400)
   }, [])
 
   return (
     <>
-      <Header type="ImageList" location="짤방">
-        <FileUploader>
-          <label htmlFor="file" className="upload-label">
-            <AiOutlinePlus style={{ fontSize: '22px' }} />
-          </label>
-          <input type="file" id="file" className="upload-file" accept="image/*" ref={fileInput} onChange={handleChangeFile} />
-        </FileUploader>
-      </Header>
+      <Header location="짤방"></Header>
       <Wrapper>
         {!loading ? (
           <>
             <PopularSection>
-              <div style={{ borderBottom: '1px solid #e5e5e5', paddingBottom: '5px' }}>
+              <div className="title-border">
                 <Title>명예의 밈짤</Title>
               </div>
               <Container>
@@ -82,39 +78,49 @@ const ImageList = (props) => {
               </Container>
             </PopularSection>
             <GeneralSection>
-              <div style={{ borderBottom: '1px solid #e5e5e5', paddingBottom: '5px' }}>
+              <div className="title-border">
                 <Title>짤 방앗간</Title>
+                <FileUploader>
+                  <label htmlFor="file" className="upload-label">
+                    <AiOutlinePlus style={{ fontSize: '22px' }} />
+                  </label>
+                  <input type="file" id="file" className="upload-file" accept="image/*" ref={fileInput} onChange={handleChangeFile} />
+                </FileUploader>
               </div>
               <Container>
                 <InfinityScroll callNext={getImageList} paging={{ next: image_data.has_next }}>
-                  {/* <GeneralGridLayout> */}
                   <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
                     {image_data.image_list.map((image) => {
                       return <OneImageCard key={image.boardId} image={image} />
                     })}
                   </Masonry>
-                  {/* </GeneralGridLayout> */}
                 </InfinityScroll>
               </Container>
             </GeneralSection>
           </>
         ) : (
-          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Grid flex_center height="100%">
             <CircularProgress color="inherit" />
-          </div>
+          </Grid>
         )}
         {preview && <ImageUpload preview={preview} fileInput={fileInput} />}
       </Wrapper>
+      <Footer />
     </>
   )
 }
 
 const FileUploader = styled.div`
+  padding: 0 5px 0 0;
   .upload-label {
     height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${({ theme }) => theme.colors.blue};
+    }
   }
   .upload-file {
     position: absolute;
@@ -133,7 +139,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   max-height: 100%;
   height: 100%;
-  padding: 74px 0 0;
+  padding: 60px 0 0;
+  .title-border {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.line};
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `
 
 const Title = styled.span`
@@ -152,7 +165,7 @@ const PopularSection = styled.div`
 
 const GeneralSection = styled.div`
   width: 100%;
-  padding: 16px 16px 0;
+  padding: 16px 16px 84px;
 `
 
 const Container = styled.div`
@@ -190,14 +203,6 @@ const PopularGridLayout = styled.div`
       grid-row: 2 / 3;
     }
   }
-`
-
-const GeneralGridLayout = styled.div`
-  padding: 0 0 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(121px, 121px);
-  gap: 2px;
 `
 
 export default ImageList
