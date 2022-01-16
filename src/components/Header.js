@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
-import { actionCreators as mypageAction } from '../redux/modules/mypage'
+import { actionCreators as mypageActions } from '../redux/modules/mypage'
 
 import Grid from '../elements/Grid'
 import ProfileBottom from './ProfileBottom'
@@ -14,8 +14,9 @@ const Header = ({ type, children, location }) => {
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.mypage.myProfile)
   const userId = localStorage.getItem('id')
-  const cookieList = document.cookie.split('=')
-  const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
+  const token = localStorage.getItem('token')
+  // const cookieList = document.cookie.split('=')
+  // const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
   const isLogin = userId !== null && token !== undefined ? true : false
 
   const documentRef = useRef(document)
@@ -56,7 +57,7 @@ const Header = ({ type, children, location }) => {
 
   useEffect(() => {
     if (profile === null) {
-      dispatch(mypageAction.getUserProfileDB())
+      dispatch(mypageActions.getUserProfileDB())
     }
   }, [])
 
