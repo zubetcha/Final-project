@@ -129,7 +129,7 @@ const Wrapper = styled.div`
 const BackgroundOpacity = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background: rgb(250, 250, 250, 0.2); */
+  /* background: rgb(250, 250, 250, 0.3); */
   /* background-size: contain; */
   overflow: hidden;
   position: fixed;
