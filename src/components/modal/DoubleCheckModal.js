@@ -78,6 +78,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
+  -webkit-appearance: none;
   .title-box {
     font-size: ${({ theme }) => theme.fontSizes.lg};
   }
