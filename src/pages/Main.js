@@ -38,7 +38,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 2500)
+    }, 3000)
   }
 
   const handleShowModal = () => {
@@ -189,7 +189,7 @@ const Main = (props) => {
 }
 
 const WelcomeMessage = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   .username {
     font-weight: 500;
     color: ${({ theme }) => theme.colors.blue};

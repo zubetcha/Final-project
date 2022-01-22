@@ -18,6 +18,9 @@ const PostDetail = (props) => {
   const dispatch = useDispatch()
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionId = Number(props.match.params.questionId)
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [question, setQuestion] = useState([])
   const [isCuriousToo, setIsCuriousToo] = useState(false)
@@ -25,13 +28,14 @@ const PostDetail = (props) => {
   const [toggleModalChang, setToggleModalChang] = useState(false)
   const [createdAt, setCreatedAt] = useState('')
   const [showModal, setShowModal] = React.useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const [noChangeModal, setNoChangeModal] = useState(false)
 
   const handleCloseNoChangeModal = () => {
     setTimeout(() => {
       setNoChangeModal(false)
-    }, 1800)
+    }, 1000)
   }
 
   const handleNoChangeModal = () => {
@@ -70,6 +74,10 @@ const PostDetail = (props) => {
   const handleClickCuriousToo = async (e) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!isLogin) {
+      setShowLoginModal(true)
+      return
+    }
     if (isCuriousToo) {
       await dictQuestionApi
         .curiousToo(questionId)
@@ -190,9 +198,12 @@ const PostDetail = (props) => {
       {noChangeModal && <AlertModal showModal={noChangeModal}>질문 답변 채택 후 수정 삭제가 불가능합니다.</AlertModal>}
       {showModal && (
         <ConfirmModal question="질문을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <DeleteButton onClick={handleDeleteQuestion}>삭제</DeleteButton>
+          <ModalButton onClick={handleDeleteQuestion}>삭제</ModalButton>
         </ConfirmModal>
       )}
+      <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -225,8 +236,8 @@ const HeaderQuestion = styled.div`
   font-family: 'YdestreetB';
   font-style: normal;
   font-weight: bold;
-  font-size: 22px;
-  line-height: 29px;
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  /* line-height: 29px; */
   display: flex;
   align-items: center;
 `
@@ -282,14 +293,14 @@ const Middle = styled.div`
 
 const Title = styled.div`
   font-weight: 500;
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: 22px;
   display: flex;
   align-items: center;
 `
 
 const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
 `
 
 const ImageBox = styled.div`
@@ -359,15 +370,16 @@ const ModalChang = styled.div`
     justify-content: left;
     --webkit-appearance: none;
     .button {
-      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-size: ${({ theme }) => theme.fontSizes.small};
       padding: 0;
     }
   }
 `
 
-const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const ModalButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default PostDetail
