@@ -143,7 +143,6 @@ const RankSection = styled.section`
     padding: 20px 0;
     margin: 16px 0 0;
     display: flex;
-    align-items: flex-end;
     justify-content: space-around;
   }
   .rank-info {

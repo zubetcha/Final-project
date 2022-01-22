@@ -33,6 +33,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  -webkit-appearance: none;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
   .nickname {
     font-size: ${({ theme }) => theme.fontSizes.base};
     padding: 20px 0 5px;

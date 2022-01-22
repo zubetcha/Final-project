@@ -64,6 +64,8 @@ const Container = styled.div`
     align-items: center;
     justify-content: flex-end;
     -webkit-appearance: none;
+    -webkit-box-pack: flex-end;
+    -ms-flex-pack: flex-end;
     gap: 24px;
     .cancel-button {
       font-size: ${({ theme }) => theme.fontSizes.lg};
