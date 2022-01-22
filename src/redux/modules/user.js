@@ -52,6 +52,7 @@ const kakaoLoginDB = (code) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
@@ -59,6 +60,7 @@ const kakaoLoginDB = (code) => {
         console.log('카카오로그인 에러', err)
         // window.alert('로그인에 실패하였습니다.')
         history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        dispatch(loading(false))
       })
   }
 }
@@ -80,6 +82,7 @@ const naverLoginDB = (code, state) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
@@ -87,6 +90,7 @@ const naverLoginDB = (code, state) => {
         console.log('네이버로그인 에러', err)
         // window.alert('로그인에 실패하였습니다.')
         history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        dispatch(loading(false))
       })
   }
 }
@@ -108,6 +112,7 @@ const googleLoginDB = (code) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
@@ -115,6 +120,7 @@ const googleLoginDB = (code) => {
         console.log('구글로그인 에러', err)
         // window.alert('로그인에 실패하였습니다.')
         history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        dispatch(loading(false))
       })
   }
 }
@@ -127,10 +133,12 @@ const joinDB = (username, nickname, password, passwordCheck) => {
       .then((res) => {
         dispatch(loading(true))
         history.push('/login')
+        dispatch(loading(false))
       })
       .catch((err) => {
         dispatch(loading(false))
         swal('이미 등록된 사용자 입니다! 아이디 또는 닉네임을 변경해주세요')
+        dispatch(loading(false))
       })
   }
 }
@@ -166,6 +174,7 @@ const logOutDB = () => {
     localStorage.removeItem('nickname')
     localStorage.removeItem('id')
     dispatch(logOut())
+    dispatch(loading(false))
   }
 }
 
@@ -173,6 +182,8 @@ const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
     const username = localStorage.getItem('username')
     const tokenCheck = document.cookie
+    dispatch(loading(false))
+
     if (tokenCheck) {
       dispatch(setUser({ userId: username }))
     } else {
@@ -186,6 +197,8 @@ const SetLogin = () => {
     const username = localStorage.getItem('username')
     const userId = localStorage.getItem('id')
     const token = document.cookie.split('=')[1]
+    dispatch(loading(false))
+
     if (username !== null && token !== '') {
       dispatch(setLogin({ username: username, userId: userId }))
     }
