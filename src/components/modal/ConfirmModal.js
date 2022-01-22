@@ -53,6 +53,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   -webkit-appearance: none;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
   .title-box {
     font-size: ${({ theme }) => theme.fontSizes.lg};
   }
