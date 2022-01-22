@@ -12,9 +12,13 @@ import PostCard from '../../components/PostCard'
 import Title from '../../elements/Title'
 import Grid from '../../elements/Grid'
 import Footer from '../../components/Footer'
+import ConfirmModal from '../../components/modal/ConfirmModal'
 
 const DictSearch = (props) => {
   const dispatch = useDispatch()
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [show, setShow] = useState(false)
 
@@ -25,6 +29,7 @@ const DictSearch = (props) => {
   const [totalCountDict, setTotalCountDict] = useState('')
   const [totalCountQnA, setTotalCountQnA] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const [showModal, setShowModal] = useState(false)
 
   const searchDictDB = async () => {
     let response = await dictApi.searchDict(keyword, pageSize, currentPage)
@@ -49,6 +54,22 @@ const DictSearch = (props) => {
     }
   }
 
+  const handleClickAddDict = () => {
+    if (!isLogin) {
+      setShowModal(true)
+      return
+    }
+    history.push('/dict/write')
+  }
+
+  const handleClickAddQuestion = () => {
+    if (!isLogin) {
+      setShowModal(true)
+      return
+    }
+    history.push('/dict/question/write')
+  }
+
   const notResultDict = totalCountDict === 0
   const notResultQnA = totalCountQnA === 0
 
@@ -69,12 +90,7 @@ const DictSearch = (props) => {
                 </div>
                 <div className="DictSearchNoResultAddDictGuideText">새로운 단어를 직접 추가해주세요!</div>
                 <Grid flex_center padding="30px">
-                  <div
-                    className="DictSearchNoResult_AddDictButton"
-                    onClick={() => {
-                      history.push('/dict/write')
-                    }}
-                  >
+                  <div className="DictSearchNoResult_AddDictButton" onClick={handleClickAddDict}>
                     <div className="DictSearchNoResult_AddDictButton_1">단어 추가</div>
                     <div className="DictSearchNoResult_AddDictButton_2"></div>
                   </div>
@@ -101,12 +117,7 @@ const DictSearch = (props) => {
                 </div>
                 <div className="DictSearchNoResultAddDictGuideText">원하는 검색 결과가 없으신가요?</div>
                 <Grid flex_center padding="30px 0">
-                  <div
-                    className="DictSearchNoResult_AddDictButton"
-                    onClick={() => {
-                      history.push('/dict/question/write')
-                    }}
-                  >
+                  <div className="DictSearchNoResult_AddDictButton" onClick={handleClickAddQuestion}>
                     <div className="DictSearchNoResult_AddDictButton_1">질문하기</div>
                     <div className="DictSearchNoResult_AddDictButton_2"></div>
                   </div>
@@ -122,9 +133,18 @@ const DictSearch = (props) => {
           )}
         </div>
       </div>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </ConfirmModal>
       <Footer />
     </>
   )
 }
+
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
+`
 
 export default DictSearch

@@ -8,15 +8,15 @@ import Grid from '../../elements/Grid'
 import DoubleCheckModal from '../modal/DoubleCheckModal'
 import Backdrop from '@mui/material/Backdrop'
 import AlertModal from '../../components/modal/AlertModal'
-import { IoCloseOutline } from 'react-icons/io5'
-import { MdPhotoCamera } from 'react-icons/md'
+import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
+import { ReactComponent as CameraIcon } from '../../styles/icons/camera.svg'
 
 const EditProfile = ({ showModal, setShowModal, my }) => {
   const dispatch = useDispatch()
   const userId = localStorage.getItem('id')
 
   const [imageFile, setImageFile] = useState()
-  const [nickname, setNickname] = useState('')
+  const [nickname, setNickname] = useState(my.nickname)
   const [isValidNickname, setIsValidNickname] = useState()
   const [passedNickname, setPassedNickname] = useState('')
   const [usedNickname, setUsedNickname] = useState('')
@@ -57,7 +57,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
 
   const checkNickname = async () => {
     if (nickname !== '') {
-      if (isValidNickname) {
+      if (isValidNickname === true) {
         await userApi
           .checkNickname(nickname)
           .then((response) => {
@@ -72,9 +72,12 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
           .catch((error) => {
             console.log('닉네임을 중복확인하는 데 문제가 발생했습니다.', error.response)
           })
-      } else if (!isValidNickname) {
+      } else if (isValidNickname === false) {
         setValidAlert(true)
-        setTimeout(() => setValidAlert(false), 2000)
+        setTimeout(() => setValidAlert(false), 1000)
+      }
+      if (nickname === my.nickname) {
+        setDoubleCheck(false)
       }
     }
   }
@@ -104,12 +107,12 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
       }
       if (nickname !== passedNickname || nickname === usedNickname) {
         setDoubleCheckAlert(true)
-        setTimeout(() => setDoubleCheckAlert(false), 2000)
+        setTimeout(() => setDoubleCheckAlert(false), 1000)
       }
       if (!isValidNickname) {
         setDoubleCheckAlert(false)
         setValidAlert(true)
-        setTimeout(() => setValidAlert(false), 2000)
+        setTimeout(() => setValidAlert(false), 1000)
       }
     }
   }
@@ -134,7 +137,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
                   setShowModal(false)
                 }}
               >
-                <IoCloseOutline style={{ fontSize: '26px' }} />
+                <CloseIcon />
               </button>
               <button className="submit-button" onClick={_editProfile}>
                 완료
@@ -143,18 +146,18 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
             <ProfileImagePreview src={imageFile ? imageFile : my.profileImageUrl} />
             <div className="file">
               <label htmlFor="file" className="upload-label">
-                <MdPhotoCamera style={{ fontSize: '20px' }} />
+                <CameraIcon />
               </label>
               <input type="file" id="file" className="upload-file" ref={fileInput} onChange={handleChangeFile} accept="image/jpeg, image/jpg, image/png" />
             </div>
             <Grid flex_center column>
-              <Grid flex_center padding="32px 0 16px">
+              <Grid flex_center padding="24px 0 10px">
                 <input
                   type="text"
                   className={`input-nickname ${isValidNickname === false ? 'fail' : ''}`}
                   maxLength={10}
                   placeholder="닉네임을 입력해주세요"
-                  value={my && my.nickname}
+                  defaultValue={my && my.nickname}
                   onChange={handleChangeNickname}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
@@ -193,10 +196,10 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
 }
 
 const ModalContainer = styled.div`
-  max-width: 360px;
-  min-width: 280px;
+  max-width: 320px;
+  min-width: 270px;
   width: 100%;
-  height: 200px;
+  height: 180px;
   background-color: ${({ theme }) => theme.colors.white};
   position: absolute;
   top: 30%;
@@ -246,6 +249,7 @@ const ModalContainer = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.grey};
     transition: all 0.3s ease-in-out;
     border-radius: 2px;
+    font-size: ${({ theme }) => theme.fontSizes.base};
     &:focus {
       border: 1px solid ${({ theme }) => theme.colors.black};
     }
@@ -254,10 +258,10 @@ const ModalContainer = styled.div`
     }
   }
   .validation-length {
-    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-size: ${({ theme }) => theme.fontSizes.small};
   }
   .validation-etc {
-    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     color: ${({ theme }) => theme.colors.grey};
   }
 `
@@ -278,12 +282,13 @@ const ProfileImagePreview = styled.div`
 `
 
 const ConfirmButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 const DoubleCheckButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: 700;
   margin: 0 0 0 12px;
   text-decoration: underline;

@@ -41,7 +41,7 @@ const DictMyScrapbook = (props) => {
 
   const handleCopy = () => {
     setCopyLink(true)
-    setTimeout(() => setCopyLink(false), 2000)
+    setTimeout(() => setCopyLink(false), 1000)
   }
 
   return (

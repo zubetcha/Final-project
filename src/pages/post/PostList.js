@@ -67,6 +67,7 @@ const PostList = (props) => {
               })}
 
             <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
+            <Grid height="90px" />
           </Wrap>
         </>
       </Container>
@@ -74,7 +75,7 @@ const PostList = (props) => {
       <SpeedDialButton _onClick={handleClickWrite}>
         <RiEditLine size="28" fill="#FFFFFF" />
       </SpeedDialButton>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
       </ConfirmModal>
     </>
@@ -158,6 +159,7 @@ const AddbtnShadow = styled.div`
   z-index: -1;
 `
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `

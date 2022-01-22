@@ -35,7 +35,7 @@ const Container = styled.div`
   .qna-question-title {
     width: 100%;
     font-weight: 500;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
   }
   .question-box {
     width: 150px;
