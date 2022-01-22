@@ -180,7 +180,7 @@ const Main = (props) => {
       {showModal && (
         <AlertModal showModal={showModal}>
           <WelcomeMessage>
-            <span className="username">{nickname}</span>님 만반잘부! 🙋🏻
+            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
           </WelcomeMessage>
         </AlertModal>
       )}
@@ -191,6 +191,7 @@ const Main = (props) => {
 const WelcomeMessage = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.base};
   .username {
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-weight: 500;
     color: ${({ theme }) => theme.colors.blue};
   }
