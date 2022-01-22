@@ -191,7 +191,7 @@ const UserProfile = styled.div`
 
     .user-nickname {
       padding: 0 5px 0 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-size: ${({ theme }) => theme.fontSizes.lg};
       font-weight: 700;
     }
 
