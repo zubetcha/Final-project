@@ -6,9 +6,6 @@ import { history } from '../redux/ConfigureStore'
 import Grid from '../elements/Grid'
 import ConfirmModal from './modal/ConfirmModal'
 import SmileIcon from '../styles/image/smileIcon_Blue.png'
-import { RiBookMarkLine, RiGamepadLine } from 'react-icons/ri'
-import { MdOutlinePhotoLibrary } from 'react-icons/md'
-import { CgProfile } from 'react-icons/cg'
 import { ReactComponent as DictIcon } from '../styles/icons/Dockbar_dictionary.svg'
 import { ReactComponent as MyPageIcon } from '../styles/icons/Dockbar_mypage.svg'
 import { ReactComponent as QuizIcon } from '../styles/icons/Dockbar_quiz.svg'
@@ -24,8 +21,8 @@ const Footer = (props) => {
   const handleClickMypage = () => {
     if (!isLogin) {
       setShowModal(true)
+      return
     }
-    return
   }
   const activeStyle = {
     color: '#00A0FF',
@@ -79,7 +76,7 @@ const Footer = (props) => {
           </ul>
         </NavBar>
       </NavContainer>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
       </ConfirmModal>
     </>
@@ -154,8 +151,9 @@ const Logo = styled.div`
 `
 
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default Footer

@@ -117,7 +117,7 @@ const CuriousQ = styled.div`
 
 const Title = styled.div`
   width: calc(100% - 52px);
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: 500;
   align-items: center;
   white-space: nowrap;
@@ -126,7 +126,7 @@ const Title = styled.div`
 `
 
 const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   line-height: 24px;
   height: 48px;
   margin: 16px 0 0;

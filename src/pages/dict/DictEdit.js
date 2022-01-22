@@ -76,7 +76,7 @@ const DictEdit = (props) => {
         <div className="DictCardEditInputSection">
           <div className="DictCardEditInputTitleContainer">
             <div className="DictCardEditInputTitleGuideText">
-              단어<span className="highlight">*</span>
+              밈 단어<span className="highlight">*</span>
             </div>
             <div className="DictCardEditInputTitle">{dict.title}</div>
           </div>
@@ -125,8 +125,9 @@ const DictEdit = (props) => {
 }
 
 const EditDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default DictEdit

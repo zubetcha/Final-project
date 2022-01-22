@@ -22,7 +22,7 @@ const ShareBottomSheet = (props) => {
   const closeModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 2000)
+    }, 1000)
   }
 
   const onCopy = () => {
@@ -32,7 +32,7 @@ const ShareBottomSheet = (props) => {
 
   return (
     <>
-      <BottomPopup isOpen={shareVisible} onClose={() => setShareVisible(false)} heightPixel={200}>
+      <BottomPopup isOpen={shareVisible} onClose={() => setShareVisible(false)} heightPixel={210}>
         <Container>
           <div className="share share-header">공유하기</div>
           <ShareBody>
@@ -90,7 +90,7 @@ const Container = styled.div`
   justify-content: center;
   z-index: 10001;
   width: 100%;
-  height: 200px;
+  height: 210px;
   border-radius: 20px 20px 0 0;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
