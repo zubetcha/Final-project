@@ -203,7 +203,7 @@ const PopularGridLayout = styled.div`
 `
 
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

@@ -79,7 +79,7 @@ const QuizResult = ({ quiz_list, category }) => {
     <>
       {loading ? (
         <Spinner>
-          밈글봇이 열심히 채점하고 있어요.
+          밈글봇이 열심히 채점 중이에요.
           <br />
           잠시만 기다려주세요!
         </Spinner>

@@ -53,10 +53,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   .title-box {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
   }
   .question-box {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
   }
   .confirm-box {
     display: flex;
@@ -67,7 +67,7 @@ const Container = styled.div`
     -ms-flex-pack: flex-end;
     gap: 24px;
     .cancel-button {
-      font-size: ${({ theme }) => theme.fontSizes.lg};
+      font-size: ${({ theme }) => theme.fontSizes.base};
       color: ${({ theme }) => theme.colors.grey};
     }
   }

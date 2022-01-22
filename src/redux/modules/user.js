@@ -165,6 +165,7 @@ const logOutDB = () => {
     localStorage.removeItem('username')
     localStorage.removeItem('nickname')
     localStorage.removeItem('id')
+    dispatch(loading(false))
     dispatch(logOut())
   }
 }
@@ -187,6 +188,7 @@ const SetLogin = () => {
     const userId = localStorage.getItem('id')
     const token = document.cookie.split('=')[1]
     if (username !== null && token !== '') {
+      dispatch(loading(false))
       dispatch(setLogin({ username: username, userId: userId }))
     }
   }
@@ -218,6 +220,7 @@ export default handleActions(
     [SET_LOGIN]: (state, action) =>
       produce(state, (draft) => {
         draft.user_info = action.payload.user_info
+        draft.is_loading = false
       }),
     [INIT_FIRST_LOGIN]: (state, action) =>
       produce(state, (draft) => {

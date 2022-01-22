@@ -5,16 +5,20 @@ import { actionCreators as commentActions } from '../redux/modules/comment'
 import { dictQuestionApi } from '../shared/api'
 import ConfirmModal from '../components/modal/ConfirmModal'
 import AlertModal from '../components/modal/AlertModal'
-import { ReactComponent as DustBinIcon } from '../styles/icons/delete_black_18dp.svg'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_blank_28dp.svg'
 import { ReactComponent as FullHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_filled_28dp.svg'
 import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import Grid from '../elements/Grid'
 import { commentApi } from '../shared/api'
+import { history } from '../redux/ConfigureStore'
 
 const OneComment = (props) => {
   const dispatch = useDispatch()
+
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionUser = props.username //질문작성자
@@ -29,11 +33,12 @@ const OneComment = (props) => {
   const [selectModal, setSelectModal] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
   const [alreadySelectModal, setAlreadySelectModal] = React.useState(false)
+  const [showLoginModal, setShowLoginModal] = React.useState(false)
 
   const handleCloseAlreadySelectModal = () => {
     setTimeout(() => {
       setAlreadySelectModal(false)
-    }, 1800)
+    }, 1000)
   }
 
   const handleAlreadySelectModal = () => {
@@ -44,6 +49,10 @@ const OneComment = (props) => {
   const handleClickLike = async (e) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!isLogin) {
+      setShowLoginModal(true)
+      return
+    }
     if (isLiked) {
       await commentApi
         .likeComment(commentId)
@@ -76,8 +85,7 @@ const OneComment = (props) => {
         .then((response) => {
           setIsSelected(true)
           setSelectModal(false)
-          window.location.reload();
-
+          window.location.reload()
         })
         .catch((error) => {
           console.log('질문채택 문제 발생', error.response)
@@ -132,7 +140,7 @@ const OneComment = (props) => {
 
         {selectModal && (
           <ConfirmModal question="채택 후 변경이 불가합니다. 이 답변을 채택하시겠습니까?" showModal={selectModal} handleShowModal={handleSelectModal} setShowModal={setSelectModal}>
-            <DeleteButton onClick={handleClickIsSelected}>채택</DeleteButton>
+            <ModalButton onClick={handleClickIsSelected}>채택</ModalButton>
           </ConfirmModal>
         )}
         {alreadySelectModal && <AlertModal showModal={alreadySelectModal}>답변 채택 후 변경할 수 없습니다.</AlertModal>}
@@ -149,9 +157,12 @@ const OneComment = (props) => {
 
         {showModal && (
           <ConfirmModal question="댓글을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-            <DeleteButton onClick={delComment}>삭제</DeleteButton>
+            <ModalButton onClick={delComment}>삭제</ModalButton>
           </ConfirmModal>
         )}
+        <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+          <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+        </ConfirmModal>
       </ContentWrap>
     </>
   )
@@ -173,7 +184,7 @@ const Commentprofile = styled.img`
 
 const UserName = styled.div`
   font-weight: 500;
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: 22px;
   display: flex;
   align-items: center;
@@ -220,7 +231,7 @@ const ContentWrap = styled.div`
 `
 
 const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   line-height: 24px;
   display: flex;
   align-items: center;
@@ -241,8 +252,8 @@ const Number = styled.p`
   margin: 0 0 0 8px;
 `
 
-const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const ModalButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 export default OneComment

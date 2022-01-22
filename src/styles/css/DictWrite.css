@@ -66,14 +66,14 @@
 }
 
 .DictCardInputTitleGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .DictCardInputTitle {
-  width: calc(100% - 108px);
+  width: calc(100% - 118px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
@@ -92,9 +92,13 @@
   height: fit-content;
   text-decoration-line: underline;
 
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.DictCardInputTitleDoubleCheck:hover {
+  color: #00a0ff;
 }
 
 .DictCardInputSummaryContainer {
@@ -108,7 +112,7 @@
 }
 
 .DictCardInputSummaryGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
 
   font-size: 1rem;
@@ -116,7 +120,7 @@
 }
 
 .DictCardInputSummary {
-  width: calc(100% - 65px);
+  width: calc(100% - 75px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
@@ -156,6 +160,7 @@
   min-height: 5rem;
   overflow-y: hidden;
   resize: none;
+  line-height: 1.6;
 
   color: -internal-light-dark(black, white);
 }

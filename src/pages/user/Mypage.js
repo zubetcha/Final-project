@@ -75,7 +75,7 @@ const Mypage = (props) => {
           <UserProfile>
             <ProfileImage src={my && my.profileImageUrl} />
             <div className="profile-info box-1">
-              <div style={{ padding: '60px 0 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ padding: '60px 0 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="user-nickname">{my && my.nickname}</div>
                 <EditIcon className="edit-icon" onClick={handleEditProfile} />
               </div>
@@ -191,7 +191,7 @@ const UserProfile = styled.div`
 
     .user-nickname {
       padding: 0 5px 0 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-size: ${({ theme }) => theme.fontSizes.lg};
       font-weight: 700;
     }
 
@@ -202,11 +202,11 @@ const UserProfile = styled.div`
       align-items: center;
       justify-content: center;
       .user-activity-info-subject {
-        font-size: ${({ theme }) => theme.fontSizes.xxl};
+        font-size: ${({ theme }) => theme.fontSizes.xl};
         font-weight: 600;
       }
       .user-activity-info-count {
-        font-size: ${({ theme }) => theme.fontSizes.xl};
+        font-size: ${({ theme }) => theme.fontSizes.lg};
       }
     }
   }
@@ -252,9 +252,13 @@ const Filter = styled.div`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     padding: 0 0 12px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.line};
+    transition: color 0.2s ease-in-out;
+    :hover {
+      color: ${({ theme }) => theme.colors.blue};
+    }
   }
   .filter-button-active {
     padding: 0 0 10px;

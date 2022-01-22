@@ -125,7 +125,7 @@ const DictEdit = (props) => {
 }
 
 const EditDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

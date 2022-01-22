@@ -79,7 +79,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   .createdDate {
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     color: ${({ theme }) => theme.colors.grey};
     text-align: right;
   }
@@ -132,7 +132,7 @@ const Image = styled.img`
 `
 
 const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

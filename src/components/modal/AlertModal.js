@@ -33,7 +33,7 @@ const Container = styled.div`
 `
 
 const AlertText = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
 `
 
 export default AlertModal

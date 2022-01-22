@@ -31,7 +31,7 @@ const PostDetail = (props) => {
   const handleCloseNoChangeModal = () => {
     setTimeout(() => {
       setNoChangeModal(false)
-    }, 1800)
+    }, 1000)
   }
 
   const handleNoChangeModal = () => {
@@ -282,14 +282,14 @@ const Middle = styled.div`
 
 const Title = styled.div`
   font-weight: 500;
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: 22px;
   display: flex;
   align-items: center;
 `
 
 const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
 `
 
 const ImageBox = styled.div`
@@ -366,7 +366,7 @@ const ModalChang = styled.div`
 `
 
 const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

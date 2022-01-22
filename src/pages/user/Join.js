@@ -131,7 +131,7 @@ const Join = () => {
       /* 아이디를 입력하지 않고 중복확인 버튼을 클릭하는 경우 */
       /* 아이디를 입력한 후 클릭해달라는 알럿 */
       setInputUsernameAlert(true)
-      setTimeout(() => setInputUsernameAlert(false), 2000)
+      setTimeout(() => setInputUsernameAlert(false), 1000)
     }
   }
 
@@ -157,14 +157,14 @@ const Join = () => {
       /* 닉네임을 입력하지 않고 중복확인 버튼을 클릭하는 경우 */
       /* 닉네임을 입력한 후 클릭해달라는 알럿 */
       setInputNicknameAlert(true)
-      setTimeout(() => setInputNicknameAlert(false), 2000)
+      setTimeout(() => setInputNicknameAlert(false), 1000)
     }
   }
 
   const join = () => {
     if (username === '' || nickname === '' || password === '' || passwordCheck === '') {
       setShowAlert(true)
-      setTimeout(() => setShowAlert(false), 2000)
+      setTimeout(() => setShowAlert(false), 1000)
       return
     }
     if (username !== passedUsername || username === usedUsername || nickname !== passedNickname || nickname === usedNickname) {
@@ -172,7 +172,7 @@ const Join = () => {
       /* 입력한 아이디 또는 닉네임이 중복확인 -> 이미 사용 중인 아이디 또는 닉네임과 일치하는 경우 (사용 중이라는 알럿을 띄웠지만 변경하지 않은 경우) */
       /* 아이디와 닉네임 중복확인을 완료할 것을 요청하는 알럿 */
       setDoubleCheckAlert(true)
-      setTimeout(() => setDoubleCheckAlert(false), 2000)
+      setTimeout(() => setDoubleCheckAlert(false), 1000)
       return
     }
     dispatch(userActions.joinDB(username, nickname, password, passwordCheck))
@@ -339,7 +339,7 @@ const SpanPasswordCheck = styled.span`
 `
 
 const ConfirmButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

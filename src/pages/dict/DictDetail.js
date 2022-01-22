@@ -65,6 +65,10 @@ const DictDetail = (props) => {
   const handleClickLike = async (e) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!isLogin) {
+      setShowModal(true)
+      return
+    }
     if (like) {
       await likeApi
         .likeDict(dictId)
@@ -96,7 +100,7 @@ const DictDetail = (props) => {
 
   const handleCopy = () => {
     setCopyLink(true)
-    setTimeout(() => setCopyLink(false), 2000)
+    setTimeout(() => setCopyLink(false), 1000)
   }
 
   const handleClickEdit = () => {
@@ -118,17 +122,21 @@ const DictDetail = (props) => {
       <div className="OneDictCardDetailPageLayout">
         <Grid flex_start column padding="20px">
           <Grid flex_align padding="0 0 36px">
-            <div className="OneDictCardDetailInfo_Guide">밈 단어</div>
-            <div className="OneDictCardDetailInfo_Vertical" />
+            <div style={{ display: 'flex', alignItems: 'center', height: 'fit-content' }}>
+              <div className="OneDictCardDetailInfo_Guide">밈 단어</div>
+              <div className="OneDictCardDetailInfo_Vertical" />
+            </div>
             <div className="OneDictCardDetailInfo_DictData">{dict.title}</div>
           </Grid>
           <Grid flex_align padding="0 0 36px">
-            <div className="OneDictCardDetailInfo_Guide">한줄설명</div>
-            <div className="OneDictCardDetailInfo_Vertical" />
+            <div style={{ display: 'flex', alignItems: 'center', height: 'fit-content' }}>
+              <div className="OneDictCardDetailInfo_Guide">한줄설명</div>
+              <div className="OneDictCardDetailInfo_Vertical" />
+            </div>
             <div className="OneDictCardDetailInfo_DictData">{dict.summary}</div>
           </Grid>
           <Grid flex padding="0 0 36px">
-            <div style={{ display: 'flex', alignItems: 'flex_start', height: 'fit-content' }}>
+            <div style={{ display: 'flex', alignItems: 'center', height: 'fit-content' }}>
               <div className="OneDictCardDetailInfo_Guide">상세설명</div>
               <div className="OneDictCardDetailInfo_Vertical" />
             </div>
@@ -198,7 +206,7 @@ const SearchBarSection = styled.div`
 `
 
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

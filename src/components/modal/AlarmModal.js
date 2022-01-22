@@ -30,7 +30,8 @@ const AlarmModal = ({ showAlarm, setShowAlarm, alarmList }) => {
               return (
                 <div className={`alarm-box ${index === 0 && 'first'}`} key={`alarm-id-${alarm.alarmId}`} onClick={() => history.push(`/dict/question/detail/${alarm.navId}`)}>
                   <div className="alarm-content">
-                    {alarm.nickname} 님의 {alarm.alarmType === 'RECEIVE_COMMENT' ? '질문에 답글이 달렸어요!' : alarm.alarmType === 'SELECT_USER' ? '답글이 채택되었어요!' : ''}
+                    <span className="alarm-nickname">{alarm.nickname}</span> 님의{' '}
+                    {alarm.alarmType === 'RECEIVE_COMMENT' ? '질문에 답글이 달렸어요!' : alarm.alarmType === 'SELECT_USER' ? '답글이 채택되었어요!' : ''}
                     {alarm.checked === false ? <UpdateCircle /> : <></>}
                   </div>
                 </div>
@@ -51,7 +52,7 @@ const Container = styled.div`
   position: absolute;
   top: 56px;
   right: 16px;
-  max-width: 300px;
+  max-width: 340px;
   min-width: 300px;
   width: 100%;
   height: fit-content;
@@ -72,6 +73,7 @@ const HeaderSection = styled.div`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom: 2px solid #000;
+
   .alarm-title {
     font-family: 'YdestreetB';
     font-style: normal;
@@ -89,6 +91,7 @@ const BodySection = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
   .first {
     border-top: none !important;
   }
@@ -99,6 +102,10 @@ const BodySection = styled.div`
     align-items: center;
     padding: 10px 16px;
     border-top: 2px solid ${({ theme }) => theme.colors.line};
+    .alarm-nickname {
+      /* color: ${({ theme }) => theme.colors.blue}; */
+      font-weight: 500;
+    }
     .alarm-content {
       width: fit-content;
       font-size: ${({ theme }) => theme.fontSizes.base};

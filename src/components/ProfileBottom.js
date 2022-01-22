@@ -105,11 +105,11 @@ const Nickname = styled.div`
 `
 
 const Button = styled.button`
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 8px 0;
   width: 100px;
   height: auto;
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -132,7 +132,7 @@ const Button = styled.button`
 `
 
 const LogOutButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

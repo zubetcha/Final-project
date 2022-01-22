@@ -129,7 +129,7 @@ const NavHeader = styled.nav`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
+    font-size: ${({ theme }) => theme.fontSizes.xl};
     cursor: default;
   }
   .header-icon {
@@ -189,7 +189,7 @@ const ProfileImage = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

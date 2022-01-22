@@ -6,7 +6,6 @@ import { actionCreators as quizActions } from '../redux/modules/quiz'
 
 import Grid from '../elements/Grid'
 import QuizResult from '../pages/QuizResult'
-import CircularProgress from '@mui/material/CircularProgress'
 
 const QuizPaper = (props) => {
   const category = useParams().category

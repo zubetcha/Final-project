@@ -5,6 +5,7 @@ import { history } from '../../redux/ConfigureStore'
 
 import ShareBottomSheet from '../ShareBottomSheet'
 import Grid from '../../elements/Grid'
+import ConfirmModal from '../modal/ConfirmModal'
 
 import { ReactComponent as ShareIcon } from '../../styles/icons/share.svg'
 import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/heart_blank.svg'
@@ -12,12 +13,16 @@ import { ReactComponent as FullHeartIcon } from '../../styles/icons/heart_filled
 
 const OneImageCard = ({ image, type }) => {
   const boardId = image.boardId
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [hover, setHover] = useState(false)
   const [likeCount, setLikeCount] = useState(image.likeCnt)
   const [isLiked, setIsLiked] = useState(image.isLike)
   const [shareVisible, setShareVisible] = useState(false)
   const [thumbNail, setThumbNail] = useState(image ? image.thumbNail : '')
+  const [showModal, setShowModal] = useState(false)
 
   const handleShareVisible = (e) => {
     e.stopPropagation()
@@ -26,6 +31,10 @@ const OneImageCard = ({ image, type }) => {
 
   const handleClickLike = async (e) => {
     e.stopPropagation()
+    if (!isLogin) {
+      setShowModal(true)
+      return
+    }
     if (isLiked) {
       await likeApi
         .likeBoard(image.boardId)
@@ -79,6 +88,9 @@ const OneImageCard = ({ image, type }) => {
         </Overlay>
       </ImageBox>
       <ShareBottomSheet type="image" shareVisible={shareVisible} setShareVisible={setShareVisible} thumbNail={thumbNail} boardId={boardId} />
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -121,9 +133,14 @@ const ImageThumbnail = styled.img`
 const Overlay = styled.div`
   .like-count {
     color: ${({ theme }) => theme.colors.white};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     padding: 0 0 0 3px;
   }
+`
+
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default OneImageCard

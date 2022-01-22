@@ -62,7 +62,7 @@ const PostWrite = (props) => {
       <Header type="goBack" location="질문 작성" />
       <Container>
         <PWHeader>
-          <input type="text" className="writetitle" maxlength="15" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
+          <input type="text" className="writetitle" maxlength="30" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
         </PWHeader>
         <PWBody>
           <textarea
@@ -109,7 +109,7 @@ const PWHeader = styled.div`
     width: 100%;
     border: none;
     padding: 16px;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     color: ${({ theme }) => theme.colors.black};
     word-spacing: 1;
     background-color: ${({ theme }) => theme.colors.bg};
@@ -130,10 +130,11 @@ const PWBody = styled.div`
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
+    line-height: 1.6;
     color: ${({ theme }) => theme.colors.black};
     overflow-y: hidden;
     word-spacing: 1;

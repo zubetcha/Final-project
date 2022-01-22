@@ -71,11 +71,10 @@ const PostEdit = (props) => {
     }
   }
 
-
   const editQuestion = () => {
     if (title === '' || content === '') {
       setShowAlert(true)
-      setTimeout(() => setShowAlert(false), 2000)
+      setTimeout(() => setShowAlert(false), 1000)
       return
     }
 
@@ -94,7 +93,7 @@ const PostEdit = (props) => {
         <Header type="goBack" location="질문 수정" />
         <Container>
           <PWHeader>
-            <input type="text" className="writetitle" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
+            <input type="text" className="writetitle" placeholder="제목을 입력하세요" maxLength="30" value={title} onChange={onChangeTitle} />
           </PWHeader>
           <PWBody>
             <textarea
@@ -143,7 +142,7 @@ const PWHeader = styled.div`
     width: 100%;
     border: none;
     padding: 16px;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-weight: 500;
     color: ${({ theme }) => theme.colors.black};
     word-spacing: 1;
@@ -165,7 +164,7 @@ const PWBody = styled.div`
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;

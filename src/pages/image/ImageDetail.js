@@ -22,6 +22,9 @@ const ImageDetail = (props) => {
   const dispatch = useDispatch()
   const boardId = useParams().imageId
   const profile = useSelector((state) => state.mypage.myProfile)
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [imageData, setImageData] = useState('')
   const [likeCount, setLikeCount] = useState(0)
@@ -30,6 +33,7 @@ const ImageDetail = (props) => {
   const [thumbNail, setThumbNail] = useState('')
   const [shareVisible, setShareVisible] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const handleShowModal = (e) => {
     e.preventDefault()
@@ -46,6 +50,10 @@ const ImageDetail = (props) => {
   const handleClickLike = async (e) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!isLogin) {
+      setShowLoginModal(true)
+      return
+    }
     if (isLiked) {
       await likeApi
         .likeBoard(boardId)
@@ -136,9 +144,12 @@ const ImageDetail = (props) => {
       </ImageWrapper>
       {showModal && (
         <ConfirmModal question="밈짤을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <DeleteButton onClick={handleDeleteImage}>삭제</DeleteButton>
+          <ModalButton onClick={handleDeleteImage}>삭제</ModalButton>
         </ConfirmModal>
       )}
+      <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+        <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -163,13 +174,13 @@ const ImageCreatedAt = styled.p`
   color: ${({ theme }) => theme.colors.white};
 `
 const ImageLikeCount = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.white};
   padding: 0 0 0 5px;
 `
 
-const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const ModalButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 

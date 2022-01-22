@@ -67,6 +67,7 @@ const PostList = (props) => {
               })}
 
             <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
+            <Grid height="90px" />
           </Wrap>
         </>
       </Container>
@@ -102,6 +103,7 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   padding: 16px 16px 0;
+  margin: 0 0 80px;
 `
 const CuriousHelp = styled.div`
   display: flex;
@@ -158,6 +160,6 @@ const AddbtnShadow = styled.div`
   z-index: -1;
 `
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `

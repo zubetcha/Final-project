@@ -20,7 +20,7 @@ html, body, div, span, applet, object, iframe,
       font-family: 'Pretendard Variable';
       font-style: normal;
       font-weight: 400;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.6;
     }
 
@@ -30,6 +30,7 @@ html, body, div, span, applet, object, iframe,
 
 body {
   color: #000;
+
 }
 
 p, h1, h2, h3, h4 {

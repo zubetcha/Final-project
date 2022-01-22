@@ -8,15 +8,15 @@ import Grid from '../../elements/Grid'
 import DoubleCheckModal from '../modal/DoubleCheckModal'
 import Backdrop from '@mui/material/Backdrop'
 import AlertModal from '../../components/modal/AlertModal'
-import { IoCloseOutline } from 'react-icons/io5'
-import { MdPhotoCamera } from 'react-icons/md'
+import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg'
+import { ReactComponent as CameraIcon } from '../../styles/icons/camera.svg'
 
 const EditProfile = ({ showModal, setShowModal, my }) => {
   const dispatch = useDispatch()
   const userId = localStorage.getItem('id')
 
   const [imageFile, setImageFile] = useState()
-  const [nickname, setNickname] = useState('')
+  const [nickname, setNickname] = useState(my.nickname)
   const [isValidNickname, setIsValidNickname] = useState()
   const [passedNickname, setPassedNickname] = useState('')
   const [usedNickname, setUsedNickname] = useState('')
@@ -44,7 +44,6 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
   const handleChangeNickname = (e) => {
     const nicknameRegExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,10}$/
     const currentNickname = e.target.value
-    console.log(currentNickname)
     setNickname(currentNickname)
     if (currentNickname !== '' && nicknameRegExp.test(currentNickname)) {
       setIsValidNickname(true)
@@ -57,7 +56,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
 
   const checkNickname = async () => {
     if (nickname !== '') {
-      if (isValidNickname) {
+      if (isValidNickname === true) {
         await userApi
           .checkNickname(nickname)
           .then((response) => {
@@ -72,9 +71,13 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
           .catch((error) => {
             console.log('닉네임을 중복확인하는 데 문제가 발생했습니다.', error.response)
           })
-      } else if (!isValidNickname) {
+      }
+      if (isValidNickname === false) {
         setValidAlert(true)
-        setTimeout(() => setValidAlert(false), 2000)
+        setTimeout(() => setValidAlert(false), 1000)
+      }
+      if (nickname === my.nickname) {
+        setDoubleCheck(false)
       }
     }
   }
@@ -104,12 +107,12 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
       }
       if (nickname !== passedNickname || nickname === usedNickname) {
         setDoubleCheckAlert(true)
-        setTimeout(() => setDoubleCheckAlert(false), 2000)
+        setTimeout(() => setDoubleCheckAlert(false), 1000)
       }
       if (!isValidNickname) {
         setDoubleCheckAlert(false)
         setValidAlert(true)
-        setTimeout(() => setValidAlert(false), 2000)
+        setTimeout(() => setValidAlert(false), 1000)
       }
     }
   }
@@ -134,7 +137,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
                   setShowModal(false)
                 }}
               >
-                <IoCloseOutline style={{ fontSize: '26px' }} />
+                <CloseIcon />
               </button>
               <button className="submit-button" onClick={_editProfile}>
                 완료
@@ -143,7 +146,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
             <ProfileImagePreview src={imageFile ? imageFile : my.profileImageUrl} />
             <div className="file">
               <label htmlFor="file" className="upload-label">
-                <MdPhotoCamera style={{ fontSize: '20px' }} />
+                <CameraIcon />
               </label>
               <input type="file" id="file" className="upload-file" ref={fileInput} onChange={handleChangeFile} accept="image/jpeg, image/jpg, image/png" />
             </div>
@@ -154,7 +157,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
                   className={`input-nickname ${isValidNickname === false ? 'fail' : ''}`}
                   maxLength={10}
                   placeholder="닉네임을 입력해주세요"
-                  value={my && my.nickname}
+                  defaultValue={my.nickname}
                   onChange={handleChangeNickname}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
@@ -278,12 +281,12 @@ const ProfileImagePreview = styled.div`
 `
 
 const ConfirmButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
 `
 
 const DoubleCheckButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   font-weight: 700;
   margin: 0 0 0 12px;
   text-decoration: underline;
