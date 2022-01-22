@@ -69,20 +69,22 @@ const Wrap = styled.div`
     height: 100%;
   }
   .bottomicons {
-    position: relative;
-    top: 0;
-    right: 0;
+    position: absolute;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 0;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   .bottomicons-2 {
     position: absolute;
-    top: 0;
-    right: 0;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 1775px;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   /* @media screen and (min-width: 500px) { */
   .title {
@@ -203,9 +205,9 @@ const Wrap = styled.div`
     .title {
       position: absolute;
       top: -350px;
-      left: -30px;
-      width: 110rem;
-      height: 130rem;
+      left: -15px;
+      width: 114rem;
+      height: 114rem;
     }
     .gguggu {
       position: absolute;
@@ -287,8 +289,8 @@ const Wrap = styled.div`
       position: absolute;
       top: -350px;
       left: -15px;
-      width: 130rem;
-      height: 130rem;
+      width: 114rem;
+      height: 114rem;
     }
     .gguggu {
       position: absolute;
@@ -370,8 +372,8 @@ const Wrap = styled.div`
       position: absolute;
       top: -400px;
       left: -30px;
-      width: 165rem;
-      height: 140rem;
+      width: 145rem;
+      height: 123rem;
     }
     .gguggu {
       position: absolute;
@@ -453,8 +455,8 @@ const Wrap = styled.div`
       position: absolute;
       top: -470px;
       left: -30px;
-      width: 180rem;
-      height: 150rem;
+      width: 158rem;
+      height: 132rem;
     }
     .gguggu {
       position: absolute;
@@ -546,8 +548,8 @@ const Wrap = styled.div`
       position: absolute;
       top: -470px;
       left: -30px;
-      width: 180rem;
-      height: 150rem;
+      width: 158rem;
+      height: 132rem;
     }
     .gguggu {
       position: absolute;
