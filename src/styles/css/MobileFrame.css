@@ -20,14 +20,15 @@
 @media screen and (min-width: 500px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(-10%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
 @media screen and (min-width: 900px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(20%, -50%);
+    transform: translate(3%, -50%);
   }
 }
 
