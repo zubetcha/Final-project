@@ -24,7 +24,6 @@ const TodayDictCardSwiper = (props) => {
   const dispatch = useDispatch()
 
   const [todayDict, setTodayDict] = useState([])
-  console.log(todayDict)
 
   const [color, setColor] = useState('')
   const colors = ['yellow', 'coral', 'blue']

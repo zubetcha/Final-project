@@ -75,7 +75,6 @@ const Main = (props) => {
     }
     submitVisitors()
   }, [])
-
   return (
     <>
       <Header location="Memegle" />
@@ -140,7 +139,7 @@ const Main = (props) => {
           <div className="MainPageTagName">오늘의 밈</div>
           <div className="MainPageTagList">
             {todayMemes.map((todayMemes) => (
-              <div className="MainPageTag" key={todayMemes.id} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
+              <div className="MainPageTag" key={todayMemes.dictId} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
                 {todayMemes.dictName}
               </div>
             ))}

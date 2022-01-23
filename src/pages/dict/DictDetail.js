@@ -75,7 +75,7 @@ const DictDetail = (props) => {
         .then((response) => {
           setLike(false)
           setLikeCount(likeCount - 1)
-          dispatch(getDictDetailDB(like, likeCount))
+          // dispatch(getDictDetailDB(like, likeCount))
         })
         .catch((error) => {
           console.log('밈 사전 좋아요 취소 실패', error.response)
@@ -86,7 +86,7 @@ const DictDetail = (props) => {
         .then((response) => {
           setLike(true)
           setLikeCount(likeCount + 1)
-          dispatch(getDictDetailDB(like, likeCount))
+          // dispatch(getDictDetailDB(like, likeCount))
         })
         .catch((error) => {
           console.log('밈 사전 좋아요 문제 발생', error.response)
@@ -149,7 +149,7 @@ const DictDetail = (props) => {
               ) : (
                 <EmptyBookMarkIcon className="icon" fill="#878C92" height="20px" width="20px" onClick={handleClickLike} />
               )}
-              <div className="OneDictCardDetailInfoLikeCnt">{dict.likeCount}</div>
+              <div className="OneDictCardDetailInfoLikeCnt">{likeCount}</div>
             </Grid>
             <CopyToClipboard onCopy={handleCopy} text={currentUrl}>
               <CopyIcon className="icon" fill="#878C92" />
