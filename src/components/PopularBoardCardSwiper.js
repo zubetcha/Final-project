@@ -32,7 +32,6 @@ const PopularBoardCardSwiper = (props) => {
   React.useEffect(() => {
     searchDictDB()
   }, [])
-
   return (
     <>
       <Swiper
@@ -60,9 +59,9 @@ const PopularBoardCardSwiper = (props) => {
         className="popularBoardCardSwiper"
       >
         {popularImages.map((popularImages, index) => (
-          <SwiperSlide className="popular-swiper-slide">
+          <SwiperSlide className="popular-swiper-slide" key={popularImages.boardId}>
             <div className="PopularBoardCard">
-              <div className="PopularBoardCard_1" key={popularImages.id} onClick={() => history.push(`/image/detail/${popularImages.boardId}`)}>
+              <div className="PopularBoardCard_1" onClick={() => history.push(`/image/detail/${popularImages.boardId}`)}>
                 <img className="PopularBoardCard_Image" src={popularImages.imageUrl}></img>
               </div>
               <PopularBoardCardBack index={index} />

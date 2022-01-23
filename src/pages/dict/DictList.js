@@ -34,7 +34,6 @@ const DictList = (props) => {
   const [pageSize, setPageSize] = useState(10)
   const [totalCount, setTotalCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  console.log(dict)
 
   const [like, setLike] = useState(false)
 
