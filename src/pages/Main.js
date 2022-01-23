@@ -38,7 +38,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 2500)
+    }, 3000)
   }
 
   const handleShowModal = () => {
@@ -75,7 +75,6 @@ const Main = (props) => {
     }
     submitVisitors()
   }, [])
-
   return (
     <>
       <Header location="Memegle" />
@@ -140,7 +139,7 @@ const Main = (props) => {
           <div className="MainPageTagName">오늘의 밈</div>
           <div className="MainPageTagList">
             {todayMemes.map((todayMemes) => (
-              <div className="MainPageTag" key={todayMemes.id} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
+              <div className="MainPageTag" key={todayMemes.dictId} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
                 {todayMemes.dictName}
               </div>
             ))}
@@ -180,7 +179,7 @@ const Main = (props) => {
       {showModal && (
         <AlertModal showModal={showModal}>
           <WelcomeMessage>
-            <span className="username">{nickname}</span>님 만반잘부! 🙋🏻
+            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
           </WelcomeMessage>
         </AlertModal>
       )}
@@ -189,8 +188,9 @@ const Main = (props) => {
 }
 
 const WelcomeMessage = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   .username {
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-weight: 500;
     color: ${({ theme }) => theme.colors.blue};
   }

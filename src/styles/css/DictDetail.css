@@ -50,8 +50,8 @@
 }
 
 .OneDictCardDetailInfo_Guide {
-  max-width: 50px;
-  min-width: 50px;
+  max-width: 60px;
+  min-width: 60px;
   height: fit-content;
   font-size: 0.9rem;
   font-weight: 600;
@@ -71,6 +71,7 @@
   height: fit-content;
   font-size: 0.875rem;
   display: flex;
+  line-height: 1.8;
 }
 
 .OneDictCardDetailInfoLikeCnt {

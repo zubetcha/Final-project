@@ -51,7 +51,7 @@ const QuizResult = ({ quiz_list, category }) => {
 
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 2500)
   }, [])
 
   useEffect(() => {
@@ -340,7 +340,7 @@ const TextButtonContainer = styled.div`
   justify-content: center;
   .text-button {
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;

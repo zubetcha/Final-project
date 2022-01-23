@@ -71,11 +71,10 @@ const PostEdit = (props) => {
     }
   }
 
-
   const editQuestion = () => {
     if (title === '' || content === '') {
       setShowAlert(true)
-      setTimeout(() => setShowAlert(false), 2000)
+      setTimeout(() => setShowAlert(false), 1000)
       return
     }
 
@@ -158,14 +157,15 @@ const PWHeader = styled.div`
 const PWBody = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444;
+  border-bottom: 2px solid #000;
   .writedesc {
     width: 100%;
     /* min-height: 10rem; */
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: 1.6;
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
@@ -220,8 +220,8 @@ const PWFooter = styled.div`
 
   .postbtn {
     position: absolute;
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 48px;
     border: 2px solid ${({ theme }) => theme.colors.black};
   }
   .btn-1 {
@@ -232,6 +232,9 @@ const PWFooter = styled.div`
     font-weight: 700;
     z-index: 100;
     transition-duration: 0.3s;
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
     &:active {
       top: 4px;
       left: calc(50%);

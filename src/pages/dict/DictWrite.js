@@ -32,7 +32,7 @@ const DictWrite = (props) => {
       setShowModal(!showModal)
     } else {
       setShowDoubleCheckAlert(true)
-      setTimeout(() => setShowDoubleCheckAlert(false), 2000)
+      setTimeout(() => setShowDoubleCheckAlert(false), 1000)
     }
   }
 
@@ -76,7 +76,7 @@ const DictWrite = (props) => {
         })
     } else {
       setShowInputAlert(true)
-      setTimeout(() => setShowInputAlert(false), 2000)
+      setTimeout(() => setShowInputAlert(false), 1000)
     }
   }
 
@@ -166,8 +166,9 @@ const DictWrite = (props) => {
 }
 
 const AddDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default DictWrite
