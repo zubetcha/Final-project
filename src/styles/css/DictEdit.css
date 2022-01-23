@@ -80,7 +80,7 @@
   font-size: 0.875rem;
   overflow: hidden;
   resize: none;
-  padding: 0;
+  padding: 0 0 0 5px;
 }
 
 .DictCardEditInputSummaryContainer {
@@ -106,10 +106,10 @@
   word-wrap: break-word;
   word-break: keep-all;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   background-color: transparent;
   overflow-y: hidden;
-  padding: 0;
+  padding: 0 0 0 5px;
   resize: none;
 }
 
@@ -136,7 +136,7 @@
   word-break: keep-all;
   padding: 16px 8px 0;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   min-height: 5rem;
   overflow-y: hidden;
   resize: none;

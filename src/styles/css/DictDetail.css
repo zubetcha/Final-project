@@ -53,7 +53,7 @@
   max-width: 50px;
   min-width: 50px;
   height: fit-content;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .OneDictCardDetailInfoCreatedAt {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: rgba(135, 140, 146, 1);
 }
 
@@ -165,7 +165,7 @@
 }
 
 .OneDictCardDetailInfoModifiedAt {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: rgba(135, 140, 146, 1);
 }
 
