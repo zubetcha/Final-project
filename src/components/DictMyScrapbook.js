@@ -43,7 +43,6 @@ const DictMyScrapbook = (props) => {
     setCopyLink(true)
     setTimeout(() => setCopyLink(false), 1000)
   }
-  console.log(scrapList)
 
   return (
     <>
