@@ -64,14 +64,14 @@
 }
 
 .DictCardEditInputTitleGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .DictCardEditInputTitle {
-  width: calc(100% - 65px);
+  width: calc(100% - 75px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
@@ -93,7 +93,7 @@
 }
 
 .DictCardEditInputSummaryGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
 
   font-size: 1rem;
@@ -101,7 +101,7 @@
 }
 
 .DictCardEditInputSummary {
-  width: calc(100% - 65px);
+  width: calc(100% - 75px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
@@ -140,6 +140,7 @@
   min-height: 5rem;
   overflow-y: hidden;
   resize: none;
+  line-height: 1.6;
 }
 
 .DictCardEditTemporaryOrSubmitButton {

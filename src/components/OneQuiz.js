@@ -17,7 +17,7 @@ const OneQuiz = ({ quiz, index }) => {
 
 const OneQuizBox = styled.div`
   width: 100%;
-  padding: 12px 0 0;
+  padding: 10px 0 10px;
   display: flex;
 
   .quiz-number {

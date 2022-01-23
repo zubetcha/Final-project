@@ -69,20 +69,22 @@ const Wrap = styled.div`
     height: 100%;
   }
   .bottomicons {
-    position: relative;
-    top: 0;
-    right: 0;
+    position: absolute;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 0;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   .bottomicons-2 {
     position: absolute;
-    top: 0;
-    right: 0;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 1775px;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   /* @media screen and (min-width: 500px) { */
   .title {

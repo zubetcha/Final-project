@@ -4,8 +4,6 @@ import axios from 'axios'
 const instance = axios.create({
   /* production */
   baseURL: 'https://youtuberandomplayer.shop',
-  /* dev - local */
-  // baseURL: 'http://13.209.99.193',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-type': 'application/json; charset=UTF-8',

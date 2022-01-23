@@ -11,7 +11,6 @@ import { commentApi } from '../shared/api'
 import { useHistory } from 'react-router'
 import ConfirmModal from '../components/modal/ConfirmModal'
 
-
 const CommentTest = ({ question }) => {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -31,29 +30,29 @@ const CommentTest = ({ question }) => {
   }
 
   const addComment = () => {
-    if(!isLogin){
+    if (!isLogin) {
       setShowModal(true)
-    }else{
-    dispatch(commentActions.addCommentDB(question.questionId, comment))
-    setComment('')
+    } else {
+      dispatch(commentActions.addCommentDB(question.questionId, comment))
+      setComment('')
     }
   }
-  
-  comment_list&&comment_list.sort((a,b)=>{
-    if(a.isSelected && !b.isSelected){
-      return -1;
-    } else if (!a.isSelected && b.isSelected){
-      return 1;
-    } return 0;
-  })
-  
+
+  comment_list &&
+    comment_list.sort((a, b) => {
+      if (a.isSelected && !b.isSelected) {
+        return -1
+      } else if (!a.isSelected && b.isSelected) {
+        return 1
+      }
+      return 0
+    })
 
   React.useEffect(() => {
     if (now_profile === null) {
       dispatch(mypageActions.getUserProfileDB())
     }
   }, [])
-
 
   return (
     <>
@@ -72,7 +71,7 @@ const CommentTest = ({ question }) => {
               }
             }}
           ></input>
-          <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+          <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
             <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
           </ConfirmModal>
         </ImgInput>
@@ -83,8 +82,8 @@ const CommentTest = ({ question }) => {
             return <OneComment key={c.commentId} questionId={question.questionId} {...c} username={question.username} selectedComment={question.selectedComment} />
           })
         : null}
-      
-        <div style={{width:'100%', height:'63px'}}></div>
+
+      <div style={{ width: '100%', height: '63px' }}></div>
     </>
   )
 }
@@ -103,8 +102,9 @@ const CommentWrite = styled.div`
   background: #fcfcfc;
 `
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 const ImgInput = styled.div`

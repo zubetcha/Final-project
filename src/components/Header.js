@@ -8,7 +8,6 @@ import { mypageApi } from '../shared/api'
 import Grid from '../elements/Grid'
 import ProfileBottom from './ProfileBottom'
 import AlarmModal from './modal/AlarmModal'
-import ConfirmModal from './modal/ConfirmModal'
 import MemegleIcon from '../styles/image/smileIcon_Yellow.png'
 import { ReactComponent as ArrowBackIcon } from '../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
@@ -25,7 +24,6 @@ const Header = ({ children, location, type }) => {
 
   const [showProfile, setShowProfile] = useState(false)
   const [showAlarm, setShowAlarm] = useState(false)
-  const [showModal, setShowModal] = useState(false)
   const [alarmUpdated, setAlarmUpdated] = useState(false)
 
   const handleShowProfile = () => {
@@ -33,15 +31,11 @@ const Header = ({ children, location, type }) => {
   }
 
   const handleShowAlarm = async () => {
-    if (isLogin) {
-      setShowAlarm(!showAlarm)
-      try {
-        const { result } = await mypageApi.checkAlarm()
-      } catch (error) {
-        console.log(error.response)
-      }
-    } else {
-      setShowModal(true)
+    setShowAlarm(!showAlarm)
+    try {
+      const { result } = await mypageApi.checkAlarm()
+    } catch (error) {
+      console.log(error.response)
     }
   }
 
@@ -101,10 +95,7 @@ const Header = ({ children, location, type }) => {
         </Grid>
       </NavHeader>
       <ProfileBottom profile={profile} showProfile={showProfile} setShowProfile={setShowProfile} />
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
-      </ConfirmModal>
-      {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} alarmList={alarmList} />}
+      {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} alarmList={alarmList !== undefined ? alarmList : []} profile={profile !== null ? profile : ''} />}
     </>
   )
 }
@@ -129,7 +120,7 @@ const NavHeader = styled.nav`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
+    font-size: ${({ theme }) => theme.fontSizes.xl};
     cursor: default;
   }
   .header-icon {
@@ -160,9 +151,13 @@ const NavHeader = styled.nav`
     height: 100%;
   }
   .shown {
+    width: 22px;
+    height: 22px;
     fill: ${({ theme }) => theme.colors.blue};
   }
   .hidden {
+    width: 22px;
+    height: 22px;
     fill: #000;
   }
 `
@@ -189,8 +184,9 @@ const ProfileImage = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default Header
