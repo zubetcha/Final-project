@@ -179,7 +179,7 @@ const PostDetail = (props) => {
         <ViewLikeComment>
           {isCuriousToo ? (
             <div className="icon-box" onClick={handleClickCuriousToo}>
-              <ICuriousToo sty fill="#00A0FF" />
+              <ICuriousToo fill="#00A0FF" />
               <div style={{ color: '#00A0FF' }} className="icon-box__text">
                 나도 궁금해요 {curiousTooCnt}
               </div>
