@@ -79,10 +79,10 @@
   word-break: keep-all;
   padding: 0 10px;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   overflow: hidden;
   resize: horizontal;
-  padding: 0;
+  padding: 0 0 0 5px;
 
   color: -internal-light-dark(black, white);
 }
@@ -121,12 +121,18 @@
   word-wrap: break-word;
   word-break: keep-all;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   background-color: transparent;
   overflow-y: hidden;
-  padding: 0;
+  padding: 0 0 0 5;
 
   color: -internal-light-dark(black, white);
+}
+.DictCardInputSummary::placeholder {
+  font-size: 0.7rem;
+}
+.DictCardInputSummary::-ms-input-placeholder {
+  font-size: 0.7rem;
 }
 
 .DictCardInputContentContainer {
