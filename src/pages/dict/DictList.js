@@ -34,6 +34,7 @@ const DictList = (props) => {
   const [pageSize, setPageSize] = useState(10)
   const [totalCount, setTotalCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  console.log(dict)
 
   const [like, setLike] = useState(false)
 
@@ -89,7 +90,7 @@ const DictList = (props) => {
           </div>
           <div className="DictList">
             {dict.map((dict) => (
-              <OneDictionaryCard key={dict.id} dict={dict} />
+              <OneDictionaryCard key={dict.dictId} dict={dict} />
             ))}
           </div>
           <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
