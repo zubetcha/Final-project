@@ -46,7 +46,6 @@ const DictEditHistory = (props) => {
       setShow(false)
     }
   }
-
   const handleClickEdit = () => {
     if (!isLogin) {
       setShowModal(true)
@@ -63,7 +62,7 @@ const DictEditHistory = (props) => {
         <div className="DictHistoryListText">"{isDict.title}"에 대한 편집기록</div>
         <div className="DictHistoryListSection">
           {dictHistory.map((dictId) => (
-            <div className="DictHistoryList" key={dictId.id}>
+            <div className="DictHistoryList" key={dictId.historyId}>
               <div className="DictWriterInfo">
                 <img className="DictWriterProfileImage" src={dictId.writerProfileImage} />
                 <div className="DictWriter">{dictId.writer} 님의 편집 내역</div>

@@ -100,7 +100,7 @@ const DictSearch = (props) => {
           ) : (
             <>
               {dictResult.map((dict) => (
-                <OneDictionaryCard key={dict.id} dict={dict} />
+                <OneDictionaryCard key={dict.dictId} dict={dict} />
               ))}
             </>
           )}
@@ -126,9 +126,11 @@ const DictSearch = (props) => {
             </>
           ) : (
             <>
-              {questionResult.map((question) => (
-                <PostCard key={question.boardId} question={question} />
-              ))}
+              <Grid padding="0  16px">
+                {questionResult.map((question) => (
+                  <PostCard key={question.questionId} question={question} />
+                ))}
+              </Grid>
             </>
           )}
         </div>
