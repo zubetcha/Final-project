@@ -43,11 +43,12 @@ const DictMyScrapbook = (props) => {
     setCopyLink(true)
     setTimeout(() => setCopyLink(false), 1000)
   }
+  console.log(scrapList)
 
   return (
     <>
       {scrapList.map((scrapList) => (
-        <div className="DictMyScrapbook" key={scrapList.id}>
+        <div className="DictMyScrapbook" key={scrapList.dictId}>
           <Accordion sx={{ backgroundColor: 'white' }} expanded={expanded === `panel${scrapList.dictId}`} onChange={handleChange(`panel${scrapList.dictId}`)}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
               <div className={expanded === `panel${scrapList.dictId}` ? 'DictMyScrapTitle activeTitle' : 'DictMyScrapTitle'}>{scrapList.title}</div>
