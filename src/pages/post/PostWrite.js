@@ -62,7 +62,7 @@ const PostWrite = (props) => {
       <Header type="goBack" location="질문 작성" />
       <Container>
         <PWHeader>
-          <input type="text" className="writetitle" maxlength="15" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
+          <input type="text" className="writetitle" maxlength="30" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
         </PWHeader>
         <PWBody>
           <textarea
@@ -123,14 +123,15 @@ const PWHeader = styled.div`
 const PWBody = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444;
+  border-bottom: 2px solid #000;
   .writedesc {
     width: 100%;
     /* min-height: 10rem; */
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: 1.6;
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
@@ -184,8 +185,8 @@ const PWFooter = styled.div`
 
   .postbtn {
     position: absolute;
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 48px;
     border: 2px solid ${({ theme }) => theme.colors.black};
   }
   .btn-1 {
@@ -194,6 +195,9 @@ const PWFooter = styled.div`
     background-color: #00a0ff;
     /* ${({ theme }) => theme.colors.blue}; */
     font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
     font-weight: 700;
     z-index: 100;
     transition-duration: 0.3s;

@@ -12,7 +12,7 @@ import ShareBottomSheet from '../components/ShareBottomSheet'
 import OneQuiz from '../components/OneQuiz'
 import Footer from '../components/Footer'
 import { ReactComponent as GoBackIcon } from '../styles/icons/되돌아가기_24dp.svg'
-import { ReactComponent as CopyLinkIcon } from '../styles/icons/link.svg'
+import { ReactComponent as ShareIcon } from '../styles/icons/share.svg'
 import { ReactComponent as CloseIcon } from '../styles/icons/X_24dp.svg'
 import Spinner from '../components/Spinner'
 
@@ -51,7 +51,7 @@ const QuizResult = ({ quiz_list, category }) => {
 
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 2500)
   }, [])
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const QuizResult = ({ quiz_list, category }) => {
                 <Grid flex_center padding="12px 0">
                   <div className="circle-button-box">
                     <div className="circle-button btn-1" onClick={handleShareVisible}>
-                      <CopyLinkIcon />
+                      <ShareIcon />
                     </div>
                     <div className="circle-button btn-2"></div>
                   </div>
@@ -270,14 +270,14 @@ const QuizContainer = styled.div`
 `
 
 const CloseButtonBox = styled.div`
+  height: fit-content;
   width: 100%;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  justify-content: end;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  padding: 10px 16px;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
   -webkit-appearance: none;
   .close-icon {
     cursor: pointer;
@@ -340,7 +340,7 @@ const TextButtonContainer = styled.div`
   justify-content: center;
   .text-button {
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;

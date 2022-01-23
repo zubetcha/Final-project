@@ -52,7 +52,7 @@
   height: fit-content;
   padding: 15px;
 
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .DictSearchNoResultAddDictGuideText {
@@ -64,7 +64,7 @@
 
   font-family: 'YdestreetB';
   font-style: normal;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: normal;
 }
 

@@ -1,22 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import '../styles/css/DictNavBar.css'
 import { NavLink } from 'react-router-dom'
-import { history } from '../redux/ConfigureStore'
-import ConfirmModal from './modal/ConfirmModal'
 
 const DictNavBar = () => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
-
-  const [showModal, setShowModal] = useState(false)
-  const handleClicScrap = () => {
-    if (!isLogin) {
-      setShowModal(true)
-    }
-    return
-  }
   return (
     <>
       <nav className="DictNavWrapper">
@@ -39,15 +26,12 @@ const DictNavBar = () => {
             </StyledNavLink>
           </li>
           <li className="DictNavEachList">
-            <StyledNavLink to={isLogin && `/dict/mymeme`} onClick={handleClicScrap} activeClassName={'active'}>
+            <StyledNavLink to={'/dict/mymeme'} activeClassName={'active'}>
               <div className="DictNavItem">스크랩</div>
             </StyledNavLink>
           </li>
         </ul>
       </nav>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
-      </ConfirmModal>
     </>
   )
 }
@@ -60,6 +44,7 @@ const StyledNavLink = styled(NavLink)`
   justify-content: center;
   padding: 10px 0 7px;
   border-bottom: 3px solid transparent !important;
+
   &.active {
     color: #00a0ff !important;
     border-bottom: 3px solid #00a0ff !important;
@@ -72,14 +57,13 @@ const StyledNavLink = styled(NavLink)`
   .DictNavItem {
     font-family: 'YdestreetB';
     font-style: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     font-weight: normal;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${({ theme }) => theme.colors.blue};
+    }
   }
-`
-
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default DictNavBar

@@ -191,22 +191,22 @@ const UserProfile = styled.div`
 
     .user-nickname {
       padding: 0 5px 0 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-size: ${({ theme }) => theme.fontSizes.lg};
       font-weight: 700;
     }
 
     .user-activity-info {
-      padding: 0 20px;
+      padding: 5px 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       .user-activity-info-subject {
-        font-size: ${({ theme }) => theme.fontSizes.xxl};
+        font-size: ${({ theme }) => theme.fontSizes.xl};
         font-weight: 600;
       }
       .user-activity-info-count {
-        font-size: ${({ theme }) => theme.fontSizes.xl};
+        font-size: ${({ theme }) => theme.fontSizes.lg};
       }
     }
   }
@@ -252,7 +252,7 @@ const Filter = styled.div`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     padding: 0 0 12px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.line};
   }

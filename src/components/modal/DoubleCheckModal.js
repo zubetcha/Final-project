@@ -4,10 +4,10 @@ import Backdrop from '@mui/material/Backdrop'
 
 const DoubleCheckModal = ({ type, doubleCheck, setDoubleCheck, title, question, children }) => {
   window.addEventListener('keyup', (e) => {
-    if (doubleCheck && e.key === 'Escape') {
+    if (doubleCheck === true && e.key === 'Escape') {
       setDoubleCheck(null)
     }
-    if (!doubleCheck && e.key === 'Escape') {
+    if (doubleCheck === false && e.key === 'Escape') {
       setDoubleCheck(null)
     }
   })
@@ -72,17 +72,22 @@ const Container = styled.div`
   width: 100%;
   height: 130px;
   background-color: #fff;
-  padding: 24px;
+  padding: 24px 24px 16px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
+  -webkit-appearance: none;
   .title-box {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-weight: 500;
   }
   .question-box {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-weight: 500;
   }
   .confirm-box {
     display: flex;
@@ -90,8 +95,9 @@ const Container = styled.div`
     justify-content: flex-end;
     gap: 24px;
     .cancel-button {
-      font-size: ${({ theme }) => theme.fontSizes.lg};
+      font-size: ${({ theme }) => theme.fontSizes.base};
       color: ${({ theme }) => theme.colors.grey};
+      padding: 0;
     }
   }
 `

@@ -69,20 +69,22 @@ const Wrap = styled.div`
     height: 100%;
   }
   .bottomicons {
-    position: relative;
-    top: 0;
-    right: 0;
+    position: absolute;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 0;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   .bottomicons-2 {
     position: absolute;
-    top: 0;
-    right: 0;
+    /* top: 0;
+    right: 0; */
     bottom: 0;
     left: 1775px;
-    height: 100%;
+    /* height: 100%; */
+    z-index: 5;
   }
   /* @media screen and (min-width: 500px) { */
   .title {
@@ -202,249 +204,249 @@ const Wrap = styled.div`
   @media screen and (min-width: 900px) {
     .title {
       position: absolute;
-      top: -350px;
-      left: -30px;
-      width: 110rem;
-      height: 130rem;
+      top: -150px;
+      left: 0px;
+      width: 100rem;
+      height: 80rem;
     }
     .gguggu {
       position: absolute;
-      top: 700px;
-      left: 10px;
-      width: 13rem;
-      height: 6rem;
+      top: 770px;
+      left: 0px;
+      width: 9rem;
+      height: 4rem;
     }
     .kingreceive {
-      top: 750px;
-      left: 140px;
-      width: 16.5rem;
-      height: 6.5rem;
+      top: 800px;
+      left: 100px;
+      width: 12rem;
+      height: 4.5rem;
 
       z-index: 2;
     }
     .JjajjaYellow {
-      top: 100px;
-      left: -140px;
-      width: 100rem;
-      height: 65rem;
+      top: 300px;
+      left: -90px;
+      width: 60rem;
+      height: 35rem;
     }
     .cute {
       top: 600px;
-      left: 450px;
-      width: 14rem;
-      height: 7rem;
+      left: 320px;
+      width: 9rem;
+      height: 4rem;
     }
     .HolymolyYellow {
-      top: 50px;
-      left: -100px;
-      width: 90rem;
-      height: 60rem;
+      top: 70px;
+      left: -65px;
+      width: 65rem;
+      height: 40rem;
     }
     .letsgo {
-      top: 180px;
-      left: 300px;
-      width: 16rem;
-      height: 6.5rem;
+      top: 165px;
+      left: 290px;
+      width: 12rem;
+      height: 4.5rem;
 
       z-index: -1;
     }
     .himsoonjjin {
-      top: 230px;
+      top: 210px;
       left: 200px;
-      width: 13rem;
-      height: 6rem;
+      width: 10rem;
+      height: 4rem;
     }
     .nicetomeetu {
-      top: 270px;
-      right: 15px;
-      width: 15rem;
-      height: 6rem;
+      top: 330px;
+      right: 20px;
+      width: 9rem;
+      height: 4rem;
     }
     .MolluYellow {
-      top: 70px;
-      right: -50px;
-      width: 92rem;
-      height: 55rem;
+      top: 190px;
+      right: -35px;
+      width: 60rem;
+      height: 35rem;
     }
     .loveu {
       top: 755px;
-      right: 130px;
-      width: 14rem;
-      height: 5.5rem;
+      right: 50px;
+      width: 10rem;
+      height: 3.5rem;
 
       z-index: 2;
     }
     .whatevertv {
       top: 800px;
-      right: 0px;
-      width: 15rem;
-      height: 6rem;
+      right: 5px;
+      width: 10rem;
+      height: 3.5rem;
     }
   }
 
   @media screen and (min-width: 1120px) {
     .title {
       position: absolute;
-      top: -350px;
-      left: -15px;
-      width: 130rem;
-      height: 130rem;
+      top: -200px;
+      left: 0px;
+      width: 120rem;
+      height: 90rem;
     }
     .gguggu {
       position: absolute;
-      top: 700px;
+      top: 735px;
       left: 10px;
-      width: 14.5rem;
-      height: 6.5rem;
+      width: 11rem;
+      height: 5rem;
     }
     .kingreceive {
-      top: 760px;
-      left: 150px;
-      width: 18.5rem;
-      height: 7.5rem;
+      top: 780px;
+      left: 120px;
+      width: 15rem;
+      height: 5.5rem;
 
       z-index: 2;
     }
     .JjajjaYellow {
-      top: 100px;
-      left: -140px;
-      width: 100rem;
-      height: 65rem;
+      top: 200px;
+      left: -50px;
+      width: 80rem;
+      height: 45rem;
     }
     .cute {
       top: 600px;
-      left: 450px;
-      width: 14rem;
-      height: 7rem;
+      left: 500px;
+      width: 11rem;
+      height: 5rem;
     }
     .HolymolyYellow {
-      top: 30px;
-      left: -100px;
-      width: 100rem;
-      height: 65rem;
+      top: 25px;
+      left: -65px;
+      width: 80rem;
+      height: 50rem;
     }
     .letsgo {
-      top: 170px;
+      top: 150px;
       left: 350px;
-      width: 18rem;
-      height: 7rem;
+      width: 16rem;
+      height: 6rem;
 
       z-index: -1;
     }
     .himsoonjjin {
-      top: 230px;
-      left: 230px;
-      width: 15rem;
-      height: 6rem;
+      top: 210px;
+      left: 250px;
+      width: 13rem;
+      height: 5rem;
     }
     .nicetomeetu {
-      top: 270px;
-      right: 60px;
-      width: 15rem;
-      height: 6rem;
+      top: 330px;
+      right: 30px;
+      width: 12.5rem;
+      height: 5rem;
     }
     .MolluYellow {
-      top: 70px;
-      right: -10px;
-      width: 92rem;
-      height: 55rem;
+      top: 150px;
+      right: -40px;
+      width: 80rem;
+      height: 45rem;
     }
     .loveu {
-      top: 735px;
-      right: 150px;
-      width: 16rem;
-      height: 6rem;
+      top: 750px;
+      right: 90px;
+      width: 12rem;
+      height: 4.5rem;
 
       z-index: 2;
     }
     .whatevertv {
-      top: 780px;
-      right: 0px;
-      width: 17rem;
-      height: 6rem;
+      top: 800px;
+      right: 5px;
+      width: 12rem;
+      height: 4.5rem;
     }
   }
 
   @media screen and (min-width: 1400px) {
     .title {
       position: absolute;
-      top: -400px;
+      top: -350px;
       left: -30px;
-      width: 165rem;
-      height: 140rem;
+      width: 140rem;
+      height: 110rem;
     }
     .gguggu {
       position: absolute;
       top: 700px;
       left: 10px;
-      width: 15.5rem;
-      height: 7rem;
+      width: 14rem;
+      height: 6rem;
     }
     .kingreceive {
       top: 760px;
       left: 150px;
-      width: 20rem;
-      height: 8rem;
+      width: 18rem;
+      height: 6.5rem;
 
       z-index: 2;
     }
     .JjajjaYellow {
-      top: 70px;
-      left: -100px;
-      width: 120rem;
-      height: 70rem;
+      top: 150px;
+      left: 10px;
+      width: 90rem;
+      height: 50rem;
     }
     .cute {
       top: 600px;
-      left: 600px;
-      width: 16rem;
-      height: 8rem;
+      left: 650px;
+      width: 14rem;
+      height: 6rem;
     }
     .HolymolyYellow {
-      top: 0px;
-      left: -150px;
-      width: 125rem;
-      height: 75rem;
+      top: 30px;
+      left: 0px;
+      width: 100rem;
+      height: 60rem;
     }
     .letsgo {
-      top: 165px;
-      left: 420px;
-      width: 20rem;
-      height: 8rem;
+      top: 170px;
+      left: 530px;
+      width: 22rem;
+      height: 7.5rem;
 
       z-index: -1;
     }
     .himsoonjjin {
-      top: 230px;
-      left: 300px;
+      top: 240px;
+      left: 400px;
       width: 17rem;
-      height: 7rem;
+      height: 6.5rem;
     }
     .nicetomeetu {
-      top: 270px;
-      right: 110px;
-      width: 17rem;
-      height: 7rem;
+      top: 330px;
+      right: 50px;
+      width: 16rem;
+      height: 6rem;
     }
     .MolluYellow {
-      top: 30px;
-      right: 20px;
-      width: 110rem;
-      height: 64rem;
+      top: 100px;
+      right: -30px;
+      width: 100rem;
+      height: 55rem;
     }
     .loveu {
-      top: 735px;
-      right: 200px;
-      width: 18rem;
-      height: 7rem;
+      top: 740px;
+      right: 155px;
+      width: 16rem;
+      height: 6rem;
 
       z-index: 2;
     }
     .whatevertv {
-      top: 780px;
-      right: 0px;
-      width: 20rem;
-      height: 7rem;
+      top: 800px;
+      right: 5px;
+      width: 16rem;
+      height: 6rem;
     }
   }
 
@@ -453,101 +455,91 @@ const Wrap = styled.div`
       position: absolute;
       top: -470px;
       left: -30px;
-      width: 180rem;
-      height: 150rem;
+      width: 160rem;
+      height: 130rem;
     }
     .gguggu {
       position: absolute;
       top: 680px;
       left: 10px;
-      width: 16.5rem;
+      width: 16rem;
       height: 7rem;
     }
     .kingreceive {
-      top: 740px;
+      top: 760px;
       left: 150px;
-      width: 21rem;
+      width: 20rem;
       height: 8rem;
 
       z-index: 2;
     }
     .JjajjaYellow {
-      top: -10px;
-      left: 0px;
-      width: 135rem;
-      height: 75rem;
+      top: 30px;
+      left: 100px;
+      width: 110rem;
+      height: 60rem;
     }
     .cute {
-      top: 600px;
-      left: 830px;
-      width: 18rem;
-      height: 8.5rem;
+      top: 550px;
+      left: 850px;
+      width: 16rem;
+      height: 7rem;
     }
     .HolymolyYellow {
-      top: -20px;
-      left: -50px;
-      width: 140rem;
-      height: 80rem;
+      top: -10px;
+      left: -20px;
+      width: 120rem;
+      height: 70rem;
     }
     .letsgo {
       top: 155px;
-      left: 580px;
-      width: 24rem;
+      left: 630px;
+      width: 25rem;
       height: 9rem;
 
       z-index: -1;
     }
     .himsoonjjin {
-      top: 235px;
-      left: 450px;
+      top: 240px;
+      left: 470px;
       width: 20rem;
       height: 8rem;
     }
     .nicetomeetu {
-      top: 290px;
-      right: 80px;
-      width: 20rem;
-      height: 8rem;
+      top: 300px;
+      right: 55px;
+      width: 19rem;
+      height: 7.5rem;
     }
     .MolluYellow {
-      top: 10px;
-      right: -25px;
-      width: 130rem;
-      height: 73rem;
-    }
-    .loveu {
-      top: 735px;
-      right: 195px;
-
-      z-index: 2;
-    }
-    .whatevertv {
-      top: 800px;
-      right: -20px;
+      top: 20px;
+      right: -50px;
+      width: 120rem;
+      height: 65rem;
     }
     .loveu {
       top: 735px;
       right: 195px;
       width: 19rem;
-      height: 8rem;
+      height: 7rem;
 
       z-index: 2;
     }
     .whatevertv {
       top: 800px;
-      right: -10px;
-      width: 22rem;
-      height: 8rem;
+      right: -25px;
+      width: 20rem;
+      height: 7rem;
     }
   }
 
   @media screen and (min-width: 2000px) {
     .title {
       position: absolute;
-      top: -470px;
+      top: -550px;
       left: -30px;
-      width: 180rem;
-      height: 150rem;
+      width: 170rem;
+      height: 140rem;
     }
     .gguggu {
       position: absolute;
@@ -565,20 +557,20 @@ const Wrap = styled.div`
       z-index: 2;
     }
     .JjajjaYellow {
-      top: -10px;
-      left: 150px;
-      width: 135rem;
-      height: 75rem;
+      top: -60px;
+      left: 100px;
+      width: 130rem;
+      height: 70rem;
     }
     .cute {
-      top: 600px;
+      top: 550px;
       left: 1000px;
       width: 18rem;
-      height: 8.5rem;
+      height: 8rem;
     }
     .HolymolyYellow {
-      top: -20px;
-      left: -10px;
+      top: -45px;
+      left: -130px;
       width: 140rem;
       height: 80rem;
     }
@@ -591,36 +583,36 @@ const Wrap = styled.div`
       z-index: -1;
     }
     .himsoonjjin {
-      top: 235px;
-      left: 500px;
+      top: 240px;
+      left: 470px;
       width: 22rem;
       height: 9rem;
     }
     .nicetomeetu {
       top: 300px;
-      right: 60px;
+      right: 80px;
       width: 22rem;
       height: 9rem;
     }
     .MolluYellow {
-      top: 10px;
-      right: -45px;
+      top: -50px;
+      right: -50px;
       width: 140rem;
-      height: 77rem;
+      height: 80rem;
     }
     .loveu {
       top: 735px;
       right: 195px;
-      width: 22rem;
-      height: 8.5rem;
+      width: 20rem;
+      height: 7.5rem;
 
       z-index: 2;
     }
     .whatevertv {
       top: 800px;
       right: -25px;
-      width: 25rem;
-      height: 9rem;
+      width: 21rem;
+      height: 7.5rem;
     }
   }
 `

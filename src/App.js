@@ -74,7 +74,7 @@ function App() {
               <Route path="/dict/detail/:dictId" exact component={DictDetail} />
               <Route path="/dict/search/:keyword" exact component={DictSearch} />
               <Route path="/dict/history/:dictId" exact component={DictHistory} />
-              <Route path="/dict/mymeme" exact component={Auth(DictMyMeMe, true)} />
+              <Route path="/dict/mymeme" exact component={DictMyMeMe} />
               <Route path="/dict/stat" exact component={DictStat} />
               <Route path="/image" exact component={ImageList} />
               <Route path="/image/detail/:imageId" exact component={ImageDetail} />
@@ -129,7 +129,7 @@ const Wrapper = styled.div`
 const BackgroundOpacity = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background: rgb(250, 250, 250, 0.2); */
+  /* background: rgb(250, 250, 250, 0.3); */
   /* background-size: contain; */
   overflow: hidden;
   position: fixed;
