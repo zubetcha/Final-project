@@ -15,7 +15,7 @@ import Title from '../../elements/Title'
 import SearchPage from '../../shared/SearchPage'
 
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
-import { RiEditLine } from 'react-icons/ri'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const PostList = (props) => {
   const userId = localStorage.getItem('id')
@@ -73,7 +73,7 @@ const PostList = (props) => {
       </Container>
       <Footer />
       <SpeedDialButton _onClick={handleClickWrite}>
-        <RiEditLine size="28" fill="#FFFFFF" />
+        <WriteIcon fill="#FFFFFF" />
       </SpeedDialButton>
       <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>

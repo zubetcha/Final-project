@@ -17,6 +17,9 @@ import AlertModal from './modal/AlertModal'
 
 const DictMyScrapbook = (props) => {
   const dispatch = useDispatch()
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [expanded, setExpanded] = React.useState(false)
   const [scrapList, setScrapList] = React.useState([])
@@ -32,7 +35,9 @@ const DictMyScrapbook = (props) => {
   }
 
   React.useEffect((userId) => {
-    DictMySrcapListDB(userId)
+    if (isLogin) {
+      DictMySrcapListDB(userId)
+    }
   }, [])
 
   const currentUrl = 'https://memegle.xyz/dict/detail'

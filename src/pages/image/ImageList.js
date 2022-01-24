@@ -15,7 +15,7 @@ import OneImageCard from '../../components/image/OneImageCard'
 import ConfirmModal from '../../components/modal/ConfirmModal'
 import SpeedDialButton from '../../components/SpeedDialButton'
 import Spinner from '../../components/Spinner'
-import { RiEditLine } from 'react-icons/ri'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const ImageList = (props) => {
   const dispatch = useDispatch()
@@ -107,12 +107,12 @@ const ImageList = (props) => {
               {isLogin ? (
                 <>
                   <FileInputLabel htmlFor="file" className="upload-label">
-                    <RiEditLine size="28" fill="#FFFFFF" />
+                    <WriteIcon fill="#FFFFFF" />
                   </FileInputLabel>
                   <FileInput type="file" id="file" className="upload-file" accept="image/jpg, image/jpeg, image/png, image/gif" ref={fileInput} onChange={handleChangeFile} />
                 </>
               ) : (
-                <RiEditLine size="28" fill="#FFFFFF" />
+                <WriteIcon fill="#FFFFFF" />
               )}
             </SpeedDialButton>
           </>

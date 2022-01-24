@@ -8,7 +8,6 @@ import { mypageApi } from '../shared/api'
 import Grid from '../elements/Grid'
 import ProfileBottom from './ProfileBottom'
 import AlarmModal from './modal/AlarmModal'
-import MemegleIcon from '../styles/image/smileIcon_Yellow.png'
 import { ReactComponent as ArrowBackIcon } from '../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
 
@@ -17,8 +16,6 @@ const Header = ({ children, location, type }) => {
   const profile = useSelector((state) => state.mypage.myProfile)
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
-  // const cookieList = document.cookie.split('=')
-  // const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
   const isLogin = userId !== null && token !== null ? true : false
   const alarmList = profile?.alarm?.length > 5 ? profile?.alarm.slice(0, 5) : profile?.alarm
 
@@ -40,7 +37,7 @@ const Header = ({ children, location, type }) => {
   }
 
   useEffect(() => {
-    if (profile === null) {
+    if (isLogin && profile === null) {
       dispatch(mypageActions.getUserProfileDB())
     }
   }, [showAlarm])
@@ -74,25 +71,31 @@ const Header = ({ children, location, type }) => {
   return (
     <>
       <NavHeader>
-        <Grid flex_between height="100%">
-          <div className="header-empty"></div>
-          <div className="header-location">{location}</div>
-          <div className="header-icon">
-            <div className="header-bell-box" onClick={handleShowAlarm}>
-              {showAlarm ? (
-                <BellIcon className="shown" />
-              ) : alarmUpdated ? (
-                <>
-                  <UpdateCircle />
+        {isLogin ? (
+          <Grid flex_between height="100%">
+            <div className="header-empty"></div>
+            <div className="header-location">{location}</div>
+            <div className="header-icon">
+              <div className="header-bell-box" onClick={handleShowAlarm}>
+                {showAlarm ? (
+                  <BellIcon className="shown" />
+                ) : alarmUpdated ? (
+                  <>
+                    <UpdateCircle />
+                    <BellIcon className="hidden" />
+                  </>
+                ) : (
                   <BellIcon className="hidden" />
-                </>
-              ) : (
-                <BellIcon className="hidden" />
-              )}
+                )}
+              </div>
+              <ProfileImage src={profile?.profileImage} onClick={handleShowProfile} />
             </div>
-            {isLogin ? <ProfileImage src={profile?.profileImage} onClick={handleShowProfile} /> : <ProfileImage src={MemegleIcon} onClick={() => history.push('/login')} />}
-          </div>
-        </Grid>
+          </Grid>
+        ) : (
+          <Grid flex_center height="100%">
+            <div className="header-location">{location}</div>
+          </Grid>
+        )}
       </NavHeader>
       <ProfileBottom profile={profile} showProfile={showProfile} setShowProfile={setShowProfile} />
       {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} alarmList={alarmList !== undefined ? alarmList : []} profile={profile !== null ? profile : ''} />}
