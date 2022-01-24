@@ -74,6 +74,10 @@
   line-height: 1.8;
 }
 
+.OneDictCardDetailInfo_RelatedVideo {
+  display: flex;
+}
+
 .OneDictCardDetailInfoLikeCnt {
   font-size: 0.875rem;
   margin: 0 0 0 5px;
@@ -177,7 +181,7 @@
   align-items: center;
   justify-content: center;
   left: 50%;
-  padding: 0 20px 40px;
+  padding: 0 20px 100px;
 }
 
 .OneDictCardDetailInfoModifiedHistoryButton {
