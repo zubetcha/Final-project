@@ -196,7 +196,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
 }
 
 const ModalContainer = styled.div`
-  max-width: 320px;
+  max-width: 380px;
   min-width: 270px;
   width: 100%;
   height: 180px;
