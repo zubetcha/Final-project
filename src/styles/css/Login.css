@@ -8,7 +8,7 @@
 .LoginLayout {
   padding: 0 16px;
   width: 100%;
-  height: 485px;
+  /* height: 485px; */
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #ffd400;
+  background-color: #ffe330;
   cursor: pointer;
 
   font-family: 'YdestreetB';
@@ -126,18 +126,19 @@
 .Login1 {
   border: 2px solid black;
   border-radius: 0 0 0 0;
-  top: 175px;
-  left: -50px;
-  background-color: #6698fc;
-  width: 100px;
-  height: 40px;
+  top: 171px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00a0ff;
+  width: 120px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   font-family: 'YdestreetB';
   font-style: normal;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
 
   z-index: 2;
@@ -146,10 +147,11 @@
   border: 2px solid black;
   border-radius: 0 0 0 0;
   background-color: white;
-  top: 179px;
-  left: -46px;
-  width: 100px;
-  height: 40px;
+  top: 175px;
+  left: 50%;
+  transform: translateX(calc(-50% + 4px));
+  width: 120px;
+  height: 48px;
   font-size: 15px;
   font-weight: 500;
 }
@@ -170,31 +172,6 @@
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.KakaoLoginBtn {
-  width: 50px;
-  background-color: #fee500;
-  border-radius: 5px;
-}
-.KakaoLoginBtn:hover {
-  cursor: pointer;
-}
-
-.GoogleLoginBtn {
-  width: 50px;
-}
-.GoogleLoginBtn:hover {
-  cursor: pointer;
-}
-
-.NaverLoginBtn {
-  width: 50px;
-  background-color: rgb(0, 255, 0);
-  border-radius: 5px;
-}
-.NaverLoginBtn:hover {
-  cursor: pointer;
 }
 
 /* sweetalret */

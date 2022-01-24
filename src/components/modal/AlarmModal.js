@@ -2,19 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 
-import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
 
-const AlarmModal = ({ showAlarm, setShowAlarm, profile }) => {
+const AlarmModal = ({ showAlarm, setShowAlarm, alarmList, profile }) => {
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
+
   window.addEventListener('keyup', (e) => {
     if (showAlarm && e.key === 'Escape') {
       setShowAlarm(false)
     }
   })
 
-  const alarmList = profile ? profile.alarm : []
-  console.log(profile)
-  console.log(alarmList)
   return (
     <>
       <Container>
@@ -29,18 +29,29 @@ const AlarmModal = ({ showAlarm, setShowAlarm, profile }) => {
           />
         </HeaderSection>
         <BodySection>
-          {profile &&
-            alarmList.length > 0 &&
-            alarmList.map((alarm, index) => {
-              return (
-                <div className={`alarm-box ${index === 0 && 'first'}`} key={`alarm-id-${alarm.alarmId}`} onClick={() => history.push(`/dict/question/detail/${alarm.navId}`)}>
-                  <ProfileImage src={profile ? profile.profileImage : MemegleIcon}></ProfileImage>
-                  <div className="alarm-content">
-                    {profile?.nickname} 님의 {alarm.alarmType === 'RECEIVE_COMMENT' ? '질문에 답글이 달렸어요!' : alarm.alarmType === 'SELECT_USER' ? '답글이 채택되었어요!' : ''}
+          {isLogin ? (
+            alarmList.length > 0 ? (
+              alarmList.map((alarm, index) => {
+                return (
+                  <div className={`alarm-box ${index === 0 && 'first'}`} key={`alarm-id-${alarm.alarmId}`} onClick={() => history.push(`/dict/question/detail/${alarm.navId}`)}>
+                    <div className="alarm-content">
+                      <span className="alarm-nickname">{profile?.nickname}</span> 님의{' '}
+                      {alarm.alarmType === 'RECEIVE_COMMENT' ? '질문에 답글이 달렸어요!' : alarm.alarmType === 'SELECT_USER' ? '답글이 채택되었어요!' : ''}
+                      {alarm.checked === false ? <UpdateCircle /> : <></>}
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })
+            ) : (
+              <div className="alarm-box first">
+                <div className="alarm-content">알림 내역이 없어요!</div>
+              </div>
+            )
+          ) : (
+            <div className="alarm-box first">
+              <div className="alarm-login">로그인 후 이용할 수 있어요!</div>
+            </div>
+          )}
         </BodySection>
       </Container>
     </>
@@ -51,8 +62,7 @@ const Container = styled.div`
   position: absolute;
   top: 56px;
   right: 16px;
-  width: 300px;
-  max-width: 360px;
+  max-width: 330px;
   min-width: 300px;
   width: 100%;
   height: fit-content;
@@ -73,12 +83,11 @@ const HeaderSection = styled.div`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom: 2px solid #000;
-  color: #ffffff;
   .alarm-title {
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
+    font-size: ${({ theme }) => theme.fontSizes.xl};
     color: #ffffff;
   }
   .close-icon {
@@ -89,7 +98,7 @@ const HeaderSection = styled.div`
 const BodySection = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   .first {
     border-top: none !important;
@@ -101,23 +110,30 @@ const BodySection = styled.div`
     align-items: center;
     padding: 10px 16px;
     border-top: 2px solid ${({ theme }) => theme.colors.line};
+    .alarm-nickname {
+      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-weight: 600;
+    }
     .alarm-content {
       width: fit-content;
-      padding: 0 0 0 10px;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
+      font-size: ${({ theme }) => theme.fontSizes.base};
+      position: relative;
+    }
+    .alarm-login {
+      width: fit-content;
+      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-weight: 500;
     }
   }
 `
 
-const ProfileImage = styled.div`
-  max-width: 32px;
-  min-width: 32px;
-  height: 32px;
-  border-radius: 20px;
-  border: 2px solid #000;
-  background-size: cover;
-  background-image: url('${(props) => props.src}');
-  background-position: center;
+const UpdateCircle = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.blue};
+  position: absolute;
+  top: -2px;
 `
 
 export default AlarmModal

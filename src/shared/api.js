@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { startsWith } from 'lodash'
 
 /* Axios 인스턴스 생성 */
 const instance = axios.create({
-  baseURL: 'http://54.180.150.230',
+  /* production */
+  baseURL: 'https://youtuberandomplayer.shop',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-type': 'application/json; charset=UTF-8',
@@ -31,7 +31,7 @@ export const userApi = {
   checkNickname: (nickname) => instance.get(`/api/signup/nickname?nickname=${nickname}`),
   KakaoLogin: (code) => instance.get(`/api/user/kakao/callback?code=${code}`),
   NaverLogin: (code, state) => instance.get(`/api/user/naver/callback?code=${code}&state=${state}`),
-  GoogleLogin: () => instance.get(`/api/user/google/callback`),
+  GoogleLogin: (code) => instance.get(`/api/user/google/callback?code=${code}`),
 }
 
 export const mypageApi = {
@@ -39,19 +39,7 @@ export const mypageApi = {
   getProfileInfo: () => instance.get('/api/userInfo'),
   editProfileImage: (newProfileImage) => instance.post('/api/user/profileImage', newProfileImage),
   editNickname: (nickname) => instance.post('/api/user/nickname', { nickname: nickname }),
-}
-
-export const boardApi = {
-  getPosts: (pageSize, currentPage) => instance.get(`/api/board/list/FREEBOARD?page=${currentPage - 1}&size=${pageSize}`),
-  getOnePost: (boardId) => instance.get(`/api/board/${boardId}`),
-  writePost: (post) => instance.post('/api/board/FREEBOARD', post),
-  editPost: (boardId, content) => instance.put(`/api/board/${boardId}`, content),
-  deletePost: (boardId) => instance.delete(`/api/board/${boardId}`),
-  selectPost: () => instance.get('/api/board?q=query'),
-  getSubject: () => instance.get('/api/board/subject'),
-  recommendHashTag: () => instance.get('/api/board/hashTag'),
-  searchPost: (query) => instance.get(`/api/board/search?q=${query}`),
-  totalLength: () => instance.get('api/board/count/FREEBOARD'),
+  checkAlarm: () => instance.get('/api/alarm/read'),
 }
 
 export const dictQuestionApi = {
@@ -68,7 +56,7 @@ export const dictQuestionApi = {
 }
 
 export const dictApi = {
-  getDictMain: (pageSize, currentPage) => instance.get(`http://54.180.150.230/api/dict?page=${pageSize * (currentPage - 1)}&size=${pageSize}`),
+  getDictMain: (pageSize, currentPage) => instance.get(`/api/dict?page=${pageSize * (currentPage - 1)}&size=${pageSize}`),
   getDictDetail: (dictId) => instance.get(`/api/dict/${dictId}`),
   getTodayDict: () => instance.get(`/api/bestDict/dict`),
   addDict: (title, summary, content) => instance.post('/api/dict', { title: title, summary: summary, content: content }),

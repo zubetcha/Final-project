@@ -4,31 +4,49 @@ import { actionCreators as commentActions } from '../redux/modules/comment'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
 import OneComment from '../components/OneComment'
 import { MdOutlineSend } from 'react-icons/md'
+import { ReactComponent as SendIcon } from '../styles/icons/send.svg'
 import styled from 'styled-components'
 import MemegleLogo from '../styles/image/smileIcon_Yellow.png'
+import { commentApi } from '../shared/api'
+import { useHistory } from 'react-router'
+import ConfirmModal from '../components/modal/ConfirmModal'
 
 const CommentTest = ({ question }) => {
   const dispatch = useDispatch()
-  // const questionId = question.questionId
+  const history = useHistory()
   const comment_list = question.commentList
   const now_profile = useSelector((state) => state.mypage.myProfile)
   const [comment, setComment] = React.useState('')
+  const [showModal, setShowModal] = React.useState(false)
 
   const userId = localStorage.getItem('id')
   const cookieList = document.cookie.split('=')
   const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
   const isLogin = userId !== null && token !== undefined ? true : false
-  console.log(question)
+  const commentId = question.commentId
+
   const onChangeComment = (e) => {
     setComment(e.target.value)
-    console.log(e.target.value)
   }
 
   const addComment = () => {
-    dispatch(commentActions.addCommentDB(question.questionId, comment))
-    setComment('')
-    console.log(question.questionId)
+    if (!isLogin) {
+      setShowModal(true)
+    } else {
+      dispatch(commentActions.addCommentDB(question.questionId, comment))
+      setComment('')
+    }
   }
+
+  comment_list &&
+    comment_list.sort((a, b) => {
+      if (a.isSelected && !b.isSelected) {
+        return -1
+      } else if (!a.isSelected && b.isSelected) {
+        return 1
+      }
+      return 0
+    })
 
   React.useEffect(() => {
     if (now_profile === null) {
@@ -43,7 +61,7 @@ const CommentTest = ({ question }) => {
           <img className="commentImg" src={isLogin ? now_profile && now_profile.profileImage : MemegleLogo} alt="" />
           <input
             className="writebox"
-            placeholder="댓글을 입력해주세요"
+            placeholder="답변을 남겨주세요!"
             type="text"
             value={comment}
             onChange={onChangeComment}
@@ -53,30 +71,42 @@ const CommentTest = ({ question }) => {
               }
             }}
           ></input>
+          <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+            <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+          </ConfirmModal>
         </ImgInput>
-        <MdOutlineSend style={{ fontSize: '24px', cursor: 'pointer', width: 'fit-content' }} onClick={addComment} />
+        <SendIcon style={{ cursor: 'pointer' }} onClick={addComment} />
       </CommentWrite>
       {comment_list
         ? comment_list.map((c) => {
             return <OneComment key={c.commentId} questionId={question.questionId} {...c} username={question.username} selectedComment={question.selectedComment} />
           })
         : null}
+
+      <div style={{ width: '100%', height: '63px' }}></div>
     </>
   )
 }
 
 const CommentWrite = styled.div`
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  padding: 12px 16px;
-  margin: 0 0 16px;
+  padding: 20px;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 2px solid black;
+  background: #fcfcfc;
 `
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
+`
+
 const ImgInput = styled.div`
   width: 100%;
   display: flex;
@@ -85,15 +115,15 @@ const ImgInput = styled.div`
   align-items: center;
 
   .commentImg {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 150px;
-    margin: 0 16px 0 0;
+    border: 2px solid black;
   }
   .writebox {
     border: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    padding: 0;
+    font-size: 16px;
+    padding: 0 20px;
     background-color: ${({ theme }) => theme.colors.bg};
     width: 100%;
     &::placeholder {

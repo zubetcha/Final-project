@@ -6,13 +6,11 @@ import { actionCreators as quizActions } from '../redux/modules/quiz'
 
 import Grid from '../elements/Grid'
 import QuizResult from '../pages/QuizResult'
-import CircularProgress from '@mui/material/CircularProgress'
 
 const QuizPaper = (props) => {
   const category = useParams().category
   const dispatch = useDispatch()
   const quiz_list = useSelector((state) => state.quiz.quiz_list)
-  const loading = useSelector((state) => state.quiz.is_loading)
 
   const [showResult, setShowResult] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -77,7 +75,8 @@ const QuizPaper = (props) => {
   return (
     <>
       {!showResult ? (
-        !loading ? (
+        // !loading ? (
+        <>
           <Wrapper>
             <Grid flex_center>
               <h2 className="quiz-category">Lv. {category === 'lv1' ? '1' : category === 'lv2' ? '2' : '3'}</h2>
@@ -113,12 +112,13 @@ const QuizPaper = (props) => {
               <div className="next-btn-box box-2"></div>
             </ButtonSection>
           </Wrapper>
-        ) : (
-          <Grid flex_center height="100%">
-            <CircularProgress color="inherit" />
-          </Grid>
-        )
+        </>
       ) : (
+        // ) : (
+        //   <Grid flex_center height="100%">
+        //     <CircularProgress color="inherit" />
+        //   </Grid>
+        // )
         <QuizResult quiz_list={quiz_list} category={category} />
       )}
     </>
@@ -128,7 +128,7 @@ const QuizPaper = (props) => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px 0;
+  padding: 20px 0 0;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -225,7 +225,8 @@ const QuizBox = styled.div`
 const ButtonSection = styled.div`
   position: relative;
   width: 100%;
-  margin: 20px 0 0;
+  margin: 20px 0 40px;
+  padding: 0 0 80px;
   .next-btn-box {
     width: 120px;
     height: 48px;

@@ -103,7 +103,6 @@ const getTodayDictListDB = () => {
         const todayDict_list = response.data.data
         dispatch(getTodayDictList(todayDict_list))
         dispatch(loading(false))
-        console.log(todayDict_list)
       })
       .catch((err) => {
         if (err.res) {
@@ -137,8 +136,7 @@ const editDictDB = (dictId, summary, content) => {
     dictApi
       .editDict(dictId, summary, content)
       .then((res) => {
-        swal('', '단어가 수정되었습니다.', 'success')
-        history.push('/dict')
+        history.push(`/dict/detail/${dictId}`)
       })
       .catch((err) => {
         if (err.res) {
@@ -157,7 +155,6 @@ const deleteDictDB = (dictId) => {
     dictApi
       .deleteDict(dictId)
       .then((res) => {
-        swal('', '삭제요청이 완료되었습니다.', 'success')
         history.push('/dict')
       })
       .catch((err) => {
@@ -204,7 +201,6 @@ const getDictHistoryDB = (dictId) => {
         const dictHistory_list = response.data.data
         dispatch(getDictHistory(dictHistory_list))
         dispatch(loading(false))
-        console.log(dictHistory_list)
       })
       .catch((err) => {
         if (err.res) {
@@ -221,7 +217,6 @@ const doubleCheckDictDB = (dictName) => {
     dictApi
       .dobleCheckDict(dictName)
       .then((res) => {
-        console.log(res.data.data.result)
         if (res.data.data.result === true) {
           swal({
             title: '등록되지 않은 단어입니다.',

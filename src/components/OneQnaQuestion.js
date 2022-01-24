@@ -12,9 +12,9 @@ const OneQnaQuestion = ({ question, index }) => {
     <>
       <Container {...styles} onClick={() => history.push(`/dict/question/detail/${question?.questionId}`)}>
         <div className="question-box box1">
-          <Grid flex_center height="100%">
+          <div className="title-box">
             <div className="qna-question-title">{question?.title}</div>
-          </Grid>
+          </div>
           <Grid flex_center padding="10px 0 0">
             <ProfileImage src={question?.profileImage} />
           </Grid>
@@ -35,14 +35,20 @@ const Container = styled.div`
   .qna-question-title {
     width: 100%;
     font-weight: 500;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
   }
   .question-box {
     width: 150px;
     height: 142px;
-    border-radius: 10px;
     position: absolute;
     border: 2px solid ${({ theme }) => theme.colors.black};
+
+    .title-box {
+      width: 100%;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .box1 {
     background-color: ${({ theme }) => theme.colors.white};
@@ -54,9 +60,9 @@ const Container = styled.div`
     padding: 10px;
   }
   .box2 {
-    top: 4px;
-    left: 4px;
-    background-color: ${(props) => (props.index === 0 ? '#FFD400' : props.index === 1 ? '#F97D39' : '#6698FC')};
+    top: 6px;
+    left: 6px;
+    background-color: ${(props) => (props.index === 0 ? '#FFE330' : props.index === 1 ? '#FF8E00' : props.index === 2 ? '#00A0FF' : '#7b7b7b')};
   }
 `
 

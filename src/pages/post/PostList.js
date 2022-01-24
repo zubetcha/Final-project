@@ -7,23 +7,28 @@ import { dictQuestionApi } from '../../shared/api'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import DictNavBar from '../../components/DictNavBar'
-import SearchPost from '../../components/SearchPost'
+import SpeedDialButton from '../../components/SpeedDialButton'
+import Grid from '../../elements/Grid'
 import '../../index.css'
+import ConfirmModal from '../../components/modal/ConfirmModal'
+import Title from '../../elements/Title'
+import SearchPage from '../../shared/SearchPage'
 
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
-import { ReactComponent as SearchIcon } from '../../styles/icons/검색_24dp.svg'
-import { CircularProgress } from '@mui/material'
+import { RiEditLine } from 'react-icons/ri'
 
 const PostList = (props) => {
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
+
   const [question, setQuestion] = useState([])
   const [pageSize, setPageSize] = useState(10)
   const [totalCount, setTotalCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  const [loading, setLoading] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 400)
     getQuestionListDB()
   }, [currentPage])
 
@@ -32,47 +37,47 @@ const PostList = (props) => {
     let totalLength = await dictQuestionApi.totalLength()
     setQuestion(response.data.data)
     setTotalCount(totalLength.data.data)
-    console.log(response.data.data)
+  }
+
+  const handleClickWrite = () => {
+    if (!isLogin) {
+      setShowModal(true)
+    } else {
+      history.push('/dict/question/write')
+    }
   }
 
   return (
     <>
-      <Header location="밈 사전" />
-      {!loading ? (
+      <Header location="오픈 밈사전" />
+      <Container>
+        <DictNavBar />
         <>
-          <Container>
-            <Wrap>
-              <div style={{height: '17px'}}/>
-               <DictNavBar />
-              <div className='curious'>궁금해요!</div>
+          <SearchBarSection>
+            <SearchPage />
+          </SearchBarSection>
+          <Wrap>
+            <CuriousHelp>
+              <Title>궁금해요!</Title>
+              <div className="wait">답변을 기다리고 있어요~</div>
+            </CuriousHelp>
+            {question &&
+              question.map((question, index) => {
+                return <PostCard question={question} key={question.questionId} />
+              })}
 
-              {/* <Empty>
-                <Addbtn
-                  onClick={() => {
-                    history.push('/dict/question/write')
-                  }}
-                >
-                  질문등록
-                </Addbtn>
-                <AddbtnShadow />
-              </Empty> */}
-
-
-              {question &&
-                question.map((question, index) => {
-                  return <PostCard question={question} key={question.questionId} />
-                })}
-
-              <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
-            </Wrap>
-          </Container>
+            <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
+            <Grid height="90px" />
+          </Wrap>
         </>
-      ) : (
-        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <CircularProgress color="inherit" />
-        </div>
-      )}
+      </Container>
       <Footer />
+      <SpeedDialButton _onClick={handleClickWrite}>
+        <RiEditLine size="28" fill="#FFFFFF" />
+      </SpeedDialButton>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -81,19 +86,27 @@ export default PostList
 
 const Container = styled.div`
   padding: 56px 0 0;
+  height: 100%;
   position: relative;
 `
-
-const SearchPostDiv = styled.div`
+const SearchBarSection = styled.div`
   width: 100%;
-  position: absolute;
-  z-index: 5;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px 16px;
 `
 
 const Wrap = styled.div`
   /* position: absolute; */
   width: 100%;
-  padding: 0 0 80px;
+  height: 100%;
+  padding: 16px 16px 0;
+`
+const CuriousHelp = styled.div`
+  display: flex;
+  margin: 0 0 16px;
   .curious {
     font-family: 'YdestreetL';
     font-style: normal;
@@ -102,15 +115,13 @@ const Wrap = styled.div`
     line-height: 29px;
     display: flex;
     align-items: center;
-    margin:24px 16px 16px 16px;
   }
-`
-
-const Empty = styled.div`
-  border-bottom: 1px solid #e5e5e5;
-  /* position: relative; */
-  /* display: flex; */
-  /* justify-content: center; */
+  .wait {
+    font-size: ${({ theme }) => theme.fontSizes.base};
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 8px;
+  }
 `
 
 const Addbtn = styled.div`
@@ -146,4 +157,9 @@ const AddbtnShadow = styled.div`
   border: 1px solid black;
   position: absolute;
   z-index: -1;
+`
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `

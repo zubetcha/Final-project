@@ -8,19 +8,19 @@ import ConfirmModal from '../../components/modal/ConfirmModal'
 import AlertModal from '../../components/modal/AlertModal'
 import CommentTest from '../CommentTest'
 import Grid from '../../elements/Grid'
-import { ReactComponent as ViewIcon } from '../../styles/icons/조회_18dp.svg'
-import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/하트 비활성_24dp.svg'
-import { ReactComponent as FullHeartIcon } from '../../styles/icons/하트 활성_24dp.svg'
-import { ReactComponent as CommentIcon } from '../../styles/icons/댓글_18dp.svg'
+import { ReactComponent as ICuriousToo } from '../../styles/icons/quiz_black_24dp.svg'
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
-import { IoCloseOutline } from 'react-icons/io5'
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg'
+import { ReactComponent as ThreedotIcon } from '../../styles/icons/more.svg'
 import '../../index.css'
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionId = Number(props.match.params.questionId)
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [question, setQuestion] = useState([])
   const [isCuriousToo, setIsCuriousToo] = useState(false)
@@ -28,20 +28,20 @@ const PostDetail = (props) => {
   const [toggleModalChang, setToggleModalChang] = useState(false)
   const [createdAt, setCreatedAt] = useState('')
   const [showModal, setShowModal] = React.useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const [noChangeModal, setNoChangeModal] = useState(false)
 
   const handleCloseNoChangeModal = () => {
-    setTimeout(()=> {
+    setTimeout(() => {
       setNoChangeModal(false)
-    }, 1800)
+    }, 1000)
   }
 
   const handleNoChangeModal = () => {
     setNoChangeModal(true)
     handleCloseNoChangeModal()
   }
-  console.log(question)
 
   const handleShowModal = (e) => {
     e.preventDefault()
@@ -74,13 +74,15 @@ const PostDetail = (props) => {
   const handleClickCuriousToo = async (e) => {
     e.preventDefault()
     e.stopPropagation()
+    if (!isLogin) {
+      setShowLoginModal(true)
+      return
+    }
     if (isCuriousToo) {
       await dictQuestionApi
         .curiousToo(questionId)
         .then((response) => {
-          console.log(response.data)
           setIsCuriousToo(false)
-          console.log(isCuriousToo)
           setCuriousTooCnt(curiousTooCnt - 1)
         })
         .catch((error) => {
@@ -90,10 +92,8 @@ const PostDetail = (props) => {
       await dictQuestionApi
         .curiousToo(questionId)
         .then((response) => {
-          console.log(response.data)
           setIsCuriousToo(true)
           setCuriousTooCnt(curiousTooCnt + 1)
-          console.log(isCuriousToo)
         })
         .catch((error) => {
           console.log('나도 궁금해요 문제 발생', error.response)
@@ -110,65 +110,60 @@ const PostDetail = (props) => {
   return (
     <>
       <Header>
-        <ArrowBackIcon className="arrow-back-icon" onClick={() => history.goBack()} />
-        {username === question.username ? (
-          <button style={{ padding: '5px 5px 0' }} onClick={clickToggleModalChang}>
-            <BsThreeDotsVertical size="20" />
-          </button>
-        ) : null}
+        <ArrowBackIcon className="icon" onClick={() => history.goBack()} />
+        <HeaderQuestion>질문</HeaderQuestion>
+        {username === question.username ? <ThreedotIcon className="icon" onClick={clickToggleModalChang} /> : <div className="empty"></div>}
         {toggleModalChang && (
           <ModalChang>
-            {question.selectedComment ===0?
-            <>
-            <Grid flex_end padding="5px 8px">
-              <IoCloseOutline className="close-icon" onClick={clickToggleModalChang} />
-            </Grid>
-            <div className="button-box">
-              <button
-                className="button edit"
-                onClick={() => {
-                  history.push(`/dict/question/edit/${questionId}`)
-                }}
-              >
-                수정하기
-              </button>
-            </div>
-            <div className="button-box">
-              <button className="button delete" onClick={handleShowModal}>
-                삭제하기
-              </button>
-            </div>
-            </> : <>
-            <Grid flex_end padding="5px 8px">
-              <IoCloseOutline className="close-icon" onClick={clickToggleModalChang} />
-            </Grid>
-            <div className="button-box">
-              <button
-                className="button edit"
-                onClick={handleNoChangeModal}
-              >
-                수정하기
-              </button>
-            </div>
-            <div className="button-box">
-              <button className="button delete" onClick={handleNoChangeModal}>
-                삭제하기
-              </button>
-            </div>
-            </> }
+            {question.selectedComment === 0 ? (
+              <>
+                <Grid flex_end padding="5px 8px">
+                  <CloseIcon className="close-icon" onClick={clickToggleModalChang} />
+                </Grid>
+                <div className="button-box">
+                  <button
+                    className="button edit"
+                    onClick={() => {
+                      history.push(`/dict/question/edit/${questionId}`)
+                    }}
+                  >
+                    수정하기
+                  </button>
+                </div>
+                <div className="button-box">
+                  <button className="button delete" onClick={handleShowModal}>
+                    삭제하기
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <Grid flex_end padding="5px 8px">
+                  <CloseIcon className="close-icon" onClick={clickToggleModalChang} />
+                </Grid>
+                <div className="button-box">
+                  <button className="button edit" onClick={handleNoChangeModal}>
+                    수정하기
+                  </button>
+                </div>
+                <div className="button-box">
+                  <button className="button delete" onClick={handleNoChangeModal}>
+                    삭제하기
+                  </button>
+                </div>
+              </>
+            )}
           </ModalChang>
         )}
       </Header>
       <PostWrap>
-        <Grid flex_align>
-          {/* <UserProfile src={question.profileImageUrl} alt="" /> */}
+        <Grid flex_align padding="5px 0 0 20px">
           <CuriousQ>Q</CuriousQ>
-
           <div>
             <Title>{question.title}</Title>
             <div className="profile-box">
               <Writer>{question.writer}</Writer>
-              <div style={{ fontSize: '12px'}}>{question && createdAt}</div>
+              <CreatedAt>{question && createdAt}</CreatedAt>
             </div>
           </div>
         </Grid>
@@ -178,40 +173,37 @@ const PostDetail = (props) => {
           <ImageBox>
             <ContentImg src={question ? question.thumbNail : null} alt="" />
           </ImageBox>
+          <div className="views">조회 {question.views}회</div>
         </Middle>
 
         <ViewLikeComment>
-          <div className="icon-box">
-            <ViewIcon fill="#333" />
-            <span className="icon-box__text">{question.views}</span>
-          </div>
-          <div className="icon-box">
-            {isCuriousToo ? (
-              <FullHeartIcon fill="#333" className="heart-icon" onClick={handleClickCuriousToo} />
-            ) : (
-              <EmptyHeartIcon fill="#333" className="heart-icon" onClick={handleClickCuriousToo} />
-            )}
-            <span className="icon-box__text">{curiousTooCnt}</span>
-          </div>
-          <div className="icon-box">
-            <CommentIcon fill="#333" />
-            <span className="icon-box__text">{question.commentCnt ? question.commentCnt : 0}</span>
-          </div>
+          {isCuriousToo ? (
+            <div className="icon-box" onClick={handleClickCuriousToo}>
+              <ICuriousToo fill="#00A0FF" />
+              <div style={{ color: '#00A0FF' }} className="icon-box__text">
+                나도 궁금해요 {curiousTooCnt}
+              </div>
+            </div>
+          ) : (
+            <div className="icon-box" onClick={handleClickCuriousToo}>
+              <ICuriousToo fill="#333" className="heart-icon" />
+              <div className="icon-box__text">나도 궁금해요 {curiousTooCnt} </div>
+            </div>
+          )}
         </ViewLikeComment>
       </PostWrap>
 
       <CommentTest question={question} />
 
-      {noChangeModal && (
-        <AlertModal showModal={noChangeModal}>
-            질문 답변 채택 후 수정 삭제가 불가능합니다.
-        </AlertModal>
-      )}
+      {noChangeModal && <AlertModal showModal={noChangeModal}>질문 답변 채택 후 수정 삭제가 불가능합니다.</AlertModal>}
       {showModal && (
-        <ConfirmModal question="밈글을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <DeleteButton onClick={handleDeleteQuestion}>삭제</DeleteButton>
+        <ConfirmModal question="질문을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
+          <ModalButton onClick={handleDeleteQuestion}>삭제</ModalButton>
         </ConfirmModal>
       )}
+      <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -222,20 +214,37 @@ const Header = styled.header`
   position: absolute;
   left: 0;
   top: 0;
-  padding: 0 16px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.bg};
   z-index: 1000;
-  .arrow-back-icon {
+  margin: 0 0 24px 0;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 0 15px 0 #e5e5e5;
+  .icon {
     cursor: pointer;
-    font-size: 20px;
+  }
+  .empty {
+    width: 24px;
+    height: 100%;
   }
 `
 
+const HeaderQuestion = styled.div`
+  font-family: 'YdestreetB';
+  font-style: normal;
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  /* line-height: 29px; */
+  display: flex;
+  align-items: center;
+`
+
 const PostWrap = styled.div`
-  padding: 70px 16px 0;
+  padding: 70px 0px 0;
+  border-bottom: 2px solid #e5e5e5;
   .profile-box {
     display: flex;
     align-items: center;
@@ -243,54 +252,55 @@ const PostWrap = styled.div`
   }
 `
 const CuriousQ = styled.div`
-  background: #FF8E00;
+  background: #ff8e00;
   width: 40px;
-  height:40px;
+  height: 40px;
   border: 2px solid black;
-  border-radius:150px;
-  font-family:'YdestreetB';
-  font-syled: normal;
-  font-weigt:bold;
-  line-height:26px;
-  font-size:20px;
-  padding:7px 11px 7px 9px;
-  margin: 0 12px;
-
-`
-
-const UserProfile = styled.img`
   border-radius: 150px;
-  width: 36px;
-  height: 36px;
-  margin: 0 10px 0 0;
-`
-const Writer = styled.div`
-  /* width: 100%; */
-  font-size: 12px;
-  font-family: 'YdestreetL';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'YdestreetB';
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 12px 0 0;
+`
+
+const Writer = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.small};
   margin: 0 8px 0 0;
 `
 
+const CreatedAt = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: 300;
+`
+
 const Middle = styled.div`
-  padding: 16px 14px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  .views {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+  }
 `
 
 const Title = styled.div`
-  font-style: normal;
   font-weight: 500;
-  font-family: Pretendard;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: 22px;
   display: flex;
   align-items: center;
 `
 
 const Content = styled.div`
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSizes.base};
 `
 
 const ImageBox = styled.div`
@@ -300,7 +310,7 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 0;
+  padding: 20px 12px;
 `
 
 const ContentImg = styled.img`
@@ -311,18 +321,23 @@ const ContentImg = styled.img`
 const ViewLikeComment = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 0 16px;
+  justify-content: center;
+  padding: 0 0 30px;
   .icon-box {
     display: flex;
     align-items: center;
-    padding: 0 10px 0 0;
-    color: #333;
-    .heart-icon {
-      cursor: pointer;
-    }
+    cursor: pointer;
+
     .icon-box__text {
       font-size: ${({ theme }) => theme.fontSizes.lg};
-      padding: 0 0 0 5px;
+      font-family: 'YdestreetL';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 12px;
     }
   }
 `
@@ -355,15 +370,16 @@ const ModalChang = styled.div`
     justify-content: left;
     --webkit-appearance: none;
     .button {
-      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-size: ${({ theme }) => theme.fontSizes.small};
       padding: 0;
     }
   }
 `
 
-const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const ModalButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default PostDetail
