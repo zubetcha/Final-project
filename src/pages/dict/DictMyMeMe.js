@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { history } from '../../redux/ConfigureStore'
+import { useDispatch } from 'react-redux'
 
 import '../../styles/css/DictMyMeme.css'
-import styled from 'styled-components'
 
 import { dictApi } from '../../shared/api'
 import DictNavBar from '../../components/DictNavBar'
@@ -16,7 +14,6 @@ import Grid from '../../elements/Grid'
 const DictMyMeMe = (props) => {
   const dispatch = useDispatch()
 
-  const [show, setShow] = useState(false)
   const [scrapList, setScrapList] = React.useState([])
 
   const DictMySrcapListDB = async () => {

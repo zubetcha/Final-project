@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/css/DictList.css'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
-import axios from 'axios'
-import { actionCreators as dictActions } from '../../redux/modules/dict'
 import Pagination from 'rc-pagination'
 import SearchPage from '../../shared/SearchPage'
 import { dictApi } from '../../shared/api'
@@ -17,8 +15,6 @@ import Grid from '../../elements/Grid'
 import Title from '../../elements/Title'
 import OneDictionaryCard from '../../components/OneDictionaryCard'
 import ConfirmModal from '../../components/modal/ConfirmModal'
-import { ReactComponent as EmptyBookMarkIcon } from '../../styles/icons/bookmark_blank.svg'
-import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_filled.svg'
 import { RiEditLine } from 'react-icons/ri'
 
 const DictList = (props) => {
@@ -28,7 +24,6 @@ const DictList = (props) => {
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
 
-  const [show, setShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [dict, setDict] = useState([])
   const [pageSize, setPageSize] = useState(10)
@@ -51,14 +46,6 @@ const DictList = (props) => {
 
     setDict(response.data.data)
     setTotalCount(totalLength.data.data)
-  }
-
-  const showSearchBar = () => {
-    if (show === false) {
-      setShow(true)
-    } else {
-      setShow(false)
-    }
   }
 
   const handleClickWrite = () => {
