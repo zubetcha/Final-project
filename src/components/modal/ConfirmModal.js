@@ -52,7 +52,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  -webkit-appearance: none;
   .title-box {
     font-size: ${({ theme }) => theme.fontSizes.base};
     font-weight: 500;
