@@ -4,16 +4,13 @@ import { styled } from '@mui/material/styles'
 import MuiAccordion from '@mui/material/Accordion'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
-import { useDispatch, useSelector } from 'react-redux'
-import { history } from '../redux/ConfigureStore'
+import { useDispatch } from 'react-redux'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { dictApi } from '../shared/api'
-import ReactPlayer from 'react-player/lazy'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 
 import 'swiper/swiper.min.css'
-// import 'swiper/css/free-mode'
 import 'swiper/components/scrollbar/scrollbar.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/components/navigation/navigation.min.css'
@@ -38,10 +35,8 @@ const RelatedYoutube = (props) => {
   React.useEffect((dictId) => {
     DictRelatedVideo(dictId)
   }, [])
-  console.log(relatedVideo)
 
   let hasVideo = relatedVideo.length !== 0
-  console.log(hasVideo)
 
   const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     border: `${theme.palette.divider}`,
@@ -72,15 +67,8 @@ const RelatedYoutube = (props) => {
               keyboard={{
                 enabled: true,
               }}
-              // centeredSlides={true}
               slidesPerGroupSkip={1}
               grabCursor={true}
-              // breakpoints={{
-              //   769: {
-              //     slidesPerView: 2,
-              //     slidesPerGroup: 2,
-              //   },
-              // }}
               scrollbar={false}
               autoplay={{
                 delay: 5000,
@@ -99,6 +87,7 @@ const RelatedYoutube = (props) => {
                       onClick={() => {
                         window.open(`https://www.youtube.com/watch?v=${relatedVideo.youtubeId}`)
                       }}
+                      alt="밈단어 관련 유튜브 동영상"
                     ></img>
                   </div>
                 </SwiperSlide>

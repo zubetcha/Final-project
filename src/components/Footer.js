@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import { history } from '../redux/ConfigureStore'
 
 import Grid from '../elements/Grid'
-import ConfirmModal from './modal/ConfirmModal'
 import SmileIcon from '../styles/image/smileIcon_Blue.png'
 import { ReactComponent as DictIcon } from '../styles/icons/Dockbar_dictionary.svg'
 import { ReactComponent as MyPageIcon } from '../styles/icons/Dockbar_mypage.svg'
@@ -15,15 +14,6 @@ const Footer = (props) => {
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
-
-  const [showModal, setShowModal] = useState(false)
-
-  const handleClickMypage = () => {
-    if (!isLogin) {
-      setShowModal(true)
-      return
-    }
-  }
   const activeStyle = {
     color: '#00A0FF',
     fill: '#00A0FF',
@@ -53,7 +43,6 @@ const Footer = (props) => {
               <NavLink to="/" exact className="nav-link fixed" activeStyle={activeStyle}>
                 <Grid flex_center column>
                   <Logo src={SmileIcon} />
-                  {/* <div className="nav-link__text">홈</div> */}
                 </Grid>
               </NavLink>
             </li>
@@ -66,7 +55,7 @@ const Footer = (props) => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to={isLogin && '/mypage'} onClick={handleClickMypage} className="nav-link" activeStyle={activeStyle}>
+              <NavLink to={isLogin ? '/mypage' : '/login'} className="nav-link" activeStyle={activeStyle}>
                 <Grid flex_center column>
                   <MyPageIcon className="nav-icon" />
                   <div className="nav-link__text">MY</div>
@@ -76,9 +65,6 @@ const Footer = (props) => {
           </ul>
         </NavBar>
       </NavContainer>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
-      </ConfirmModal>
     </>
   )
 }
@@ -148,12 +134,6 @@ const Logo = styled.div`
   background-size: cover;
   background-image: url('${(props) => props.src}');
   background-position: center;
-`
-
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
 `
 
 export default Footer

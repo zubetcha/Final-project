@@ -7,7 +7,7 @@ import { ReactComponent as EmptyHeartIcon } from '../styles/icons/size(28*28)(30
 import { ReactComponent as FullHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_filled_28dp.svg'
 import { ReactComponent as CommentIcon } from '../styles/icons/댓글_18dp.svg'
 import { ReactComponent as ICuriousToo } from '../styles/icons/quiz_black_24dp.svg'
-import { BiBadge, BiBadgeCheck } from 'react-icons/bi'
+
 import Grid from '../elements/Grid'
 import '../index.css'
 

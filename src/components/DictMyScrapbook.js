@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/css/DictMyScrapbook.css'
-import swal from 'sweetalert'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
-import { likeApi } from '../shared/api'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { ReactComponent as EmptyBookMarkIcon } from '../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
@@ -17,6 +15,9 @@ import AlertModal from './modal/AlertModal'
 
 const DictMyScrapbook = (props) => {
   const dispatch = useDispatch()
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [expanded, setExpanded] = React.useState(false)
   const [scrapList, setScrapList] = React.useState([])
@@ -32,7 +33,9 @@ const DictMyScrapbook = (props) => {
   }
 
   React.useEffect((userId) => {
-    DictMySrcapListDB(userId)
+    if (isLogin) {
+      DictMySrcapListDB(userId)
+    }
   }, [])
 
   const currentUrl = 'https://memegle.xyz/dict/detail'

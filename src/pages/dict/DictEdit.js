@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/css/DictEdit.css'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { history } from '../../redux/ConfigureStore'
+import { useDispatch } from 'react-redux'
 import { dictApi } from '../../shared/api'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
 import swal from 'sweetalert'
@@ -104,10 +103,6 @@ const DictEdit = (props) => {
         </div>
       </div>
       <div className="DictCardEditTemporaryOrSubmitButton">
-        {/* <div className="DictCardEditTemporaryButton" onClick={allClearKeyword}>
-            <div className="DictCardEditTemporaryButton_1">초기화</div>
-            <div className="DictCardEditTemporaryButton_2"></div>
-          </div> */}
         <div className="DictCardEditSubmitButton" type="submit">
           <button className="DictCardEditSubmitButton_1" onClick={handleShowModal} disabled={!(summary !== '' && content !== '')}>
             편집

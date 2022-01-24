@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback, TextareaHTMLAttributes } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictWrite.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
-import swal from 'sweetalert'
 import Header from '../../components/Header'
-import { debounce } from 'lodash'
-import axios from 'axios'
 import { dictApi } from '../../shared/api'
 import ConfirmModal from '../../components/modal/ConfirmModal'
 import DoubleCheckModal from '../../components/modal/DoubleCheckModal'
@@ -128,10 +125,6 @@ const DictWrite = (props) => {
         </div>
       </div>
       <div className="DictCardTemporaryOrSubmitButton">
-        {/* <div className="DictCardTemporaryButton" onClick={allClearKeyword}>
-            <div className="DictCardTemporaryButton_1">초기화</div>
-            <div className="DictCardTemporaryButton_2"></div>
-          </div> */}
         <div className="DictCardSubmitButton" type="submit">
           <button className="DictCardSubmitButton_1" onClick={handleShowModal} disabled={!(title !== '' && summary !== '' && content !== '')}>
             등록

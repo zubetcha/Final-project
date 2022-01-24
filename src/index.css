@@ -13,28 +13,28 @@ code {
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 300;
-  src: url('styles/fonts/Pretendard-Light.woff') format('woff'), url('styles/fonts/Pretendard-Light.woff2') format('woff2');
+  src: url('./styles/fonts/Pretendard-Light.woff2') format('woff2'), url('styles/fonts/Pretendard-Light.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 400;
-  src: url('styles/fonts/Pretendard-Regular.woff') format('woff'), url('styles/fonts/Pretendard-Regular.woff2') format('woff2');
+  src: url('./styles/fonts/Pretendard-Regular.woff2') format('woff2'), url('styles/fonts/Pretendard-Regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 500;
-  src: url('styles/fonts/Pretendard-Medium.woff') format('woff'), url('styles/fonts/Pretendard-Medium.woff2') format('woff2');
+  src: url('./styles/fonts/Pretendard-Medium.woff2') format('woff2'), url('styles/fonts/Pretendard-Medium.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 600;
-  src: url('styles/fonts/Pretendard-SemiBold.woff') format('woff'), url('styles/fonts/Pretendard-SemiBold.woff2') format('woff2');
+  src: url('./styles/fonts/Pretendard-SemiBold.woff2') format('woff2'), url('styles/fonts/Pretendard-SemiBold.woff') format('woff');
 }
 
 @font-face {
@@ -48,12 +48,12 @@ code {
   font-family: 'YdestreetB';
   font-style: normal;
   font-weight: normal;
-  src: url('styles/fonts/YdestreetB.otf') format('truetype'), url('styles/fonts/YdestreetB.ttf') format('truetype');
+  src: url('styles/fonts/YdestreetB.woff') format('woff'), url('styles/fonts/YdestreetB.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'YdestreetL';
   font-style: normal;
   font-weight: normal;
-  src: url('styles/fonts/YdestreetL.otf') format('truetype'), url('styles/fonts/YdestreetL.ttf') format('truetype');
+  src: url('styles/fonts/YdestreetL.woff') format('woff'), url('styles/fonts/YdestreetL.woff2') format('woff2');
 }

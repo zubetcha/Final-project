@@ -13,7 +13,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import AlertModal from '../components/modal/AlertModal'
 import Grid from '../elements/Grid'
-import { ReactComponent as PlusIcon } from '../styles/icons/add.svg'
 
 import 'swiper/swiper.min.css'
 import 'swiper/components/lazy/lazy.min.css'
@@ -38,7 +37,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 3000)
+    }, 2000)
   }
 
   const handleShowModal = () => {
@@ -167,33 +166,21 @@ const Main = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="MainPageAddButtonSection">
-          <div className="MainPageAddButtonSectionHr"></div>
-          <div className="MainPageAddButton">
-            <PlusIcon width="24px" height="24px" />
-          </div>
-          <div className="MainPageAddButtonGuideText">나도 추가하러 가보자!</div>
-        </div> */}
       </div>
       <Footer />
       {showModal && (
         <AlertModal showModal={showModal}>
-          <WelcomeMessage>
-            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
-          </WelcomeMessage>
+          <Username>{nickname}</Username> 님 만반잘부! 🙋🏻
         </AlertModal>
       )}
     </>
   )
 }
 
-const WelcomeMessage = styled.p`
+const Username = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  .username {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.blue};
-  }
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default Main
