@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'YdestreetB';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/YdestreetB.otf') format('truetype'), url('../fonts/YdestreetB.ttf') format('truetype');
+}
+
+.DictRealatedYoutubeSection {
+  width: 110%;
+  height: 100%;
+}
+
+.DictRealatedYoutubeText {
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.expandIcon {
+  width: fit-content;
+  height: fit-content;
+}
+
+.DictRelatedYoutubeSwiper {
+  width: 10rem !important;
+  background-color: transparent !important;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.DictRealatedYoutubeThumbNail {
+  background-size: cover;
+  border: 1px solid #878c92;
+}
+
+.DictRealatedYoutubeGuide {
+  font-family: 'YdestreetB';
+  font-style: normal;
+  font-size: 0.875rem;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 20px 15px 0;
+}
+
+.None {
+  font-family: 'YdestreetB';
+  font-style: normal;
+  font-size: 0.875rem;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -15px 20px 15px 0;
+}
