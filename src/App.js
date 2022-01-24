@@ -98,7 +98,6 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   background: #2b2b2b;
-  /* background-size: contain; */
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -123,7 +122,7 @@ const Wrapper = styled.div`
 const BackgroundOpacity = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background: rgb(250, 250, 250, 0.3); */
+  /* background: rgb(250, 250, 250, 0.6); */
   /* background-size: contain; */
   overflow: hidden;
   position: fixed;

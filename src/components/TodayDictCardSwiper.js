@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { dictApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -42,15 +41,8 @@ const TodayDictCardSwiper = (props) => {
         keyboard={{
           enabled: true,
         }}
-        // centeredSlides={true}
         slidesPerGroupSkip={1}
         grabCursor={true}
-        // breakpoints={{
-        //   769: {
-        //     slidesPerView: 2,
-        //     slidesPerGroup: 2,
-        //   },
-        // }}
         scrollbar={false}
         autoplay={{
           delay: 5000,
@@ -79,7 +71,6 @@ const TodayDictCardSwiper = (props) => {
 
 const TodayDictCardBack = styled.div`
   border: 2px solid black;
-  /* border: none; */
   top: 6px;
   left: 6px;
   background-color: ${(props) => (props.index % 3 === 0 ? '#FFE330' : props.index % 3 === 1 ? '#FF8E00' : '#00A0FF')};

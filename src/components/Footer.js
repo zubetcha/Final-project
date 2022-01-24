@@ -53,7 +53,6 @@ const Footer = (props) => {
               <NavLink to="/" exact className="nav-link fixed" activeStyle={activeStyle}>
                 <Grid flex_center column>
                   <Logo src={SmileIcon} />
-                  {/* <div className="nav-link__text">홈</div> */}
                 </Grid>
               </NavLink>
             </li>

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/css/DictHistory.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
-import { actionCreators as dictActions } from '../../redux/modules/dict'
 import { dictApi } from '../../shared/api'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -39,13 +38,6 @@ const DictEditHistory = (props) => {
     setFirstCreatedAt(response.data.data.firstCreatedAt.split('T')[0])
   }
 
-  const showSearchBar = () => {
-    if (show === false) {
-      setShow(true)
-    } else {
-      setShow(false)
-    }
-  }
   const handleClickEdit = () => {
     if (!isLogin) {
       setShowModal(true)

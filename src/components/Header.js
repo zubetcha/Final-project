@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
@@ -17,8 +17,7 @@ const Header = ({ children, location, type }) => {
   const profile = useSelector((state) => state.mypage.myProfile)
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
-  // const cookieList = document.cookie.split('=')
-  // const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
+
   const isLogin = userId !== null && token !== null ? true : false
   const alarmList = profile?.alarm?.length > 5 ? profile?.alarm.slice(0, 5) : profile?.alarm
 

@@ -1,8 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/cookie'
-import { applyMiddleware } from 'redux'
-import axios from 'axios'
 import { userApi } from '../../shared/api'
 import swal from 'sweetalert'
 
@@ -137,7 +135,7 @@ const joinDB = (username, nickname, password, passwordCheck) => {
       })
       .catch((err) => {
         dispatch(loading(false))
-        swal('이미 등록된 사용자 입니다! 아이디 또는 닉네임을 변경해주세요')
+        swal('모든 값이 정상적으로 입력되었는지 확인해주세요!')
         dispatch(loading(false))
       })
   }

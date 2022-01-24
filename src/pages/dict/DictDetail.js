@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/css/DictDetail.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
@@ -8,7 +8,6 @@ import { dictApi } from '../../shared/api'
 import { likeApi } from '../../shared/api'
 import { ReactComponent as EmptyBookMarkIcon } from '../../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_filled.svg'
-import swal from 'sweetalert'
 import 'moment'
 import 'moment/locale/ko'
 import moment from 'moment'
@@ -70,7 +69,6 @@ const DictDetail = (props) => {
         .then((response) => {
           setLike(false)
           setLikeCount(likeCount - 1)
-          // dispatch(getDictDetailDB(like, likeCount))
         })
         .catch((error) => {
           console.log('밈 사전 좋아요 취소 실패', error.response)
@@ -81,7 +79,6 @@ const DictDetail = (props) => {
         .then((response) => {
           setLike(true)
           setLikeCount(likeCount + 1)
-          // dispatch(getDictDetailDB(like, likeCount))
         })
         .catch((error) => {
           console.log('밈 사전 좋아요 문제 발생', error.response)
@@ -113,7 +110,6 @@ const DictDetail = (props) => {
   return (
     <>
       <Header type="goBack" location="오픈 밈사전" />
-      {/* <SearchBarSection>{show && <SearchPage />}</SearchBarSection> */}
       <div className="OneDictCardDetailPageLayout">
         <Grid flex_start column padding="20px">
           <Grid flex_align padding="0 0 36px">
@@ -196,14 +192,6 @@ const DictDetail = (props) => {
     </>
   )
 }
-
-const SearchBarSection = styled.div`
-  position: absolute;
-  top: 74px;
-  width: 100%;
-  height: fit-content;
-  z-index: 5;
-`
 
 const MoveLoginButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.base};
