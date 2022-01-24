@@ -1,10 +1,3 @@
-@font-face {
-  font-family: 'YdestreetB';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../fonts/YdestreetB.otf') format('truetype'), url('../fonts/YdestreetB.ttf') format('truetype');
-}
-
 .DictRealatedYoutubeSection {
   width: 110%;
   height: 100%;
@@ -15,6 +8,7 @@
   height: fit-content;
   font-size: 14px;
   margin-right: 5px;
+  margin-left: -10px;
 }
 
 .expandIcon {
@@ -23,7 +17,7 @@
 }
 
 .DictRelatedYoutubeSwiper {
-  width: 10rem !important;
+  width: 12rem !important;
   background-color: transparent !important;
   /* Center slide text vertically */
   display: -webkit-box;
@@ -38,11 +32,12 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+  padding-right: 10px;
 }
 
 .DictRealatedYoutubeThumbNail {
   background-size: cover;
-  border: 1px solid #878c92;
+  border: 0.1px solid #d3d3d3;
 }
 
 .DictRealatedYoutubeGuide {

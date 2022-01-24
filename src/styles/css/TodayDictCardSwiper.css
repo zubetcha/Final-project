@@ -1,17 +1,3 @@
-@font-face {
-  font-family: 'YdestreetB';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../fonts/YdestreetB.otf') format('truetype'), url('../fonts/YdestreetB.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'YdestreetL';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../fonts/YdestreetL.otf') format('truetype'), url('../fonts/YdestreetL.ttf') format('truetype');
-}
-
 .TodayDictCard {
   position: relative;
   width: 100%;
