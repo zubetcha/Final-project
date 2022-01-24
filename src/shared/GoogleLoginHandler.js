@@ -2,9 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators as userActions } from '../redux/modules/user'
 
-import ScaleLoader from 'react-spinners/ScaleLoader'
 import styled from 'styled-components'
-import Spinner from '../components/Spinner'
 
 const GoogleLoginHandler = (props) => {
   const dispatch = useDispatch()
@@ -16,15 +14,7 @@ const GoogleLoginHandler = (props) => {
   React.useEffect(async () => {
     await dispatch(userActions.googleLoginDB(code))
   }, [])
-  return (
-    <BackGround>
-      {/* <Flex>
-        <Text>대충 로그인 중이라는 내용</Text>
-        <ScaleLoader height="160px" width="32px" color="#7362ff" radius="8px" margin="5px" speedMultiplier="2" />
-      </Flex> */}
-      <Spinner />
-    </BackGround>
-  )
+  return <BackGround></BackGround>
 }
 
 const BackGround = styled.div`

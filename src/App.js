@@ -109,10 +109,6 @@ const Wrapper = styled.div`
   .MobileFramePage {
     z-index: 999;
   }
-
-  @media screen and (min-width: 500px) {
-    background-size: 100% 100vh;
-  }
 `
 
 const BackgroundOpacity = styled.div`

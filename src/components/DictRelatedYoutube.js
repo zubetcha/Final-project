@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { dictApi } from '../shared/api'
-import ReactPlayer from 'react-player/lazy'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 
