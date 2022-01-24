@@ -48,12 +48,12 @@ code {
   font-family: 'YdestreetB';
   font-style: normal;
   font-weight: normal;
-  src: url('styles/fonts/YdestreetB.otf') format('truetype'), url('styles/fonts/YdestreetB.ttf') format('truetype');
+  src: url('styles/fonts/YdestreetB.woff') format('woff'), url('styles/fonts/YdestreetB.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'YdestreetL';
   font-style: normal;
   font-weight: normal;
-  src: url('styles/fonts/YdestreetL.otf') format('truetype'), url('styles/fonts/YdestreetL.ttf') format('truetype');
+  src: url('styles/fonts/YdestreetL.woff') format('woff'), url('styles/fonts/YdestreetL.woff2') format('woff2');
 }
