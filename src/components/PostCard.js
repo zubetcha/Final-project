@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { dictQuestionApi } from '../shared/api'
 import { useHistory } from 'react-router'
-import '../index.css'
 import { ReactComponent as ViewIcon } from '../styles/icons/조회_18dp.svg'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_blank_28dp.svg'
 import { ReactComponent as FullHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_filled_28dp.svg'
 import { ReactComponent as CommentIcon } from '../styles/icons/댓글_18dp.svg'
 import { ReactComponent as ICuriousToo } from '../styles/icons/quiz_black_24dp.svg'
-
 import { BiBadge, BiBadgeCheck } from 'react-icons/bi'
 import Grid from '../elements/Grid'
+import '../index.css'
 
 const PostCard = ({ question }) => {
   const history = useHistory()
@@ -117,7 +116,7 @@ const CuriousQ = styled.div`
 
 const Title = styled.div`
   width: calc(100% - 52px);
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: 500;
   align-items: center;
   white-space: nowrap;
@@ -126,7 +125,7 @@ const Title = styled.div`
 `
 
 const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   line-height: 24px;
   height: 48px;
   margin: 16px 0 0;

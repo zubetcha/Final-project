@@ -20,35 +20,35 @@
 @media screen and (min-width: 500px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(-10%, -50%);
+    transform: translate(-40%, -50%);
   }
 }
 
 @media screen and (min-width: 900px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(20%, -50%);
+    transform: translate(-15%, -50%);
   }
 }
 
 @media screen and (min-width: 1120px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(20%, -50%);
+    transform: translate(-5%, -50%);
   }
 }
 
 @media screen and (min-width: 1700px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(55%, -50%);
+    transform: translate(30%, -50%);
   }
 }
 
 @media screen and (min-width: 2000px) {
   .WebFullFrame {
     top: 50%;
-    transform: translate(60%, -50%);
+    transform: translate(50%, -50%);
   }
 }
 
@@ -59,7 +59,7 @@
   justify-content: center;
   vertical-align: middle;
   top: 50%;
-  left: 15%;
+  left: 50%;
   transform: translate(-50%, -50%);
   /* max-width: 430px; */
   width: 100%;

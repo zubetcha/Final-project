@@ -46,7 +46,7 @@ const QuizIntro = (props) => {
   const closeModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 2000)
+    }, 1000)
   }
 
   const handleStartQuiz = () => {
@@ -87,8 +87,11 @@ const QuizIntro = (props) => {
           <img src={QuizIntroImage} className="quiz-intro-gif" alt="퀴즈 인트로 움짤" />
           <Grid flex_center column>
             <div style={{ padding: '20px 0 10px' }}>
-              <p className="subject-question">어느 레벨의 밈을</p>
-              <p className="subject-question">테스트하고 싶으신가요?</p>
+              <p className="subject-question">
+                어느 레벨의 밈을
+                <br />
+                테스트하고 싶으신가요?
+              </p>
             </div>
             <div className="subject-button-box">
               <button className={`subject-button ${lv1 ? 'selected' : ''}`} value="lv1" onClick={handleChangeSubjectY2000}>
@@ -155,6 +158,7 @@ const Wrapper = styled.div`
     font-family: 'YdestreetL';
     font-style: normal;
     font-weight: normal;
+    text-align: center;
   }
   .subject-button-box {
     width: 100%;

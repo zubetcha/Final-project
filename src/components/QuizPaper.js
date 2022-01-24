@@ -6,13 +6,11 @@ import { actionCreators as quizActions } from '../redux/modules/quiz'
 
 import Grid from '../elements/Grid'
 import QuizResult from '../pages/QuizResult'
-import CircularProgress from '@mui/material/CircularProgress'
 
 const QuizPaper = (props) => {
   const category = useParams().category
   const dispatch = useDispatch()
   const quiz_list = useSelector((state) => state.quiz.quiz_list)
-  const loading = useSelector((state) => state.quiz.is_loading)
 
   const [showResult, setShowResult] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)

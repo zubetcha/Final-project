@@ -56,7 +56,13 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
       </BottomPopup>
 
       {showModal && (
-        <ConfirmModal question="로그아웃 하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
+        <ConfirmModal
+          title="정말 로그아웃 하시겠어요?"
+          question={`밈글밈글은 언제나 ${profile?.nickname} 님을 기다리고 있어요 🥲 `}
+          showModal={showModal}
+          handleShowModal={handleShowModal}
+          setShowModal={setShowModal}
+        >
           <LogOutButton onClick={handleClickLogOut}>로그아웃</LogOutButton>
         </ConfirmModal>
       )}
@@ -100,7 +106,7 @@ const ProfileImage = styled.div`
 
 const Nickname = styled.div`
   padding: 16px 0 0;
-  font-weight: 500;
+  font-weight: 600;
   cursor: default;
 `
 
@@ -109,7 +115,7 @@ const Button = styled.button`
   padding: 8px 0;
   width: 100px;
   height: auto;
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -132,8 +138,9 @@ const Button = styled.button`
 `
 
 const LogOutButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default ProfileBottom

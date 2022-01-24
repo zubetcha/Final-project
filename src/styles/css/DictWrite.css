@@ -66,23 +66,23 @@
 }
 
 .DictCardInputTitleGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .DictCardInputTitle {
-  width: calc(100% - 108px);
+  width: calc(100% - 118px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
   padding: 0 10px;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   overflow: hidden;
   resize: horizontal;
-  padding: 0;
+  padding: 0 0 0 5px;
 
   color: -internal-light-dark(black, white);
 }
@@ -92,7 +92,7 @@
   height: fit-content;
   text-decoration-line: underline;
 
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
 }
@@ -108,7 +108,7 @@
 }
 
 .DictCardInputSummaryGuideText {
-  width: 65px;
+  width: 75px;
   height: fit-content;
 
   font-size: 1rem;
@@ -116,17 +116,23 @@
 }
 
 .DictCardInputSummary {
-  width: calc(100% - 65px);
+  width: calc(100% - 75px);
   height: fit-content;
   word-wrap: break-word;
   word-break: keep-all;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   background-color: transparent;
   overflow-y: hidden;
-  padding: 0;
+  padding: 0 0 0 5;
 
   color: -internal-light-dark(black, white);
+}
+.DictCardInputSummary::placeholder {
+  font-size: 0.7rem;
+}
+.DictCardInputSummary::-ms-input-placeholder {
+  font-size: 0.7rem;
 }
 
 .DictCardInputContentContainer {
@@ -156,6 +162,7 @@
   min-height: 5rem;
   overflow-y: hidden;
   resize: none;
+  line-height: 1.6;
 
   color: -internal-light-dark(black, white);
 }
@@ -258,6 +265,7 @@
 .DictListMoveButton {
   font-size: 14px;
   color: #00a0ff;
+  padding: 0;
 }
 
 /* sweet alret */

@@ -32,17 +32,13 @@ const DictWrite = (props) => {
       setShowModal(!showModal)
     } else {
       setShowDoubleCheckAlert(true)
-      setTimeout(() => setShowDoubleCheckAlert(false), 2000)
+      setTimeout(() => setShowDoubleCheckAlert(false), 1000)
     }
   }
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
   }
-
-  console.log(title)
-  console.log(summary)
-  console.log(content)
 
   const onChangeSummary = async (e) => {
     setSummary(e.target.value)
@@ -64,7 +60,6 @@ const DictWrite = (props) => {
       dictApi
         .dobleCheckDict(dictName)
         .then((res) => {
-          console.log(res.data.data.result)
           if (res.data.data.result === true) {
             setDoubleCheck(true)
             setCheckedTitle(title)
@@ -81,7 +76,7 @@ const DictWrite = (props) => {
         })
     } else {
       setShowInputAlert(true)
-      setTimeout(() => setShowInputAlert(false), 2000)
+      setTimeout(() => setShowInputAlert(false), 1000)
     }
   }
 
@@ -124,16 +119,7 @@ const DictWrite = (props) => {
             <div className="DictCardInputSummaryGuideText">
               한줄설명<span className="highlight">*</span>
             </div>
-            <input
-              className="DictCardInputSummary"
-              type="text"
-              cols="40"
-              rows="3"
-              maxlength="25"
-              value={summary}
-              onChange={onChangeSummary}
-              placeholder="단어의 뜻을 25자 이내로 요약하여 입력해주세요"
-            />
+            <input className="DictCardInputSummary" type="text" cols="40" rows="3" maxlength="25" value={summary} onChange={onChangeSummary} placeholder="단어의 뜻을 25자 이내로 요약해주세요" />
           </div>
           <div className="DictCardInputContentContainer">
             <div className="DictCardInputContentGuideText">부가설명</div>
@@ -180,8 +166,9 @@ const DictWrite = (props) => {
 }
 
 const AddDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default DictWrite

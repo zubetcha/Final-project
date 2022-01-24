@@ -50,10 +50,10 @@
 }
 
 .OneDictCardDetailInfo_Guide {
-  max-width: 50px;
-  min-width: 50px;
+  max-width: 60px;
+  min-width: 60px;
   height: fit-content;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
@@ -70,6 +70,11 @@
   width: fit-content;
   height: fit-content;
   font-size: 0.875rem;
+  display: flex;
+  line-height: 1.8;
+}
+
+.OneDictCardDetailInfo_RelatedVideo {
   display: flex;
 }
 
@@ -128,7 +133,7 @@
 }
 
 .OneDictCardDetailInfoCreatedAt {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: rgba(135, 140, 146, 1);
 }
 
@@ -165,7 +170,7 @@
 }
 
 .OneDictCardDetailInfoModifiedAt {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: rgba(135, 140, 146, 1);
 }
 
@@ -176,7 +181,7 @@
   align-items: center;
   justify-content: center;
   left: 50%;
-  padding: 0 20px 40px;
+  padding: 0 20px 100px;
 }
 
 .OneDictCardDetailInfoModifiedHistoryButton {

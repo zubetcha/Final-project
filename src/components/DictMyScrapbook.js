@@ -29,8 +29,6 @@ const DictMyScrapbook = (props) => {
     let response = await dictApi.dictMyScrapList(userId)
 
     setScrapList(response.data.data)
-    console.log(response)
-    console.log(response.data.data)
   }
 
   React.useEffect((userId) => {
@@ -43,13 +41,13 @@ const DictMyScrapbook = (props) => {
 
   const handleCopy = () => {
     setCopyLink(true)
-    setTimeout(() => setCopyLink(false), 2000)
+    setTimeout(() => setCopyLink(false), 1000)
   }
 
   return (
     <>
       {scrapList.map((scrapList) => (
-        <div className="DictMyScrapbook" key={scrapList.id}>
+        <div className="DictMyScrapbook" key={scrapList.dictId}>
           <Accordion sx={{ backgroundColor: 'white' }} expanded={expanded === `panel${scrapList.dictId}`} onChange={handleChange(`panel${scrapList.dictId}`)}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
               <div className={expanded === `panel${scrapList.dictId}` ? 'DictMyScrapTitle activeTitle' : 'DictMyScrapTitle'}>{scrapList.title}</div>

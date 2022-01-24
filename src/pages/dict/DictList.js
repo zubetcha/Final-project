@@ -45,14 +45,10 @@ const DictList = (props) => {
     getDictListDB()
   }, [currentPage])
 
-  console.log(dict)
-  console.log(totalCount)
-
   const getDictListDB = async () => {
     let response = await dictApi.getDictMain(pageSize, currentPage)
     let totalLength = await dictApi.tellMeTotalLength()
-    console.log(response)
-    console.log(totalLength)
+
     setDict(response.data.data)
     setTotalCount(totalLength.data.data)
   }
@@ -93,7 +89,7 @@ const DictList = (props) => {
           </div>
           <div className="DictList">
             {dict.map((dict) => (
-              <OneDictionaryCard key={dict.id} dict={dict} />
+              <OneDictionaryCard key={dict.dictId} dict={dict} />
             ))}
           </div>
           <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
@@ -103,7 +99,7 @@ const DictList = (props) => {
       <SpeedDialButton _onClick={handleClickWrite}>
         <RiEditLine size="28" fill="#FFFFFF" />
       </SpeedDialButton>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
       </ConfirmModal>
     </>
@@ -120,8 +116,9 @@ const SearchBarSection = styled.div`
 `
 
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default DictList

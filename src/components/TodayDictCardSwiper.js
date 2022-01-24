@@ -35,10 +35,7 @@ const TodayDictCardSwiper = (props) => {
   const getTodayDictList = async () => {
     let response = await dictApi.getTodayDict()
     setTodayDict(response.data.data)
-    console.log(response)
   }
-
-  console.log(todayDict)
 
   return (
     <>
@@ -68,9 +65,9 @@ const TodayDictCardSwiper = (props) => {
         className="mySwiper"
       >
         {todayDict.map((todayDict, index) => (
-          <SwiperSlide className="dict-swiper-slide">
+          <SwiperSlide className="dict-swiper-slide" key={todayDict.dictId}>
             <div className="TodayDictCard" onClick={() => history.push(`/dict/detail/${todayDict.dictId}`)}>
-              <div className="TodayDictCard_1" key={todayDict.id}>
+              <div className="TodayDictCard_1">
                 <div className="TodayDictCard_Title">{todayDict.title}</div>
                 <div className="TodayDictCard_Summary">{todayDict.summary}</div>
               </div>

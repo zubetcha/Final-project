@@ -26,19 +26,14 @@ const DictEditHistory = (props) => {
 
   const [showModal, setShowModal] = useState(false)
 
-  console.log(dictId)
-
   React.useEffect(() => {
     getDictHistoryDB()
   }, [])
-
-  console.log(dictHistory)
 
   const getDictHistoryDB = async () => {
     const dictId = Number(props.match.params.dictId)
     let response = await dictApi.dictEditHistory(dictId)
 
-    console.log(response)
     setIsDict(response.data.data)
     setDictHistory(response.data.data.history)
     setFirstCreatedAt(response.data.data.firstCreatedAt.split('T')[0])
@@ -51,7 +46,6 @@ const DictEditHistory = (props) => {
       setShow(false)
     }
   }
-
   const handleClickEdit = () => {
     if (!isLogin) {
       setShowModal(true)
@@ -68,7 +62,7 @@ const DictEditHistory = (props) => {
         <div className="DictHistoryListText">"{isDict.title}"에 대한 편집기록</div>
         <div className="DictHistoryListSection">
           {dictHistory.map((dictId) => (
-            <div className="DictHistoryList" key={dictId.id}>
+            <div className="DictHistoryList" key={dictId.historyId}>
               <div className="DictWriterInfo">
                 <img className="DictWriterProfileImage" src={dictId.writerProfileImage} />
                 <div className="DictWriter">{dictId.writer} 님의 편집 내역</div>
@@ -93,7 +87,7 @@ const DictEditHistory = (props) => {
         </div>
       </div>
       <Footer />
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
       </ConfirmModal>
     </>
@@ -109,8 +103,9 @@ const SearchBarSection = styled.div`
 `
 
 const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default DictEditHistory

@@ -14,6 +14,7 @@ import OneQnaQuestion from '../../components/OneQnaQuestion'
 import Grid from '../../elements/Grid'
 import Title from '../../elements/Title'
 import Spinner from '../../components/Spinner'
+import CircularProgress from '@mui/material/CircularProgress'
 
 import 'swiper/swiper.min.css'
 
@@ -55,7 +56,9 @@ const DictStat = (props) => {
             <Title>열정적인 밈글러 top3</Title>
             <div className="rank-container">
               {loading ? (
-                <Spinner type="white" />
+                <Grid flex_center height="100%">
+                  <CircularProgress size={24} color="inherit" />
+                </Grid>
               ) : (
                 <>
                   <OneRankingCard rank={rankList[1]} index={1} />
@@ -143,7 +146,6 @@ const RankSection = styled.section`
     padding: 20px 0;
     margin: 16px 0 0;
     display: flex;
-    align-items: flex-end;
     justify-content: space-around;
   }
   .rank-info {
@@ -190,7 +192,7 @@ const ChartSection = styled.section`
     .updated-at {
       width: 100%;
       text-align: right;
-      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-size: ${({ theme }) => theme.fontSizes.small};
     }
     .chart-text {
       font-size: ${({ theme }) => theme.fontSizes.lg};
