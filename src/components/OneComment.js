@@ -8,7 +8,7 @@ import AlertModal from '../components/modal/AlertModal'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/heart_blank.svg'
 import { ReactComponent as FullHeartIcon } from '../styles/icons/heart_filled.svg'
 import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
-import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
 import Grid from '../elements/Grid'
 import { commentApi } from '../shared/api'
 import { history } from '../redux/ConfigureStore'
@@ -122,17 +122,17 @@ const OneComment = (props) => {
 
         {props.selectedComment === commentId ? (
           <Select>
-            <IoMdCheckmarkCircleOutline fill="#FFFFFF" size="27px" />
+            <SelectedIcon fill="#FFFFFF" />
             <SelectTextTure>채택</SelectTextTure>
           </Select>
         ) : questionUser !== username ? (
           <Select>
-            <IoMdCheckmarkCircleOutline size="27px" />
+            <SelectedIcon />
             <SelectText>채택</SelectText>
           </Select>
         ) : questionUser === commentWriterId ? null : (
           <Select onClick={handleSelectModal}>
-            <IoMdCheckmarkCircleOutline size="27px" />
+            <SelectedIcon />
             <SelectText>채택</SelectText>
           </Select>
         )}

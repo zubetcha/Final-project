@@ -53,7 +53,7 @@ const PopularBoardCardSwiper = (props) => {
           <SwiperSlide className="popular-swiper-slide" key={popularImages.boardId}>
             <div className="PopularBoardCard">
               <div className="PopularBoardCard_1" onClick={() => history.push(`/image/detail/${popularImages.boardId}`)}>
-                <img className="PopularBoardCard_Image" src={popularImages.imageUrl}></img>
+                <img className="PopularBoardCard_Image" src={popularImages.imageUrl} alt="명예의 밈글"></img>
               </div>
               <PopularBoardCardBack index={index} />
             </div>

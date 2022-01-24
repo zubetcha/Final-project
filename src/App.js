@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import React from 'react'
 import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { history } from './redux/ConfigureStore'
@@ -39,14 +38,6 @@ import GoogleLoginHandler from './shared/GoogleLoginHandler'
 import './App.css'
 
 function App() {
-  useEffect(() => {
-    ReactGA.initialize('user id')
-    history.listen((location) => {
-      ReactGA.set({ page: location.pathname }) // Update the user's current page
-      ReactGA.pageview(location.pathname) // Record a pageview for the given page
-    })
-    // ReactGA.pageview(window.location.pathname + window.location.search);
-  }, [])
   return (
     <>
       <Wrapper>
@@ -133,12 +124,3 @@ const BackgroundOpacity = styled.div`
 `
 
 export default App
-
-ReactGA.event({
-  category: 'User',
-  action: 'Created an Account',
-})
-ReactGA.exception({
-  description: 'An error ocurred',
-  fatal: true,
-})

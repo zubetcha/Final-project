@@ -129,14 +129,12 @@ const joinDB = (username, nickname, password, passwordCheck) => {
     userApi
       .join(username, nickname, password, passwordCheck)
       .then((res) => {
-        dispatch(loading(true))
         history.push('/login')
         dispatch(loading(false))
       })
       .catch((err) => {
         dispatch(loading(false))
-        swal('모든 값이 정상적으로 입력되었는지 확인해주세요!')
-        dispatch(loading(false))
+        console.log('회원가입 문제 발생', err.response)
       })
   }
 }

@@ -23,15 +23,15 @@ Sentry.init({
   tracesSampleRate: 1.0,
 })
 
-Sentry.init({
-  // 모든환경에 설정할 경우
-  // dsn: 'https://xxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxx.ingest.sentry.io/xxxxx',
-  // production환경만 설정할 경우
-  dsn: process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SENTRY_DSN : false,
-  integrations: [new Integrations.BrowserTracing()],
-  environment: process.env.NODE_ENV,
-  tracesSampleRate: 1.0,
-})
+// Sentry.init({
+//   // 모든환경에 설정할 경우
+//   // dsn: 'https://xxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxx.ingest.sentry.io/xxxxx',
+//   // production환경만 설정할 경우
+//   dsn: process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SENTRY_DSN : false,
+//   integrations: [new Integrations.BrowserTracing()],
+//   environment: process.env.NODE_ENV,
+//   tracesSampleRate: 1.0,
+// })
 
 ReactDOM.render(
   <Provider store={store}>
