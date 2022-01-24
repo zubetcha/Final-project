@@ -18,6 +18,7 @@ import Grid from '../../elements/Grid'
 import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
 import AlertModal from '../../components/modal/AlertModal'
 import ConfirmModal from '../../components/modal/ConfirmModal'
+import RelatedYoutube from '../../components/DictRelatedYoutube'
 
 const DictDetail = (props) => {
   const dispatch = useDispatch()
@@ -34,6 +35,7 @@ const DictDetail = (props) => {
 
   const [createdAt, setCreatedAt] = useState('')
   const [modifiedAt, setModifiedAt] = useState('')
+  const [relatedVideo, setRelatedVideo] = useState([])
 
   const [showModal, setShowModal] = useState(false)
 
@@ -46,6 +48,7 @@ const DictDetail = (props) => {
         setLikeCount(response.data.data.likeCount)
         setCreatedAt(response.data.data.createdAt.split('T')[0])
         setModifiedAt(response.data.data.modifiedAt.split('T')[0])
+        setRelatedVideo(response.data.data.relatedYoutube)
       })
       .catch((error) => {
         console.log('밈 사전 상세 정보 불러오기 실패', error.response)
@@ -53,14 +56,6 @@ const DictDetail = (props) => {
   }
 
   const dictId = Number(props.match.params.dictId)
-
-  const showSearchBar = () => {
-    if (show === false) {
-      setShow(true)
-    } else {
-      setShow(false)
-    }
-  }
 
   const handleClickLike = async (e) => {
     e.preventDefault()
@@ -141,6 +136,11 @@ const DictDetail = (props) => {
               <div className="OneDictCardDetailInfo_Vertical" />
             </div>
             <div className="OneDictCardDetailInfo_DictData">{dict.meaning}</div>
+          </Grid>
+          <Grid>
+            <div className="OneDictCardDetailInfo_RelatedVideo">
+              <RelatedYoutube />
+            </div>
           </Grid>
           <Grid flex_between>
             <Grid flex_align>
