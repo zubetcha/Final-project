@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
 import { dictQuestionApi } from '../shared/api'
 import ConfirmModal from '../components/modal/ConfirmModal'
