@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/css/MainPageImageSlide.css'
 import MainCarousel_1 from '../styles/image/main_carousel_2.gif'
-import MainCarousel_2 from '../styles/image/main_carousel_3.avif'
+import MainCarousel_2 from '../styles/image/main_carousel_3.jpeg'
 
 const MainPageImageSlide = ({ type }) => {
   return (
