@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { dictApi } from '../shared/api'
-import ReactPlayer from 'react-player/lazy'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 
@@ -38,10 +37,8 @@ const RelatedYoutube = (props) => {
   React.useEffect((dictId) => {
     DictRelatedVideo(dictId)
   }, [])
-  console.log(relatedVideo)
 
   let hasVideo = relatedVideo.length !== 0
-  console.log(hasVideo)
 
   const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     border: `${theme.palette.divider}`,

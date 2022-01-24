@@ -7,7 +7,6 @@ import { mainApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/swiper.min.css'
-// import 'swiper/css/free-mode'
 import 'swiper/components/scrollbar/scrollbar.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/components/navigation/navigation.min.css'
@@ -40,15 +39,8 @@ const PopularBoardCardSwiper = (props) => {
         keyboard={{
           enabled: true,
         }}
-        // centeredSlides={true}
         slidesPerGroupSkip={1}
         grabCursor={true}
-        // breakpoints={{
-        //   769: {
-        //     slidesPerView: 2,
-        //     slidesPerGroup: 2,
-        //   },
-        // }}
         scrollbar={false}
         autoplay={{
           delay: 5000,

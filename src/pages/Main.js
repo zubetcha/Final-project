@@ -13,7 +13,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import AlertModal from '../components/modal/AlertModal'
 import Grid from '../elements/Grid'
-import { ReactComponent as PlusIcon } from '../styles/icons/add.svg'
 
 import 'swiper/swiper.min.css'
 import 'swiper/components/lazy/lazy.min.css'
@@ -167,13 +166,6 @@ const Main = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="MainPageAddButtonSection">
-          <div className="MainPageAddButtonSectionHr"></div>
-          <div className="MainPageAddButton">
-            <PlusIcon width="24px" height="24px" />
-          </div>
-          <div className="MainPageAddButtonGuideText">나도 추가하러 가보자!</div>
-        </div> */}
       </div>
       <Footer />
       {showModal && (
