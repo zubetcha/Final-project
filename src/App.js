@@ -37,7 +37,6 @@ import NaverLoginHandler from './shared/NaverLoginHandler'
 import KakaoLoginHandler from './shared/KakaoLoginHandler'
 import GoogleLoginHandler from './shared/GoogleLoginHandler'
 import './App.css'
-import bg from '../src/styles/image/background.jpeg'
 
 function App() {
   useEffect(() => {
@@ -118,11 +117,6 @@ const Wrapper = styled.div`
 
   .MobileFramePage {
     z-index: 999;
-  }
-
-  @media screen and (min-width: 500px) {
-    background: url(${bg}) no-repeat;
-    background-size: 100% 100vh;
   }
 `
 
