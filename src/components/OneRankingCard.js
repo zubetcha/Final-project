@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Grid from '../elements/Grid'
-import { RiVipCrownLine } from 'react-icons/ri'
+import { ReactComponent as CrownIcon } from '../styles/icons/crown.svg'
 
 const OneRankingCard = ({ rank, index, first }) => {
   const styles = { first: first, index: index }
@@ -11,7 +11,7 @@ const OneRankingCard = ({ rank, index, first }) => {
       <Container {...styles}>
         <div>
           <ProfileImage src={rank?.profileImage} {...styles}>
-            <div className="rank-box">{index === 0 ? <RiVipCrownLine size="20" /> : <p className="rank-text">{Number.isInteger(index) && index + 1}</p>}</div>
+            <div className="rank-box">{index === 0 ? <CrownIcon size="20" /> : <p className="rank-text">{Number.isInteger(index) && index + 1}</p>}</div>
           </ProfileImage>
         </div>
         <p className="nickname">{rank?.nickname}</p>

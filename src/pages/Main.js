@@ -38,7 +38,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 3000)
+    }, 2000)
   }
 
   const handleShowModal = () => {
@@ -178,22 +178,17 @@ const Main = (props) => {
       <Footer />
       {showModal && (
         <AlertModal showModal={showModal}>
-          <WelcomeMessage>
-            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
-          </WelcomeMessage>
+          <Username>{nickname}</Username> 님 만반잘부! 🙋🏻
         </AlertModal>
       )}
     </>
   )
 }
 
-const WelcomeMessage = styled.p`
+const Username = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  .username {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.blue};
-  }
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default Main

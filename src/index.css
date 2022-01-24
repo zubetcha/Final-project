@@ -43,17 +43,3 @@ code {
   font-weight: 700;
   src: url('./styles/fonts/Pretendard-Bold.woff2') format('woff2'), url('styles/fonts/Pretendard-Bold.woff') format('woff');
 }
-
-@font-face {
-  font-family: 'YdestreetB';
-  font-style: normal;
-  font-weight: normal;
-  src: url(./styles/fonts/YdestreetB.otf) format('truetype'), url('styles/fonts/YdestreetB.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'YdestreetL';
-  font-style: normal;
-  font-weight: normal;
-  src: url('./styles/fonts/YdestreetL.otf') format('truetype'), url('styles/fonts/YdestreetL.ttf') format('truetype');
-}

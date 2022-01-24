@@ -21,7 +21,7 @@ import { ReactComponent as FullHeartIcon } from '../../styles/icons/size(28*28)(
 const ImageDetail = (props) => {
   const dispatch = useDispatch()
   const boardId = useParams().imageId
-  const profile = useSelector((state) => state.mypage.myProfile)
+  const username = localStorage.getItem('username')
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
@@ -106,7 +106,6 @@ const ImageDetail = (props) => {
       .catch((error) => {
         console.log('상세 이미지를 불러오는 데 문제가 발생했습니다.', error.response)
       })
-    dispatch(mypageActions.getUserProfileDB())
   }, [])
 
   return (
@@ -130,7 +129,7 @@ const ImageDetail = (props) => {
           </Grid>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ShareIcon className="icon" onClick={handleShareVisible} />
-            {imageData && profile && imageData.writer === profile.nickname && <DeleteIcon className="icon" style={{ margin: '0 0 0 16px' }} onClick={handleShowModal} />}
+            {imageData && imageData.username === username && <DeleteIcon className="icon" style={{ margin: '0 0 0 16px' }} onClick={handleShowModal} />}
           </div>
         </Grid>
         <Grid flex_center height="fit-content" overflow="hidden">
@@ -142,11 +141,9 @@ const ImageDetail = (props) => {
         </Grid>
         <ShareBottomSheet type="image" shareVisible={shareVisible} setShareVisible={setShareVisible} thumbNail={thumbNail} boardId={boardId} />
       </ImageWrapper>
-      {showModal && (
-        <ConfirmModal question="밈짤을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <ModalButton onClick={handleDeleteImage}>삭제</ModalButton>
-        </ConfirmModal>
-      )}
+      <ConfirmModal question="밈짤을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
+        <ModalButton onClick={handleDeleteImage}>삭제</ModalButton>
+      </ConfirmModal>
       <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
         <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
       </ConfirmModal>

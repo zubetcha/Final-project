@@ -58,7 +58,7 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
       {showModal && (
         <ConfirmModal
           title="정말 로그아웃 하시겠어요?"
-          question={`밈글밈글은 언제나 ${profile?.nickname} 님을 기다리고 있어요 🥲 `}
+          question={`밈글밈글은 ${profile?.nickname} 님을 기다리고 있을게요 🥲 `}
           showModal={showModal}
           handleShowModal={handleShowModal}
           setShowModal={setShowModal}

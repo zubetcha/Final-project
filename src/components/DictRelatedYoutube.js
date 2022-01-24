@@ -38,10 +38,8 @@ const RelatedYoutube = (props) => {
   React.useEffect((dictId) => {
     DictRelatedVideo(dictId)
   }, [])
-  console.log(relatedVideo)
 
   let hasVideo = relatedVideo.length !== 0
-  console.log(hasVideo)
 
   const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
     border: `${theme.palette.divider}`,
@@ -99,6 +97,7 @@ const RelatedYoutube = (props) => {
                       onClick={() => {
                         window.open(`https://www.youtube.com/watch?v=${relatedVideo.youtubeId}`)
                       }}
+                      alt="밈단어 관련 유튜브 동영상"
                     ></img>
                   </div>
                 </SwiperSlide>
