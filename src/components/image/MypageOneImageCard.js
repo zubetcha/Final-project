@@ -74,7 +74,6 @@ const Wrapper = styled.div`
   margin: 10px 0 16px;
   padding: 10px 2px 10px 10px;
   border: 2px solid ${({ theme }) => theme.colors.black};
-  box-shadow: 0 4px 20px 4px hsl(0deg 0% 64% / 35%);
   display: flex;
   flex-direction: column;
   .createdDate {

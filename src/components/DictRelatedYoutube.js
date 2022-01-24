@@ -96,6 +96,7 @@ const RelatedYoutube = (props) => {
                       onClick={() => {
                         window.open(`https://www.youtube.com/watch?v=${relatedVideo.youtubeId}`)
                       }}
+                      alt="밈단어 관련 유튜브 동영상"
                     ></img>
                   </div>
                 </SwiperSlide>

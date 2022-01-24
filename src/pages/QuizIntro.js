@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
@@ -7,58 +7,15 @@ import { mainApi } from '../shared/api'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import AlertModal from '../components/modal/AlertModal'
 import QuizIntroImage from '../styles/image/quiz_main_image_3.gif'
 import Spinner from '../components/Spinner'
 import Grid from '../elements/Grid'
 
 const QuizIntro = (props) => {
   const dispatch = useDispatch()
+  const levelList = ['lv1', 'lv2', 'lv3']
 
-  const [showModal, setShowModal] = React.useState(false)
-  const [loading, setLoading] = React.useState(false)
-  const [subject, setSubject] = React.useState('')
-  const [lv1, setLv1] = React.useState(false)
-  const [lv2, setLv2] = React.useState(false)
-  const [lv3, setLv3] = React.useState(false)
-
-  const handleChangeSubjectY2000 = (e) => {
-    setSubject(e.target.value)
-    setLv1(true)
-    setLv2(false)
-    setLv3(false)
-  }
-
-  const handleChangeSubjectY2010 = (e) => {
-    setSubject(e.target.value)
-    setLv1(false)
-    setLv2(true)
-    setLv3(false)
-  }
-
-  const handleChangeSubjectY2020 = (e) => {
-    setSubject(e.target.value)
-    setLv1(false)
-    setLv2(false)
-    setLv3(true)
-  }
-
-  const closeModal = () => {
-    setTimeout(() => {
-      setShowModal(false)
-    }, 1000)
-  }
-
-  const handleStartQuiz = () => {
-    if (subject === '') {
-      setShowModal(true)
-      closeModal()
-      return
-    } else {
-      history.push(`/quiz/${subject}`)
-      dispatch(quizActions.initAnswer())
-    }
-  }
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -93,40 +50,19 @@ const QuizIntro = (props) => {
                 테스트하고 싶으신가요?
               </p>
             </div>
-            <div className="subject-button-box">
-              <button className={`subject-button ${lv1 ? 'selected' : ''}`} value="lv1" onClick={handleChangeSubjectY2000}>
-                Lv. 1
-              </button>
-            </div>
-            <div className="subject-button-box">
-              <button className={`subject-button ${lv2 ? 'selected' : ''}`} value="lv2" onClick={handleChangeSubjectY2010}>
-                Lv. 2
-              </button>
-            </div>
-            <div className="subject-button-box">
-              <button className={`subject-button ${lv3 ? 'selected' : ''}`} value="lv3" onClick={handleChangeSubjectY2020}>
-                Lv. 3
-              </button>
-            </div>
+            {levelList.map((level, index) => {
+              return (
+                <div className="subject-button-box" onClick={() => history.push(`/quiz/${level}`)}>
+                  <button className="subject-button">Lv. {index + 1}</button>
+                </div>
+              )
+            })}
           </Grid>
           <div style={{ width: '100%', height: '6px' }}></div>
-          <ButtonSection>
-            <div className="start-button-box box1">
-              <button className="start-button" onClick={handleStartQuiz}>
-                시작!
-              </button>
-            </div>
-            <div className="start-button-box box2"></div>
-          </ButtonSection>
         </>
         {/* )} */}
         <Footer />
       </Wrapper>
-      {showModal && (
-        <AlertModal showModal={showModal}>
-          <p>퀴즈 주제를 선택해주세요! 🤓</p>
-        </AlertModal>
-      )}
     </>
   )
 }
@@ -173,54 +109,11 @@ const Wrapper = styled.div`
       font-family: 'Pretendard Variable';
       font-style: normal;
       font-weight: 500;
+      transition: background-color 0.1s ease-in-out;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.yellow};
+      }
     }
-    .selected {
-      transition: background-color 0.3s ease-in-out;
-      background-color: ${({ theme }) => theme.colors.yellow};
-    }
-  }
-`
-
-const ButtonSection = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0 0 90px;
-  .start-button-box {
-    width: 120px;
-    height: 48px;
-    position: absolute;
-    border: 2px solid ${({ theme }) => theme.colors.black};
-    border-radius: 48px;
-    background-color: ${({ theme }) => theme.colors.blue};
-    .start-button {
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      border-radius: 48px;
-      font-size: ${({ theme }) => theme.fontSizes.xxl};
-      font-family: 'YdestreetB';
-      font-style: normal;
-      font-weight: normal;
-    }
-  }
-  .box1 {
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    transition-duration: 0.3s;
-    &:active {
-      left: calc(50%);
-      transform: translateX(calc(-50% + 4px));
-      top: 12px;
-    }
-  }
-  .box2 {
-    top: 12px;
-    left: calc(50%);
-    transform: translateX(calc(-50% + 4px));
-    background-color: ${({ theme }) => theme.colors.white};
   }
 `
 

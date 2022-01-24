@@ -13,7 +13,6 @@ import DictChart from '../../components/DictChart'
 import OneQnaQuestion from '../../components/OneQnaQuestion'
 import Grid from '../../elements/Grid'
 import Title from '../../elements/Title'
-import Spinner from '../../components/Spinner'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import 'swiper/swiper.min.css'
@@ -141,7 +140,6 @@ const RankSection = styled.section`
     width: 100%;
     height: 204px;
     background-color: #fff;
-    box-shadow: 0 4px 35px 4px hsl(0deg 0% 64% / 25%);
     border: 2px solid ${({ theme }) => theme.colors.line};
     padding: 20px 0;
     margin: 16px 0 0;
@@ -183,7 +181,6 @@ const ChartSection = styled.section`
     height: 360px;
     padding: 20px;
     margin: 16px 0 0;
-    box-shadow: 0 4px 35px 4px hsl(0deg 0% 64% / 25%);
     border: 2px solid ${({ theme }) => theme.colors.line};
     display: flex;
     flex-direction: column;
