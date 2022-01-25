@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React from 'react'
+import React from 'react/index'
 
 import Mollu from '../styles/image/background/노랑_몰루.png'
 import Jjajja from '../styles/image/background/노랑_짜짜.png'
