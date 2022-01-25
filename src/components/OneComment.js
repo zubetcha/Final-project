@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
+import { commentApi } from '../shared/api'
 import { dictQuestionApi } from '../shared/api'
 import { ConfirmModal, AlertModal, ConfirmButton } from '../components/modal'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/heart_blank.svg'
@@ -30,19 +31,9 @@ const OneComment = React.memo((props) => {
   const [isSelected, setIsSelected] = React.useState(props.isSelected)
   const [selectModal, setSelectModal] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
-  const [alreadySelectModal, setAlreadySelectModal] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
 
-  const handleCloseAlreadySelectModal = () => {
-    setTimeout(() => {
-      setAlreadySelectModal(false)
-    }, 1000)
-  }
 
-  const handleAlreadySelectModal = () => {
-    setAlreadySelectModal(true)
-    handleCloseAlreadySelectModal()
-  }
 
   const handleClickLike = async (e) => {
     e.preventDefault()
@@ -141,7 +132,6 @@ const OneComment = React.memo((props) => {
             <ConfirmButton _onClick={handleClickIsSelected}>채택</ConfirmButton>
           </ConfirmModal>
         )}
-        {alreadySelectModal && <AlertModal showModal={alreadySelectModal}>답변 채택 후 변경할 수 없습니다.</AlertModal>}
       </Wrap>
       <ContentWrap>
         <Content>{props.commentContent}</Content>
