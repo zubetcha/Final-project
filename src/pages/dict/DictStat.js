@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
-import 'moment/locale/ko'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { dictApi } from '../../shared/api'
 
-import DictNavBar from '../../components/DictNavBar'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import OneRankingCard from '../../components/OneRankingCard'
-import DictChart from '../../components/DictChart'
-import OneQnaQuestion from '../../components/OneQnaQuestion'
-import Grid from '../../elements/Grid'
-import Title from '../../elements/Title'
+import { DictNavBar, Header, Footer, OneRankingCard, DictChart, OneQnaQuestion } from '../../components'
+import { Grid, Title } from '../../elements'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import 'swiper/swiper.min.css'
 
 const DictStat = (props) => {
-  const nowTime = moment().format('HH:mm')
+  // const nowTime = moment().format('HH:mm')
 
   const [rankList, setRankList] = useState('')
   const [chartData, setChartData] = useState('')
@@ -74,7 +66,7 @@ const DictStat = (props) => {
             <Title>위클리 리포트</Title>
             <div className="chart-container">
               <DictChart chartData={chartData} />
-              <div className="updated-at">{nowTime} 기준</div>
+              {/* <div className="updated-at">{nowTime} 기준</div> */}
               <Grid flex_center column padding="16px 0 0">
                 <p className="chart-text">
                   <span className="chart-highlight">오늘</span> 등록된 <span className="chart-highlight border">{chartData && chartData[6].count}</span>개를 더해서,{' '}
