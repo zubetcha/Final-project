@@ -13,8 +13,6 @@ import '../../index.css'
 import ConfirmModal from '../../components/modal/ConfirmModal'
 import Title from '../../elements/Title'
 import SearchPage from '../../shared/SearchPage'
-
-import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const PostList = (props) => {
@@ -122,41 +120,6 @@ const CuriousHelp = styled.div`
     align-items: center;
     margin: 0 0 0 8px;
   }
-`
-
-const Addbtn = styled.div`
-  width: 280px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-family: 'YdestreetB';
-  font-style: normal;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 2;
-  /* transform: translateX(-50%); */
-  margin: 15px 0 30px 0;
-  transition-duration: 0.2s;
-  &:hover {
-    left: calc(50%);
-    transform: translate(4px, 10%);
-  }
-`
-
-const AddbtnShadow = styled.div`
-  width: 280px;
-  height: 40px;
-  top: 19px;
-  left: calc(50%);
-  transform: translateX(calc(-50% + 4px));
-  background-color: white;
-  border: 1px solid black;
-  position: absolute;
-  z-index: -1;
 `
 const MoveLoginButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.base};

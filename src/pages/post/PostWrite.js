@@ -2,9 +2,7 @@ import React, { useRef, useState, createRef } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
-import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
-import { history } from '../../redux/ConfigureStore'
 import Header from '../../components/Header'
 
 const PostWrite = (props) => {
