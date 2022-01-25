@@ -154,13 +154,9 @@ const NavHeader = styled.nav`
     height: 100%;
   }
   .shown {
-    width: 22px;
-    height: 22px;
     fill: ${({ theme }) => theme.colors.blue};
   }
   .hidden {
-    width: 22px;
-    height: 22px;
     fill: #000;
   }
 `
