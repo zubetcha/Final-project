@@ -10,7 +10,6 @@ import { ReactComponent as FullHeartIcon } from '../styles/icons/heart_filled.sv
 import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
 import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
 import { Grid, ProfileImage } from '../elements'
-import { commentApi } from '../shared/api'
 import { history } from '../redux/ConfigureStore'
 
 const OneComment = React.memo((props) => {
@@ -32,8 +31,6 @@ const OneComment = React.memo((props) => {
   const [selectModal, setSelectModal] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
-
-
 
   const handleClickLike = async (e) => {
     e.preventDefault()
