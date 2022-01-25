@@ -1,12 +1,11 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
 import { OneComment } from '../components'
 import { ReactComponent as SendIcon } from '../styles/icons/send.svg'
-import styled from 'styled-components'
 import MemegleLogo from '../styles/image/smileIcon_Yellow.png'
-import { commentApi } from '../shared/api'
 import { useHistory } from 'react-router'
 import { ConfirmModal, ConfirmButton } from '../components/modal'
 import { ProfileImage } from '../elements'
@@ -23,7 +22,6 @@ const CommentTest = ({ question }) => {
   const cookieList = document.cookie.split('=')
   const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
   const isLogin = userId !== null && token !== undefined ? true : false
-  const commentId = question.commentId
 
   const onChangeComment = (e) => {
     setComment(e.target.value)
@@ -46,7 +44,7 @@ const CommentTest = ({ question }) => {
         return 1
       }
       return 0
-    })
+  })
 
   React.useEffect(() => {
     if (now_profile === null) {

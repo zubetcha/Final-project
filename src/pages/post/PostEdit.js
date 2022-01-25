@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as QuestionActions } from '../../redux/modules/dictquestion'
 import { dictQuestionApi } from '../../shared/api'
-import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
 import { history } from '../../redux/ConfigureStore'
 import { Header } from '../../components'
@@ -11,7 +10,6 @@ import { AlertModal } from '../../components/modal'
 
 const PostEdit = (props) => {
   const dispatch = useDispatch()
-  const username = localStorage.getItem('username')
   const questionId = Number(props.match.params.questionId)
 
   const textRef = createRef()
