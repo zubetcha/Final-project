@@ -10,29 +10,77 @@
   padding: 15px 36px;
 }
 
-.MyDictMemeList_2 {
+.MyDictMemePlzLoginSection {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.MyDictMemeCard {
+.MyDictMemePlzLoginText {
   width: 100%;
   height: 100%;
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 50px 0;
+}
+
+.MyDictMemeGoToLogin {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   padding: 10px;
+  border: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #888;
+  font-size: 1.125em;
+  letter-spacing: 0px;
+  transition: all 0.5s;
+}
+.MyDictMemeGoToLogin:hover {
+  color: white;
+  transition: all 0.3s;
 }
 
-.Title {
+.MyDictMemeGoToLogin1 {
+  font-weight: bold;
+}
+.MyDictMemeGoToLogin1::after {
+  color: aliceblue;
+  width: 0;
+}
+.MyDictMemeGoToLogin1:hover:after {
+  color: aliceblue;
+  width: 100%;
+}
+
+.MyDictMemeGoToLogin2 {
   width: fit-content;
   height: fit-content;
 }
-
-.Summary {
-  width: fit-content;
-  height: fit-content;
+.MyDictMemeGoToLogin::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+  width: 0;
+  height: 4%;
+  top: 80;
+  left: 0;
+  margin: 0 0 0 80px;
+  background: #ffe95e;
+  overflow: hidden;
 }
-
-.LikeCount {
-  width: fit-content;
-  height: fit-content;
-  float: right;
+.MyDictMemeGoToLogin:hover:after {
+  width: 63%;
 }
