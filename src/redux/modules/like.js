@@ -1,7 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { likeApi } from '../../shared/api'
-import swal from 'sweetalert'
 
 const SET_LIKE_DICT = 'SET_LIKE_DICT'
 const ADD_LIKE_DICT = 'ADD_LIKE_DICT'

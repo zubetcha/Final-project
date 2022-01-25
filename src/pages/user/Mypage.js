@@ -11,14 +11,12 @@ import EditProfile from '../../components/mypage/EditProfile'
 import PostCard from '../../components/PostCard'
 import MyPageOneImageCard from '../../components/image/MypageOneImageCard'
 import OneDictionaryCard from '../../components/OneDictionaryCard'
-import { AiOutlineEdit } from 'react-icons/ai'
 import Grid from '../../elements/Grid'
-import CircularProgress from '@mui/material/CircularProgress'
+import { ReactComponent as EditIcon } from '../../styles/icons/edit.svg'
 
 const Mypage = (props) => {
   const dispatch = useDispatch()
 
-  const [loading, setLoading] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
   const [showDictionary, setShowDictionary] = React.useState(true)
   const [showBoard, setShowBoard] = React.useState(false)
@@ -26,7 +24,7 @@ const Mypage = (props) => {
 
   const my = useSelector((state) => state.mypage.myPageData)
   const myMemeDictList = my && my.dict
-  const myMemePostList = my && my.postBoards.filter((post) => post.category === 'FREEBOARD')
+  const myQuestionList = my && my.question
   const myMemeImageList = my && my.postBoards.filter((post) => post.category === 'IMAGEBOARD')
 
   const handleEditProfile = (e) => {
@@ -64,11 +62,6 @@ const Mypage = (props) => {
   }
 
   React.useEffect(() => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 500)
-  }, [])
-
-  React.useEffect(() => {
     if (my == null) {
       dispatch(mypageActions.getMypageDataDB())
     }
@@ -78,80 +71,79 @@ const Mypage = (props) => {
     <>
       <Header type="MyPage" location="마이페이지"></Header>
       <Wrapper>
-        {!loading ? (
-          <>
-            <UserProfile>
-              <ProfileImage src={my && my.profileImageUrl} />
-              <div className="profile-info box-1">
-                <div style={{ padding: '60px 0 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div className="user-nickname">{my && my.nickname}</div>
-                  <button onClick={handleEditProfile}>
-                    <AiOutlineEdit fontSize="22px" />
-                  </button>
+        <>
+          <UserProfile>
+            <ProfileImage src={my && my.profileImageUrl} />
+            <div className="profile-info box-1">
+              <div style={{ padding: '60px 0 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="user-nickname">{my && my.nickname}</div>
+                <EditIcon className="edit-icon" onClick={handleEditProfile} />
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="user-activity-info">
+                  <div className="user-activity-info-subject">단어장</div>
+                  <div className="user-activity-info-count">{my && my.dictCount > 0 ? my.dictCount : 0}</div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div className="user-activity-info">
-                    <div className="user-activity-info-subject">단어장</div>
-                    <div className="user-activity-info-count">{my && my.dictCount}</div>
-                  </div>
-                  <div className="user-activity-info">
-                    <div className="user-activity-info-subject">게시글</div>
-                    <div className="user-activity-info-count">{my && my.postCount}</div>
-                  </div>
+                <div className="user-activity-info">
+                  <div className="user-activity-info-subject">내질문</div>
+                  <div className="user-activity-info-count">{my && my.postCount > 0 ? my.questionCount : 0}</div>
+                </div>
+                <div className="user-activity-info">
+                  <div className="user-activity-info-subject">짤방</div>
+                  <div className="user-activity-info-count">{my && my.postCount > 0 ? my.postCount : 0}</div>
                 </div>
               </div>
-              <div className="profile-info box-2"></div>
-            </UserProfile>
+            </div>
+            <div className="profile-info box-2"></div>
+          </UserProfile>
 
-            <Filter>
-              <Grid flex_center>
-                <button className={`filter-button ${showDictionary ? 'filter-button-active' : ''}`} onClick={handleShowDictionary}>
-                  단어장
-                </button>
-              </Grid>
-              <Grid flex_center>
-                <button className={`filter-button ${showBoard ? 'filter-button-active' : ''}`} onClick={handleShowBoard}>
-                  내질문
-                </button>
-              </Grid>
-              <Grid flex_center>
-                <button className={`filter-button ${showImage ? 'filter-button-active' : ''}`} onClick={handleShowPhoto}>
-                  짤방
-                </button>
-              </Grid>
-            </Filter>
-            <UserActivity>
-              {/* Dictionary */}
-              {showDictionary && myMemeDictList !== null
-                ? myMemeDictList.map((dict) => {
-                    return <OneDictionaryCard key={dict.dictId} dict={dict} />
+          <Filter>
+            <Grid flex_center>
+              <button className={`filter-button ${showDictionary ? 'filter-button-active' : ''}`} onClick={handleShowDictionary}>
+                단어장
+              </button>
+            </Grid>
+            <Grid flex_center>
+              <button className={`filter-button ${showBoard ? 'filter-button-active' : ''}`} onClick={handleShowBoard}>
+                내질문
+              </button>
+            </Grid>
+            <Grid flex_center>
+              <button className={`filter-button ${showImage ? 'filter-button-active' : ''}`} onClick={handleShowPhoto}>
+                짤방
+              </button>
+            </Grid>
+          </Filter>
+          <UserActivity>
+            {/* Dictionary */}
+            {showDictionary && myMemeDictList !== null
+              ? myMemeDictList.map((dict) => {
+                  return <OneDictionaryCard key={dict.dictId} dict={dict} />
+                })
+              : null}
+            {/* Board */}
+            <Grid padding="0 16px">
+              {showBoard && myQuestionList.length > 0
+                ? myQuestionList.map((question) => {
+                    return <PostCard key={question.questionId} question={question} />
                   })
                 : null}
-              {/* Board */}
-              {showBoard && myMemePostList.length > 0
-                ? myMemePostList.map((question) => {
-                    return <PostCard key={question.boardId} question={question} />
-                  })
-                : null}
-              {/* Photo */}
-              {showImage && (
-                <MyImageList>
-                  <Masonry breakpointCols={2} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-                    {myMemeImageList.length > 0
-                      ? myMemeImageList.map((image) => {
-                          return <MyPageOneImageCard key={image.boardId} image={image} />
-                        })
-                      : null}
-                  </Masonry>
-                </MyImageList>
-              )}
-            </UserActivity>
-          </>
-        ) : (
-          <Grid flex_center height="100%">
-            <CircularProgress color="inherit" />
-          </Grid>
-        )}
+            </Grid>
+
+            {/* Photo */}
+            {showImage && (
+              <MyImageList>
+                <Masonry breakpointCols={2} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+                  {myMemeImageList.length > 0
+                    ? myMemeImageList.map((image) => {
+                        return <MyPageOneImageCard key={image.boardId} image={image} />
+                      })
+                    : null}
+                </Masonry>
+              </MyImageList>
+            )}
+          </UserActivity>
+        </>
         {showModal && <EditProfile showModal={showModal} setShowModal={setShowModal} my={my} />}
       </Wrapper>
       <Footer />
@@ -183,6 +175,12 @@ const UserProfile = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 360px;
+  .edit-icon {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0 0 0 3px;
+  }
 
   .profile-info {
     width: calc(100% - 40px);
@@ -193,22 +191,22 @@ const UserProfile = styled.div`
 
     .user-nickname {
       padding: 0 5px 0 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-size: ${({ theme }) => theme.fontSizes.lg};
       font-weight: 700;
     }
 
     .user-activity-info {
-      padding: 0 20px;
+      padding: 5px 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       .user-activity-info-subject {
-        font-size: ${({ theme }) => theme.fontSizes.xxl};
-        font-weight: 500;
+        font-size: ${({ theme }) => theme.fontSizes.xl};
+        font-weight: 600;
       }
       .user-activity-info-count {
-        font-size: ${({ theme }) => theme.fontSizes.xl};
+        font-size: ${({ theme }) => theme.fontSizes.lg};
       }
     }
   }
@@ -221,10 +219,9 @@ const UserProfile = styled.div`
   }
   .box-2 {
     left: calc(50%);
-    transform: translateX(calc(-50% + 4px));
-    top: 4px;
+    transform: translateX(calc(-50% + 6px));
+    top: 6px;
     background-color: ${({ theme }) => theme.colors.yellow};
-    border: none;
   }
 `
 
@@ -255,7 +252,7 @@ const Filter = styled.div`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     padding: 0 0 12px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.line};
   }

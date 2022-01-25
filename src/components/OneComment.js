@@ -1,37 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
-import { history } from '../redux/ConfigureStore'
 import { dictQuestionApi } from '../shared/api'
 import ConfirmModal from '../components/modal/ConfirmModal'
 import AlertModal from '../components/modal/AlertModal'
-import { ReactComponent as DustBinIcon } from '../styles/icons/delete_black_18dp.svg'
-import { BiBadge, BiBadgeCheck } from 'react-icons/bi'
+import { ReactComponent as EmptyHeartIcon } from '../styles/icons/heart_blank.svg'
+import { ReactComponent as FullHeartIcon } from '../styles/icons/heart_filled.svg'
+import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
+import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
 import Grid from '../elements/Grid'
+import { commentApi } from '../shared/api'
+import { history } from '../redux/ConfigureStore'
 
 const OneComment = (props) => {
   const dispatch = useDispatch()
 
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
-  const questionUser=props.username //질문작성자
-  const commentWriterId = props.commentWriterId 
-  const questionId = props.questionId 
-  const commentId = props.commentId 
+  const questionUser = props.username //질문작성자
+  const commentWriterId = props.commentWriterId
+  const questionId = props.questionId
+  const commentId = props.commentId
   const createdAt = props.createdAt.split('T')[0] + ' ' + props.createdAt.split('T')[1].split(':')[0] + ':' + props.createdAt.split('T')[1].split(':')[1]
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
-  console.log(props)
-
-
+  const [isLiked, setIsLiked] = React.useState(props.isLike)
+  const [likeCount, setLikeCount] = React.useState(props.likeCount)
   const [isSelected, setIsSelected] = React.useState(props.isSelected)
   const [selectModal, setSelectModal] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
   const [alreadySelectModal, setAlreadySelectModal] = React.useState(false)
+  const [showLoginModal, setShowLoginModal] = React.useState(false)
 
   const handleCloseAlreadySelectModal = () => {
-    setTimeout(()=> {
+    setTimeout(() => {
       setAlreadySelectModal(false)
-    }, 1800)
+    }, 1000)
   }
 
   const handleAlreadySelectModal = () => {
@@ -39,27 +45,53 @@ const OneComment = (props) => {
     handleCloseAlreadySelectModal()
   }
 
+  const handleClickLike = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!isLogin) {
+      setShowLoginModal(true)
+      return
+    }
+    if (isLiked) {
+      await commentApi
+        .likeComment(commentId)
+        .then((response) => {
+          setIsLiked(false)
+          setLikeCount(likeCount - 1)
+        })
+        .catch((error) => {
+          console.log('답변 좋아요 취소 문제 발생', error.response)
+        })
+    } else {
+      await commentApi
+        .likeComment(commentId)
+        .then((response) => {
+          setIsLiked(true)
+          setLikeCount(likeCount + 1)
+        })
+        .catch((error) => {
+          console.log('답변 좋아요 문제 발생', error.response)
+        })
+    }
+  }
+
   const handleClickIsSelected = async (e) => {
-    if(props.isSelected === true){
+    if (props.isSelected === true) {
       console.log('이미 채택된 질문입니다.')
-    } else if(username === commentWriterId) {
-      console.log('질문작성자는 자신의 답변을 채택할 수 없습니다.')
-    } else if (!isSelected || username!==props.commentwriterId) {
-      await dictQuestionApi 
+    } else if (!isSelected || username !== props.commentwriterId) {
+      await dictQuestionApi
         .selectQuestion(commentId)
         .then((response) => {
-          console.log(response.data)
           setIsSelected(true)
-          console.log(isSelected)
           setSelectModal(false)
+          window.location.reload()
         })
         .catch((error) => {
           console.log('질문채택 문제 발생', error.response)
-          console.log(error.message)
         })
-    } 
+    }
   }
-  
+
   const handleSelectModal = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -80,78 +112,148 @@ const OneComment = (props) => {
   return (
     <>
       <Wrap>
-        <div style={{ display: 'flex' }}>
+        <Grid flex_align>
           <Commentprofile src={props.profileImageUrl} alt="" />
-          <div style={{ display: 'flex', flexDirection: 'column', margin: '0 0 0 16px' }}>
-            <Grid flex_align>
-              <UserName>{props.commentWriter}</UserName>
-              <CreatedAt>{createdAt}</CreatedAt>
-            </Grid>
-            <Content>{props.commentContent}</Content>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <UserName>{props.commentWriter}</UserName>
+            <CreatedAt>{createdAt}</CreatedAt>
           </div>
-        </div>
-          
-          {isSelected? 
-        <text style={{ height: '100%', cursor:"pointer"}}onClick={handleClickIsSelected}><BiBadgeCheck/>채택완료</text> :null}
-          {!isSelected && username!== commentWriterId && username===questionUser &&  props.selectedComment===0? 
-        <text style={{ height: '100%', cursor:"pointer"}} onClick={handleSelectModal} >
-            <BiBadge />채택하기
-        </text>  : null}
-        {selectModal && (
-          <ConfirmModal question="채택 후 변경이 불가합니다. 이 답변을 채택하시겠습니까?" showModal={selectModal} handleShowModal={handleSelectModal} setShowModal={setSelectModal}>
-            <DeleteButton onClick={handleClickIsSelected}>채택</DeleteButton>
-          </ConfirmModal>
+        </Grid>
+
+        {props.selectedComment === commentId ? (
+          <Select>
+            <SelectedIcon fill="#FFFFFF" />
+            <SelectTextTure>채택</SelectTextTure>
+          </Select>
+        ) : questionUser !== username ? (
+          <Select>
+            <SelectedIcon />
+            <SelectText>채택</SelectText>
+          </Select>
+        ) : questionUser === commentWriterId ? null : (
+          <Select onClick={handleSelectModal}>
+            <SelectedIcon />
+            <SelectText>채택</SelectText>
+          </Select>
         )}
 
-        {props.selectedComment!==commentId && commentWriterId === username? (
-          <button style={{ height: '100%' }} onClick={handleShowModal}>
-            <DustBinIcon />
-          </button>
-        ) : null}
-        {alreadySelectModal && (
-        <AlertModal showModal={alreadySelectModal}>
-            답변 채택 후 변경할 수 없습니다.
-        </AlertModal>
-      )}
-        {showModal && (
-          <ConfirmModal question="댓글을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-            <DeleteButton onClick={delComment}>삭제</DeleteButton>
+        {selectModal && (
+          <ConfirmModal question="채택 후 변경이 불가합니다. 이 답변을 채택하시겠습니까?" showModal={selectModal} handleShowModal={handleSelectModal} setShowModal={setSelectModal}>
+            <ModalButton onClick={handleClickIsSelected}>채택</ModalButton>
           </ConfirmModal>
         )}
+        {alreadySelectModal && <AlertModal showModal={alreadySelectModal}>답변 채택 후 변경할 수 없습니다.</AlertModal>}
       </Wrap>
+      <ContentWrap>
+        <Content>{props.commentContent}</Content>
+        <IconBox>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {isLiked ? <FullHeartIcon className="icon" onClick={handleClickLike} /> : <EmptyHeartIcon className="icon" onClick={handleClickLike} />}
+            <Number className="like-count">{likeCount}</Number>
+          </div>
+          {props.selectedComment !== commentId && commentWriterId === username ? <DeleteIcon className="icon" onClick={handleShowModal} /> : null}
+        </IconBox>
+
+        {showModal && (
+          <ConfirmModal question="댓글을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
+            <ModalButton onClick={delComment}>삭제</ModalButton>
+          </ConfirmModal>
+        )}
+        <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+          <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+        </ConfirmModal>
+      </ContentWrap>
     </>
   )
 }
 
 const Wrap = styled.div`
-  padding: 0 16px 16px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid #e5e5e5;
 `
 
 const Commentprofile = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border-radius: 150px;
+  border: 2px solid black;
+  margin: 0 12px 0 20px;
 `
 
 const UserName = styled.div`
-  font-family: 'YdestreetL';
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  padding: 0 10px 0 0;
+  font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  line-height: 22px;
+  display: flex;
+  align-items: center;
 `
 
 const CreatedAt = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: 300;
 `
-const Content = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const Select = styled.div`
+  width: 80px;
+  height: 84px;
+  background: #00a0ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`
+const SelectTextTure = styled.div`
+  font-family: 'YdestreetL';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: white;
 `
 
-const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+const SelectText = styled.div`
+  font-family: 'YdestreetL';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+`
+
+const ContentWrap = styled.div`
+  border-bottom: 10px solid #e5e5e5;
+  padding: 32px 20px;
+`
+
+const Content = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 0 20px;
+`
+
+const IconBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .icon {
+    cursor: pointer;
+  }
+`
+const Number = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: 300;
+  margin: 0 0 0 5px;
+`
+
+const ModalButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 export default OneComment

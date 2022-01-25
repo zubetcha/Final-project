@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
 import { history } from '../redux/ConfigureStore'
-import { actionCreators as dictActions } from '../redux/modules/dict'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import { dictApi } from '../shared/api'
-import { ReactComponent as CancelIcon } from '../styles/icons/X_24dp.svg'
 
 function SearchBar({ onAddKeyword }, props) {
   const dispatch = useDispatch()
@@ -21,8 +17,6 @@ function SearchBar({ onAddKeyword }, props) {
     let response = await dictApi.searchDict(keyword, pageSize, currentPage)
     let searchTotalLength = await dictApi.tellMeTotalLengthSearch(keyword)
 
-    console.log(response.data.data)
-    console.log(searchTotalLength)
     setTotalCount(searchTotalLength.data.data)
   }
 
@@ -48,10 +42,10 @@ function SearchBar({ onAddKeyword }, props) {
   //키워드를 가지고 있다면 active가 발생하여 padding이 발생함. // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
   const hasKeyword = !!keyword
 
-  {
-    //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있습니다
-    console.log(!!keyword)
-  }
+  // {
+  //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있습니다
+  // console.log(!!keyword)
+  // }
 
   return (
     <Container>
@@ -75,14 +69,12 @@ const Container = styled.div`
   height: fit-content;
   /* border-bottom: 1px solid grey; */
   background-color: #fbfafa;
-  padding: 0px 0px;
-  box-sizing: border-box;
 `
 
 //글자를 입력하면 RemoveIcon이 나오게 되고 누르면 input의 value값이 사라집니다
 const RemoveIcon = styled.span`
   ${horizontalCenter}
-  right: 30px;
+  right: 16px;
   width: 25px;
   height: 20px;
   background-position: -389px -29px;
@@ -103,15 +95,14 @@ const InputContainer = styled.div`
 `
 
 const Input = styled.input`
-  width: 90%;
+  width: 100%;
   height: 44px;
   background-color: #e5e5e5;
   font-weight: 500;
   font-size: 14px;
-  box-sizing: border-box;
   border: none;
   border-radius: 8px;
-  padding: 15px 0 15px 20px;
+  padding: 13px 16px;
   ${({ active }) =>
     active &&
     `
@@ -121,6 +112,7 @@ const Input = styled.input`
     font-family: 'YdestreetL';
     font-style: normal;
     font-weight: normal;
+    font-size: ${({ theme }) => theme.fontSizes.base};
   }
 `
 

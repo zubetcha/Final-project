@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { imageApi } from '../../shared/api'
 import { actionCreators as imageActions } from '../../redux/modules/image'
+import { history } from '../../redux/ConfigureStore'
 
-import Grid from '../../elements/Grid'
 import Title from '../../elements/Title'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -12,21 +12,33 @@ import InfinityScroll from '../../shared/InfinityScroll'
 import Masonry from 'react-masonry-css'
 import ImageUpload from '../image/ImageUpload'
 import OneImageCard from '../../components/image/OneImageCard'
+import ConfirmModal from '../../components/modal/ConfirmModal'
 import SpeedDialButton from '../../components/SpeedDialButton'
-import CircularProgress from '@mui/material/CircularProgress'
-import { RiEditLine } from 'react-icons/ri'
+import Spinner from '../../components/Spinner'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const ImageList = (props) => {
   const dispatch = useDispatch()
   const fileInput = useRef('')
   const image_data = useSelector((state) => state.image)
 
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
+
   const [preview, setPreview] = useState(null)
   const [loading, setLoading] = useState(false)
   const [bestImageList, setBestImageList] = useState([])
+  const [showModal, setShowModal] = useState(false)
 
   const getImageList = () => {
     dispatch(imageActions.getImageListDB(image_data.page))
+  }
+
+  const handleClickWrite = () => {
+    if (!isLogin) {
+      setShowModal(true)
+    }
   }
 
   const handleChangeFile = (e) => {
@@ -45,8 +57,7 @@ const ImageList = (props) => {
 
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => setLoading(false), 600)
-    dispatch(imageActions.initImageList())
+    setTimeout(() => setLoading(false), 700)
   }, [])
 
   useEffect(() => {
@@ -59,13 +70,16 @@ const ImageList = (props) => {
       .catch((error) => {
         console.log('명예의 전당 이미지 불러오기 문제 발생', error.response)
       })
+    dispatch(imageActions.initImageList())
   }, [])
 
   return (
     <>
-      <Header location="짤방"></Header>
       <Wrapper>
-        {!loading ? (
+        <Header location="짤방"></Header>
+        {loading ? (
+          <Spinner />
+        ) : (
           <>
             <PopularSection>
               <Title>명예의 밈짤</Title>
@@ -89,21 +103,26 @@ const ImageList = (props) => {
                 </InfinityScroll>
               </Container>
             </GeneralSection>
+            <SpeedDialButton _onClick={handleClickWrite}>
+              {isLogin ? (
+                <>
+                  <FileInputLabel htmlFor="file" className="upload-label">
+                    <WriteIcon fill="#FFFFFF" />
+                  </FileInputLabel>
+                  <FileInput type="file" id="file" className="upload-file" accept="image/jpg, image/jpeg, image/png, image/gif" ref={fileInput} onChange={handleChangeFile} />
+                </>
+              ) : (
+                <WriteIcon fill="#FFFFFF" />
+              )}
+            </SpeedDialButton>
           </>
-        ) : (
-          <Grid flex_center height="100%">
-            <CircularProgress color="inherit" />
-          </Grid>
         )}
         {preview && <ImageUpload preview={preview} fileInput={fileInput} />}
-        <SpeedDialButton>
-          <FileInputLabel htmlFor="file" className="upload-label">
-            <RiEditLine size="28" fill="#FFFFFF" />
-          </FileInputLabel>
-          <FileInput type="file" id="file" className="upload-file" accept="image/*" ref={fileInput} onChange={handleChangeFile} />
-        </SpeedDialButton>
+        <Footer />
       </Wrapper>
-      <Footer />
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -181,6 +200,12 @@ const PopularGridLayout = styled.div`
       grid-row: 2 / 3;
     }
   }
+`
+
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default ImageList

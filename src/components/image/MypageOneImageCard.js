@@ -5,8 +5,8 @@ import { imageApi } from '../../shared/api'
 
 import Grid from '../../elements/Grid'
 import ConfirmModal from '../modal/ConfirmModal'
-import { ReactComponent as DeleteIcon } from '../../styles/icons/delete_black_18dp.svg'
-import { ReactComponent as EmptyHeart } from '../../styles/icons/좋아요 비활성_18dp.svg'
+import { ReactComponent as DeleteIcon } from '../../styles/icons/bin.svg'
+import { ReactComponent as EmptyHeart } from '../../styles/icons/heart_blank.svg'
 
 const MyPageOneImageCard = ({ image }) => {
   const boardId = image && image.boardId
@@ -25,9 +25,7 @@ const MyPageOneImageCard = ({ image }) => {
     e.stopPropagation()
     await imageApi
       .deleteImage(boardId)
-      .then((response) => {
-        console.log(response.data)
-      })
+      .then((response) => {})
       .then(() => {
         window.location.reload()
       })
@@ -38,22 +36,22 @@ const MyPageOneImageCard = ({ image }) => {
 
   return (
     <>
-      <Wrapper
-        onClick={(e) => {
-          history.push(`/image/detail/${image.boardId}`)
-        }}
-      >
+      <Wrapper>
         <ImageSection>
-          <ImageBox>
+          <ImageBox
+            onClick={(e) => {
+              history.push(`/image/detail/${image.boardId}`)
+            }}
+          >
             <Image src={image && image.thumbNail} />
           </ImageBox>
           <div className="delete-icon-box">
-            <DeleteIcon className="delete-icon" fill="#878C92" onClick={handleShowModal} />
+            <DeleteIcon className="icon" onClick={handleShowModal} />
           </div>
         </ImageSection>
         <Grid flex_between padding="8px 8px 0 0">
           <Grid flex_align>
-            <EmptyHeart fill="#878C92" />
+            <EmptyHeart className="icon" />
             <span className="like-count">{image && image.likeCnt}</span>
           </Grid>
           <p className="createdDate">{image && createdDate}</p>
@@ -73,15 +71,14 @@ const Wrapper = styled.div`
   max-width: 220px;
   width: 100%;
   height: fit-content;
-  margin: 10px 0 6px;
+  margin: 10px 0 16px;
   padding: 10px 2px 10px 10px;
   border: 2px solid ${({ theme }) => theme.colors.black};
-  box-shadow: 0 4px 20px 4px hsl(0deg 0% 64% / 35%);
   display: flex;
   flex-direction: column;
   .createdDate {
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-size: ${({ theme }) => theme.fontSizes.small};
     color: ${({ theme }) => theme.colors.grey};
     text-align: right;
   }
@@ -104,6 +101,11 @@ const Wrapper = styled.div`
     padding: 0 0 0 4px;
     color: ${({ theme }) => theme.colors.grey};
   }
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: ${({ theme }) => theme.colors.grey};
+  }
 `
 
 const ImageSection = styled.section`
@@ -113,10 +115,10 @@ const ImageSection = styled.section`
 `
 
 const ImageBox = styled.div`
-  display: flex;
+  /* display: flex; */
   width: calc(100% - 33px);
-  height: fit-content;
-  position: relative;
+  /* height: fit-content; */
+  /* position: relative; */
   overflow: hidden;
   cursor: pointer;
   border: 2px solid ${({ theme }) => theme.colors.black};
@@ -124,13 +126,14 @@ const ImageBox = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: fit-content;
+  height: 100%;
   object-fit: cover;
 `
 
 const DeleteButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default MyPageOneImageCard

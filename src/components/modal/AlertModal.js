@@ -19,7 +19,9 @@ const Container = styled.div`
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
-  width: 340px;
+  max-width: 300px;
+  min-width: 280px;
+  width: 100%;
   height: 130px;
   background-color: #fff;
   padding: 24px;
@@ -31,7 +33,8 @@ const Container = styled.div`
 `
 
 const AlertText = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: 500;
 `
 
 export default AlertModal

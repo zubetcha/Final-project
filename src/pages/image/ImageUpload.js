@@ -7,7 +7,6 @@ import { actionCreators as imageActions } from '../../redux/modules/image'
 import Grid from '../../elements/Grid'
 import ConfirmModal from '../../components/modal/ConfirmModal'
 import ImageWrapper from '../../components/image/ImageWrapper'
-import { IoCloseOutline } from 'react-icons/io5'
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
 
 const ImageUpload = ({ preview, fileInput }) => {
@@ -54,15 +53,16 @@ const ImageUpload = ({ preview, fileInput }) => {
 
 const UploadButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   font-family: 'YdestreetB';
   font-style: normal;
   font-weight: normal;
 `
 
 const SubmitButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default ImageUpload

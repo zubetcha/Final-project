@@ -1,10 +1,11 @@
 import React, { useRef, useState, createRef } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
+import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
 import { history } from '../../redux/ConfigureStore'
+import Header from '../../components/Header'
 
 const PostWrite = (props) => {
   const dispatch = useDispatch()
@@ -54,17 +55,13 @@ const PostWrite = (props) => {
     const uploadFile = thumbNail ? fileInput.current.files[0] : ''
     dispatch(questionActions.addQuestionDB(title, content, uploadFile))
   }
- 
+
   return (
     <>
-      <Header>
-        <ArrowBackIcon className="arrow-back-icon" onClick={() => history.goBack()} />
-        <h2 className="location">질문</h2>
-        <div className="empty"></div>
-      </Header>
+      <Header type="goBack" location="질문 작성" />
       <Container>
         <PWHeader>
-          <input type="text" className="writetitle" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
+          <input type="text" className="writetitle" maxlength="30" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
         </PWHeader>
         <PWBody>
           <textarea
@@ -81,7 +78,7 @@ const PostWrite = (props) => {
           </Preview>
           <UploadSection>
             <label htmlFor="file" className="upload-label">
-              <MdOutlinePhotoSizeSelectActual size="25" />
+              <AddPhotoIcon />
             </label>
             <input type="file" id="file" className="upload-input" ref={fileInput} accept="image/jpeg, image/jpg" onChange={onChangeFile} />
           </UploadSection>
@@ -97,35 +94,6 @@ const PostWrite = (props) => {
   )
 }
 
-const Header = styled.header`
-  width: 100%;
-  height: 56px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.bg};
-  z-index: 1000;
-  .arrow-back-icon {
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .location {
-    font-family: 'YdestreetL';
-    font-style: normal;
-    font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    cursor: default;
-  }
-  .empty {
-    width: 24px;
-    height: 100%;
-  }
-`
-
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -134,15 +102,13 @@ const Container = styled.div`
 `
 
 const PWHeader = styled.div`
-  border-top: 1px solid #444;
   border-bottom: 1px solid ${({ theme }) => theme.colors.line};
 
   .writetitle {
     width: 100%;
     border: none;
     padding: 16px;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    font-weight: 500;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     color: ${({ theme }) => theme.colors.black};
     word-spacing: 1;
     background-color: ${({ theme }) => theme.colors.bg};
@@ -156,14 +122,15 @@ const PWHeader = styled.div`
 const PWBody = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444;
+  border-bottom: 2px solid #000;
   .writedesc {
     width: 100%;
     /* min-height: 10rem; */
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: 1.6;
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
@@ -217,16 +184,19 @@ const PWFooter = styled.div`
 
   .postbtn {
     position: absolute;
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 48px;
     border: 2px solid ${({ theme }) => theme.colors.black};
   }
   .btn-1 {
     left: 50%;
     transform: translateX(-50%);
-    background-color:#00A0FF;
+    background-color: #00a0ff;
     /* ${({ theme }) => theme.colors.blue}; */
     font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
     font-weight: 700;
     z-index: 100;
     transition-duration: 0.3s;

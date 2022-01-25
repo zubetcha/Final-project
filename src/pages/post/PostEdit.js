@@ -2,10 +2,12 @@ import React, { useState, createRef } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as QuestionActions } from '../../redux/modules/dictquestion'
-import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md'
 import { dictQuestionApi } from '../../shared/api'
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
+import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
 import { history } from '../../redux/ConfigureStore'
+import Header from '../../components/Header'
+import AlertModal from '../../components/modal/AlertModal'
 
 const PostEdit = (props) => {
   const dispatch = useDispatch()
@@ -19,6 +21,7 @@ const PostEdit = (props) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [thumbNail, setThumbNail] = useState('')
+  const [showAlert, setShowAlert] = useState(false)
 
   const getOneQuestionDB = async () => {
     await dictQuestionApi
@@ -68,17 +71,15 @@ const PostEdit = (props) => {
     }
   }
 
-  console.log(post.thumbNail)
-
   const editQuestion = () => {
     if (title === '' || content === '') {
-      window.alert('게시물을 모두 작성해주세요')
+      setShowAlert(true)
+      setTimeout(() => setShowAlert(false), 1000)
       return
     }
 
-
     if (fileInput.current.files.length === 0) {
-      const uploadFile = post.thumbNail
+      const uploadFile = post && post.thumbNail
       dispatch(QuestionActions.editQuestionDB(questionId, title, uploadFile, content))
     } else {
       const uploadFile = fileInput.current.files[0]
@@ -89,11 +90,7 @@ const PostEdit = (props) => {
   return (
     <>
       <>
-        <Header>
-          <ArrowBackIcon className="arrow-back-icon" onClick={() => history.goBack()} />
-          <h2 className="location">질문 수정하기</h2>
-          <div className="empty"></div>
-        </Header>
+        <Header type="goBack" location="질문 수정" />
         <Container>
           <PWHeader>
             <input type="text" className="writetitle" placeholder="제목을 입력하세요" value={title} onChange={onChangeTitle} />
@@ -113,7 +110,7 @@ const PostEdit = (props) => {
             </Preview>
             <UploadSection>
               <label htmlFor="file" className="upload-label">
-                <MdOutlinePhotoSizeSelectActual size="25" />
+                <AddPhotoIcon />
               </label>
               <input type="file" id="file" className="upload-input" ref={fileInput} accept="image/jpeg, image/jpg" onChange={onChangeFile} />
             </UploadSection>
@@ -125,39 +122,11 @@ const PostEdit = (props) => {
             <div className="postbtn btn-2"></div>
           </PWFooter>
         </Container>
+        <AlertModal showModal={showAlert}>제목과 본문을 모두 작성해 주세요!</AlertModal>
       </>
     </>
   )
 }
-
-const Header = styled.header`
-  width: 100%;
-  height: 56px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.bg};
-  z-index: 1000;
-  .arrow-back-icon {
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .location {
-    font-family: 'YdestreetL';
-    font-style: normal;
-    font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    cursor: default;
-  }
-  .empty {
-    width: 24px;
-    height: 100%;
-  }
-`
 
 const Container = styled.div`
   width: 100%;
@@ -167,14 +136,13 @@ const Container = styled.div`
 `
 
 const PWHeader = styled.div`
-  border-top: 1px solid #444;
   border-bottom: 1px solid ${({ theme }) => theme.colors.line};
 
   .writetitle {
     width: 100%;
     border: none;
     padding: 16px;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     font-weight: 500;
     color: ${({ theme }) => theme.colors.black};
     word-spacing: 1;
@@ -189,14 +157,15 @@ const PWHeader = styled.div`
 const PWBody = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444;
+  border-bottom: 2px solid #000;
   .writedesc {
     width: 100%;
     /* min-height: 10rem; */
     border: none;
     padding: 16px;
     resize: none;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: 1.6;
+    font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
@@ -251,9 +220,9 @@ const PWFooter = styled.div`
 
   .postbtn {
     position: absolute;
-    width: 100px;
-    height: 40px;
-    border: 1px solid ${({ theme }) => theme.colors.black};
+    width: 120px;
+    height: 48px;
+    border: 2px solid ${({ theme }) => theme.colors.black};
   }
   .btn-1 {
     left: 50%;
@@ -263,6 +232,9 @@ const PWFooter = styled.div`
     font-weight: 700;
     z-index: 100;
     transition-duration: 0.3s;
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
     &:active {
       top: 4px;
       left: calc(50%);

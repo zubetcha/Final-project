@@ -5,19 +5,24 @@ import { history } from '../../redux/ConfigureStore'
 
 import ShareBottomSheet from '../ShareBottomSheet'
 import Grid from '../../elements/Grid'
+import ConfirmModal from '../modal/ConfirmModal'
 
-import { ReactComponent as ShareIcon } from '../../styles/icons/공유_24dp.svg'
-import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/좋아요 비활성_18dp.svg'
-import { ReactComponent as FullHeartIcon } from '../../styles/icons/좋아요 활성_18dp.svg'
+import { ReactComponent as ShareIcon } from '../../styles/icons/share.svg'
+import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/heart_blank.svg'
+import { ReactComponent as FullHeartIcon } from '../../styles/icons/heart_filled.svg'
 
 const OneImageCard = ({ image, type }) => {
   const boardId = image.boardId
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const [hover, setHover] = useState(false)
   const [likeCount, setLikeCount] = useState(image.likeCnt)
   const [isLiked, setIsLiked] = useState(image.isLike)
   const [shareVisible, setShareVisible] = useState(false)
   const [thumbNail, setThumbNail] = useState(image ? image.thumbNail : '')
+  const [showModal, setShowModal] = useState(false)
 
   const handleShareVisible = (e) => {
     e.stopPropagation()
@@ -26,6 +31,10 @@ const OneImageCard = ({ image, type }) => {
 
   const handleClickLike = async (e) => {
     e.stopPropagation()
+    if (!isLogin) {
+      setShowModal(true)
+      return
+    }
     if (isLiked) {
       await likeApi
         .likeBoard(image.boardId)
@@ -69,7 +78,7 @@ const OneImageCard = ({ image, type }) => {
         <Overlay className={`${hover ? 'active' : 'inactive'}`}>
           <Grid flex_between column height="100%" padding="6px">
             <Grid flex_end>
-              <ShareIcon fill="#FFF" width="18px" onClick={handleShareVisible} />
+              <ShareIcon fill="#FFF" width="24px" onClick={handleShareVisible} />
             </Grid>
             <Grid flex_start>
               {isLiked ? <FullHeartIcon fill="#FFF" onClick={handleClickLike} /> : <EmptyHeartIcon fill="#FFF" onClick={handleClickLike} />}
@@ -79,6 +88,9 @@ const OneImageCard = ({ image, type }) => {
         </Overlay>
       </ImageBox>
       <ShareBottomSheet type="image" shareVisible={shareVisible} setShareVisible={setShareVisible} thumbNail={thumbNail} boardId={boardId} />
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </ConfirmModal>
     </>
   )
 }
@@ -93,6 +105,7 @@ const ImageBox = styled.div`
   transition: all 0.3s ease-in-out;
   width: 100%;
   margin-bottom: 7px;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
 
   .active {
     position: absolute;
@@ -123,6 +136,12 @@ const Overlay = styled.div`
     font-size: ${({ theme }) => theme.fontSizes.base};
     padding: 0 0 0 3px;
   }
+`
+
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default OneImageCard

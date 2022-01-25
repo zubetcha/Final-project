@@ -1,96 +1,104 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
+import { mypageApi } from '../shared/api'
 
 import Grid from '../elements/Grid'
 import ProfileBottom from './ProfileBottom'
 import AlarmModal from './modal/AlarmModal'
-import AlertModal from './modal/AlertModal'
-import MemegleIcon from '../styles/image/smileIcon_Yellow.png'
-import { FaRegBell, FaBell } from 'react-icons/fa'
+import { ReactComponent as ArrowBackIcon } from '../styles/icons/arrow_back_ios_black_24dp.svg'
+import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
 
-const throttle = (callback, waitTime) => {
-  let timerId = null
-  return (e) => {
-    if (timerId) return
-    timerId = setTimeout(() => {
-      callback.call(this, e)
-      timerId = null
-    }, waitTime)
-  }
-}
-
-const Header = ({ children, location }) => {
+const Header = ({ children, location, type }) => {
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.mypage.myProfile)
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
-  // const cookieList = document.cookie.split('=')
-  // const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
   const isLogin = userId !== null && token !== null ? true : false
+  const alarmList = profile?.alarm?.length > 5 ? profile?.alarm.slice(0, 5) : profile?.alarm
 
   const [showProfile, setShowProfile] = useState(false)
   const [showAlarm, setShowAlarm] = useState(false)
-  const [showAlert, setShowAlert] = useState(false)
-  const [hide, setHide] = useState(false)
-  const [pageY, setPageY] = useState(0)
+  const [alarmUpdated, setAlarmUpdated] = useState(false)
 
   const handleShowProfile = () => {
     setShowProfile(!showProfile)
   }
 
-  const handleShowAlarm = () => {
-    if (isLogin) {
-      setShowAlarm(!showAlarm)
-    } else {
-      setShowAlert(true)
-      setTimeout(() => setShowAlert(false), 2000)
+  const handleShowAlarm = async () => {
+    setShowAlarm(!showAlarm)
+    try {
+      const { result } = await mypageApi.checkAlarm()
+    } catch (error) {
+      console.log(error.response)
     }
   }
 
-  // const handleScroll = () => {
-  //   let nextScrollTop = window.pageYOffset || 0
-  //   if (nextScrollTop > pageY) {
-  //     setHide(true)
-  //     setPageY(nextScrollTop)
-  //   } else if (nextScrollTop < pageY) {
-  //     setHide(false)
-  //     setPageY(nextScrollTop)
-  //   }
-  // }
-
-  // const throttleScroll = throttle(handleScroll, 50)
-
   useEffect(() => {
-    if (profile === null) {
+    if (isLogin && profile === null) {
       dispatch(mypageActions.getUserProfileDB())
     }
-  }, [])
+  }, [showAlarm])
 
-  // useEffect(() => {
-  //   document.addEventListener('scroll', throttleScroll)
-  //   return () => document.removeEventListener('scroll', throttleScroll)
-  // }, [pageY])
+  useEffect(() => {
+    if (alarmList?.length > 0) {
+      alarmList.forEach((alarm) => {
+        if (alarm.checked === false) {
+          setAlarmUpdated(true)
+        } else {
+          setAlarmUpdated(false)
+        }
+      })
+    }
+  }, [showAlarm])
+
+  if (type === 'goBack') {
+    return (
+      <>
+        <NavHeader>
+          <Grid flex_between height="100%">
+            <ArrowBackIcon className="arrow-back-icon" onClick={() => history.goBack()} />
+            <div className="header-location">{location}</div>
+            <div className="header-back-empty"></div>
+          </Grid>
+        </NavHeader>
+      </>
+    )
+  }
 
   return (
     <>
-      <NavHeader className={hide && 'hide'}>
-        <Grid flex_between height="100%">
-          <div className="header-empty"></div>
-          <div className="header-location">{location}</div>
-          <div className="header-icon">
-            <div className="header-bell-box" onClick={handleShowAlarm}>
-              {showAlarm ? <FaBell className="header-bell shown" /> : <FaRegBell className="header-bell hidden" />}
+      <NavHeader>
+        {isLogin ? (
+          <Grid flex_between height="100%">
+            <div className="header-empty"></div>
+            <div className="header-location">{location}</div>
+            <div className="header-icon">
+              <div className="header-bell-box" onClick={handleShowAlarm}>
+                {showAlarm ? (
+                  <BellIcon className="shown" />
+                ) : alarmUpdated ? (
+                  <>
+                    <UpdateCircle />
+                    <BellIcon className="hidden" />
+                  </>
+                ) : (
+                  <BellIcon className="hidden" />
+                )}
+              </div>
+              <ProfileImage src={profile?.profileImage} onClick={handleShowProfile} />
             </div>
-            {isLogin ? <ProfileImage src={profile?.profileImage} onClick={handleShowProfile} /> : <ProfileImage src={MemegleIcon} onClick={() => history.push('/login')} />}
-          </div>
-        </Grid>
+          </Grid>
+        ) : (
+          <Grid flex_center height="100%">
+            <div className="header-location">{location}</div>
+          </Grid>
+        )}
       </NavHeader>
       <ProfileBottom profile={profile} showProfile={showProfile} setShowProfile={setShowProfile} />
-      <AlertModal showModal={showAlert}>로그인 후 이용하실 수 있습니다!</AlertModal>
-      {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} profile={profile} />}
+      {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} alarmList={alarmList !== undefined ? alarmList : []} profile={profile !== null ? profile : ''} />}
     </>
   )
 }
@@ -102,22 +110,20 @@ const NavHeader = styled.nav`
   padding: 0 16px;
   width: 100%;
   height: 56px;
-  background-color: ${({ theme }) => theme.colors.bg};
-  border-bottom: ${(props) => (props.noBorder ? 'none' : '1px solid  #e5e5e5')};
+  background-color: ${({ theme }) => theme.colors.white};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.line};
   z-index: 1000;
   transition: 0.4s ease;
-  /* &.hide {
-    transform: translateY(-56px);
-  } */
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.08);
   .header-empty {
-    width: 80px;
+    width: 76px;
     height: 100%;
   }
   .header-location {
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
+    font-size: ${({ theme }) => theme.fontSizes.xl};
     cursor: default;
   }
   .header-icon {
@@ -133,32 +139,57 @@ const NavHeader = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     transition: background-color 0.3s ease-in-out;
     &:hover {
       background-color: #e9e9e9;
     }
-    .header-bell {
-      font-size: 20px;
-      &.shown {
-        color: ${({ theme }) => theme.colors.blue};
-      }
-      &.hidden {
-        color: #333;
-      }
-    }
   }
+
+  .arrow-back-icon {
+    cursor: pointer;
+  }
+  .header-back-empty {
+    width: 24px;
+    height: 100%;
+  }
+  .shown {
+    width: 22px;
+    height: 22px;
+    fill: ${({ theme }) => theme.colors.blue};
+  }
+  .hidden {
+    width: 22px;
+    height: 22px;
+    fill: #000;
+  }
+`
+
+const UpdateCircle = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.blue};
+  position: absolute;
+  top: 8px;
+  right: 8px;
 `
 
 const ProfileImage = styled.div`
   margin: 0 0 0 8px;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 20px;
   background-size: cover;
   background-image: url('${(props) => props.src}');
   background-position: center;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
+`
+const MoveLoginButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `
 
 export default Header

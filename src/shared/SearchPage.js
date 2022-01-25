@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import History from '../shared/SearchHistory'
+import { useDispatch } from 'react-redux'
 import SearchBar from '../shared/SearchBar'
 
 function SearchPage(props) {
@@ -19,7 +18,6 @@ function SearchPage(props) {
 
   //검색어 추가
   const handleAddKeyword = (text) => {
-    console.log('text', text)
     const newKeyword = {
       id: Date.now(),
       text: text,
@@ -52,10 +50,6 @@ function SearchPage(props) {
 const SearchBarPage = styled.div`
   width: 100%;
   height: fit-content;
-  top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
   background-color: #fbfafa;
   position: relative;
   overflow: auto;

@@ -3,15 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import '../../styles/css/Login.css'
 import styled from 'styled-components'
-import swal from 'sweetalert'
 import { actionCreators as userActions } from '../../redux/modules/user'
-import KaKaoLogin from 'react-kakao-login'
 import KakaoButton from '../../components/KakaoLogin'
 import GoogleButton from '../../components/GoogleLogin'
 import NaverButton from '../../components/NaverLogin'
-import kakaotalk from '../../styles/image/kakaotalk.svg'
-import naver from '../../styles/image/naver.svg'
-import googleColor from '../../styles/image/google_color.svg'
 import Footer from '../../components/Footer'
 import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
 import Grid from '../../elements/Grid'
@@ -67,7 +62,7 @@ const Login = (props) => {
   const login = () => {
     if (username === '' || password === '') {
       setShowAlert(true)
-      setTimeout(() => setShowAlert(false), 2000)
+      setTimeout(() => setShowAlert(false), 1000)
       return
     }
     dispatch(userActions.logInDB(username, password))
@@ -76,7 +71,7 @@ const Login = (props) => {
   useEffect(() => {
     if (loginFail) {
       setShowFailAlert(true)
-      setTimeout(() => setShowFailAlert(false), 2000)
+      setTimeout(() => setShowFailAlert(false), 1000)
       dispatch(userActions.failLogin(false))
       dispatch(userActions.loading(false))
     }
@@ -135,22 +130,18 @@ const Login = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="SocialLoginHR">또는</div>
+        <div className="SocialLoginHR">또는</div>
         <div className="SocialLoginBtns">
           <KakaoButton />
-          <GoogleButton />
           <NaverButton />
-        </div> */}
+          <GoogleButton />
+        </div>
       </div>
-      <AlertModal showModal={showAlert}>
-        <AlertText>아이디와 비밀번호를 모두 입력해주세요!</AlertText>
-      </AlertModal>
+      <AlertModal showModal={showAlert}>아이디와 비밀번호를 모두 입력해주세요!</AlertModal>
       <AlertModal showModal={showFailAlert}>
-        <AlertText>
-          아이디 또는 비밀번호가 잘못되었습니다.
-          <br />
-          다시 확인해주세요!
-        </AlertText>
+        아이디 또는 비밀번호가 잘못되었습니다.
+        <br />
+        다시 확인해주세요!
       </AlertModal>
       <Footer />
     </>
@@ -164,10 +155,6 @@ const Logo = styled.div`
   background-size: cover;
   background-image: url('${(props) => props.src}');
   background-position: center;
-`
-
-const AlertText = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
 `
 
 export default Login
