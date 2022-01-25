@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
-import 'moment/locale/ko'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { dictApi } from '../../shared/api'
 
@@ -18,7 +18,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import 'swiper/swiper.min.css'
 
 const DictStat = (props) => {
-  const nowTime = moment().format('HH:mm')
+  const nowTime = dayjs().format('HH:mm')
 
   const [rankList, setRankList] = useState('')
   const [chartData, setChartData] = useState('')
