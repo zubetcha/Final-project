@@ -9,9 +9,8 @@ import MainPageImageSlide from '../components/MainPageImageSlide'
 import PopularBoardCardSwiper from '../components/PopularBoardCardSwiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Lazy, Autoplay, Keyboard, Pagination } from 'swiper'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import AlertModal from '../components/modal/AlertModal'
+import { Header, Footer } from '../components'
+import { AlertModal } from '../components/modal'
 import Grid from '../elements/Grid'
 
 import 'swiper/swiper.min.css'
@@ -37,7 +36,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 3000)
+    }, 2000)
   }
 
   const handleShowModal = () => {
@@ -170,22 +169,17 @@ const Main = (props) => {
       <Footer />
       {showModal && (
         <AlertModal showModal={showModal}>
-          <WelcomeMessage>
-            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
-          </WelcomeMessage>
+          <Username>{nickname}</Username> 님 만반잘부! 🙋🏻
         </AlertModal>
       )}
     </>
   )
 }
 
-const WelcomeMessage = styled.p`
+const Username = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  .username {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.blue};
-  }
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default Main
