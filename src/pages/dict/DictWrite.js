@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback, TextareaHTMLAttributes } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictWrite.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
-import swal from 'sweetalert'
-import Header from '../../components/Header'
-import { debounce } from 'lodash'
-import axios from 'axios'
+import { Header } from '../../components'
 import { dictApi } from '../../shared/api'
-import ConfirmModal from '../../components/modal/ConfirmModal'
-import DoubleCheckModal from '../../components/modal/DoubleCheckModal'
-import AlertModal from '../../components/modal/AlertModal'
+import { ConfirmModal, DoubleCheckModal, AlertModal, ConfirmButton } from '../../components/modal'
 
 const DictWrite = (props) => {
   const dispatch = useDispatch()
@@ -128,10 +123,6 @@ const DictWrite = (props) => {
         </div>
       </div>
       <div className="DictCardTemporaryOrSubmitButton">
-        {/* <div className="DictCardTemporaryButton" onClick={allClearKeyword}>
-            <div className="DictCardTemporaryButton_1">초기화</div>
-            <div className="DictCardTemporaryButton_2"></div>
-          </div> */}
         <div className="DictCardSubmitButton" type="submit">
           <button className="DictCardSubmitButton_1" onClick={handleShowModal} disabled={!(title !== '' && summary !== '' && content !== '')}>
             등록
@@ -142,21 +133,17 @@ const DictWrite = (props) => {
       {doubleCheck === null && null}
       {doubleCheck === true && (
         <DoubleCheckModal title="등록되지 않은 단어입니다." question="최초 등록자가 되어보세요!" doubleCheck={doubleCheck} setDoubleCheck={setDoubleCheck}>
-          <button className="DictWriteMoveButton" onClick={() => setDoubleCheck(null)}>
-            확인
-          </button>
+          <ConfirmButton _onClick={() => setDoubleCheck(null)}>확인</ConfirmButton>
         </DoubleCheckModal>
       )}
       {doubleCheck === false && (
         <DoubleCheckModal type="exist" title="이미 등록된 단어입니다." question="검색 화면으로 이동하시겠어요?" doubleCheck={doubleCheck} setDoubleCheck={setDoubleCheck}>
-          <button className="DictListMoveButton" onClick={handleMoveDictList}>
-            이동
-          </button>
+          <ConfirmButton _onClick={handleMoveDictList}>이동</ConfirmButton>
         </DoubleCheckModal>
       )}
       {showModal && (
         <ConfirmModal question="작성하신 단어를 게시하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <AddDictButton onClick={addDict}>게시</AddDictButton>
+          <ConfirmButton _onClick={addDict}>게시</ConfirmButton>
         </ConfirmModal>
       )}
       <AlertModal showModal={showInputAlert}>먼저 단어를 입력해주세요!</AlertModal>
@@ -164,11 +151,5 @@ const DictWrite = (props) => {
     </>
   )
 }
-
-const AddDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
-`
 
 export default DictWrite

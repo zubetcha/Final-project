@@ -1,8 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/cookie'
-import { applyMiddleware } from 'redux'
-import axios from 'axios'
 import { userApi } from '../../shared/api'
 import swal from 'sweetalert'
 

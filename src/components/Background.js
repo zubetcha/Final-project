@@ -15,7 +15,7 @@ import WhateverTv from '../styles/image/background/blue_WhateverTV.png'
 import HimsoonJin from '../styles/image/background/blue_Himsumjjin.png'
 import Smile from '../styles/image/background/하단_스마일.png'
 
-const Background = () => {
+const Background = React.memo(() => {
   return (
     <>
       <Wrap>
@@ -48,7 +48,7 @@ const Background = () => {
       </Wrap>
     </>
   )
-}
+})
 
 export default Background
 
