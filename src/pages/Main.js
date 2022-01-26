@@ -9,11 +9,9 @@ import MainPageImageSlide from '../components/MainPageImageSlide'
 import PopularBoardCardSwiper from '../components/PopularBoardCardSwiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Lazy, Autoplay, Keyboard, Pagination } from 'swiper'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import AlertModal from '../components/modal/AlertModal'
+import { Header, Footer } from '../components'
+import { AlertModal } from '../components/modal'
 import Grid from '../elements/Grid'
-import { ReactComponent as PlusIcon } from '../styles/icons/add.svg'
 
 import 'swiper/swiper.min.css'
 import 'swiper/components/lazy/lazy.min.css'
@@ -38,7 +36,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 3000)
+    }, 2000)
   }
 
   const handleShowModal = () => {
@@ -89,7 +87,6 @@ const Main = (props) => {
             spaceBetween={30}
             lazy={true}
             grabCursor={true}
-            // centeredSlides={true}
             breakpoints={{
               769: {
                 slidesPerView: 1,
@@ -129,7 +126,7 @@ const Main = (props) => {
         <div className="MainPageFeedBackSection" onClick={() => window.open('https://forms.gle/xmfGQt2WsPQhiHg87', '_blank')}>
           <div className="MainPageFeedBackText1">피드백 남기고 스타벅스 커피 받아가자</div>
           <div className="MainPageFeedBackBar">
-            <svg width="65" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="50" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line y1="0.5" x2="65" y2="0.5" stroke="black" />
             </svg>
           </div>
@@ -167,33 +164,21 @@ const Main = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="MainPageAddButtonSection">
-          <div className="MainPageAddButtonSectionHr"></div>
-          <div className="MainPageAddButton">
-            <PlusIcon width="24px" height="24px" />
-          </div>
-          <div className="MainPageAddButtonGuideText">나도 추가하러 가보자!</div>
-        </div> */}
       </div>
       <Footer />
       {showModal && (
         <AlertModal showModal={showModal}>
-          <WelcomeMessage>
-            <span className="username">{nickname}</span> 님 만반잘부! 🙋🏻
-          </WelcomeMessage>
+          <Username>{nickname}</Username> 님 만반잘부! 🙋🏻
         </AlertModal>
       )}
     </>
   )
 }
 
-const WelcomeMessage = styled.p`
+const Username = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  .username {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.blue};
-  }
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default Main

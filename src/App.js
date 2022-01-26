@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import React from 'react'
 import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { history } from './redux/ConfigureStore'
@@ -37,17 +36,8 @@ import NaverLoginHandler from './shared/NaverLoginHandler'
 import KakaoLoginHandler from './shared/KakaoLoginHandler'
 import GoogleLoginHandler from './shared/GoogleLoginHandler'
 import './App.css'
-import bg from '../src/styles/image/background.jpeg'
 
 function App() {
-  useEffect(() => {
-    ReactGA.initialize('user id')
-    history.listen((location) => {
-      ReactGA.set({ page: location.pathname }) // Update the user's current page
-      ReactGA.pageview(location.pathname) // Record a pageview for the given page
-    })
-    // ReactGA.pageview(window.location.pathname + window.location.search);
-  }, [])
   return (
     <>
       <Wrapper>
@@ -99,7 +89,6 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   background: #2b2b2b;
-  /* background-size: contain; */
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -119,17 +108,12 @@ const Wrapper = styled.div`
   .MobileFramePage {
     z-index: 999;
   }
-
-  @media screen and (min-width: 500px) {
-    background: url(${bg}) no-repeat;
-    background-size: 100% 100vh;
-  }
 `
 
 const BackgroundOpacity = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background: rgb(250, 250, 250, 0.3); */
+  /* background: rgb(250, 250, 250, 0.6); */
   /* background-size: contain; */
   overflow: hidden;
   position: fixed;
@@ -140,12 +124,3 @@ const BackgroundOpacity = styled.div`
 `
 
 export default App
-
-ReactGA.event({
-  category: 'User',
-  action: 'Created an Account',
-})
-ReactGA.exception({
-  description: 'An error ocurred',
-  fatal: true,
-})

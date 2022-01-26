@@ -1,0 +1,64 @@
+.DictRealatedYoutubeSection {
+  width: 110%;
+  height: 100%;
+}
+
+.DictRealatedYoutubeText {
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  font-display: swap;
+  margin: 1px 0 0 -10px;
+}
+
+.expandIcon {
+  width: fit-content;
+  height: fit-content;
+}
+
+.DictRelatedYoutubeSwiper {
+  width: 12rem !important;
+  background-color: transparent !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.DictRealatedYoutubeThumbNail {
+  background-size: cover;
+  border: 0.1px solid #d3d3d3;
+}
+
+.DictRealatedYoutubeGuide {
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
+  font-style: normal;
+  font-size: 0.875rem;
+  font-weight: normal;
+  font-display: swap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 20px 15px 0;
+}
+
+.None {
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
+  font-style: normal;
+  font-size: 0.875rem;
+  font-weight: normal;
+  font-display: swap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -15px 20px 15px 0;
+}

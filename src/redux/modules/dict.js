@@ -1,8 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { dictApi } from '../../shared/api'
-import axios from 'axios'
-import swal from 'sweetalert'
+import swal from 'sweetalert/package.json'
 import { getCookie } from '../../shared/cookie'
 
 /* action type */

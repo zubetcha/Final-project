@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import '../../styles/css/DictEdit.css'
-import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { history } from '../../redux/ConfigureStore'
+import { useDispatch } from 'react-redux'
 import { dictApi } from '../../shared/api'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
-import swal from 'sweetalert'
-import Header from '../../components/Header'
-import ConfirmModal from '../../components/modal/ConfirmModal'
+import { Header } from '../../components'
+import { ConfirmModal, ConfirmButton } from '../../components/modal'
 
 const DictEdit = (props) => {
   const dispatch = useDispatch()
@@ -38,35 +35,33 @@ const DictEdit = (props) => {
   const dictId = Number(props.match.params.dictId)
   const newRecentWriter = window.localStorage.getItem('nickname')
 
-  const onChangeSummary = (e) => {
-    setSummary(e.target.value)
+  const debounceFunction = (callback, delay) => {
+    let timer
+    return (...args) => {
+      // 실행한 함수(setTimeout())를 취소
+      clearTimeout(timer)
+      // delay가 지나면 callback 함수를 실행
+      timer = setTimeout(() => callback(...args), delay)
+    }
   }
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value)
+  const printValue = useCallback(
+    debounceFunction((value) => console.log(value), 500),
+    []
+  )
+
+  const onChangeSummary = async (e) => {
+    printValue(e.target.value)
+    await setSummary(e.target.value)
+  }
+
+  const onChangeContent = async (e) => {
+    printValue(e.target.value)
+    await setContent(e.target.value)
   }
 
   const editDict = () => {
     dispatch(dictActions.editDictDB(dictId, summary, content))
-  }
-
-  const allClearKeyword = () => {
-    swal({
-      title: '초기화를 하시면 작성하신 모든 내용이 사라집니다.',
-      text: '그래도 초기화 하시겠습니까?',
-      buttons: true,
-      dangerMode: true,
-    }).then((allClearKeyword) => {
-      if (allClearKeyword) {
-        swal('작성하신 모든 내용이 초기화되었습니다.', {
-          icon: 'success',
-        })
-        setSummary('')
-        setContent('')
-      } else {
-        swal('초기화가 취소되었습니다.')
-      }
-    })
   }
 
   return (
@@ -104,10 +99,6 @@ const DictEdit = (props) => {
         </div>
       </div>
       <div className="DictCardEditTemporaryOrSubmitButton">
-        {/* <div className="DictCardEditTemporaryButton" onClick={allClearKeyword}>
-            <div className="DictCardEditTemporaryButton_1">초기화</div>
-            <div className="DictCardEditTemporaryButton_2"></div>
-          </div> */}
         <div className="DictCardEditSubmitButton" type="submit">
           <button className="DictCardEditSubmitButton_1" onClick={handleShowModal} disabled={!(summary !== '' && content !== '')}>
             편집
@@ -117,17 +108,11 @@ const DictEdit = (props) => {
       </div>
       {showModal && (
         <ConfirmModal question="편집하신 단어를 게시하시겠어요?" showModal={showModal} setShowModal={setShowModal}>
-          <EditDictButton onClick={editDict}>게시</EditDictButton>
+          <ConfirmButton _onClick={editDict}>게시</ConfirmButton>
         </ConfirmModal>
       )}
     </>
   )
 }
-
-const EditDictButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
-`
 
 export default DictEdit

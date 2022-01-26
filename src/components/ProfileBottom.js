@@ -5,11 +5,11 @@ import { history } from '../redux/ConfigureStore'
 import { actionCreators as userActions } from '../redux/modules/user'
 import { ReactComponent as CloseIcon } from '../styles/icons/size(28*28)(30*30)/close_28dp.svg'
 
-import Grid from '../elements/Grid'
+import { Grid, ProfileImage } from '../elements'
 import BottomPopup from './BottomPopup'
-import ConfirmModal from './modal/ConfirmModal'
+import { ConfirmModal, ConfirmButton } from './modal'
 
-const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
+const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = useState(false)
@@ -36,7 +36,7 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
             <CloseIcon className="close-icon" onClick={() => setShowProfile(false)} fill="#444" />
           </CloseButtonBox>
           <Grid flex_center column padding="0 0 16px" borderBottom="1px solid #e5e5e5">
-            <ProfileImage src={profile?.profileImage} />
+            <ProfileImage src={profile?.profileImage} size="60" />
             <Nickname>{profile?.nickname}</Nickname>
           </Grid>
           <Grid flex_around padding="16px 20px">
@@ -58,17 +58,17 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
       {showModal && (
         <ConfirmModal
           title="정말 로그아웃 하시겠어요?"
-          question={`밈글밈글은 언제나 ${profile?.nickname} 님을 기다리고 있어요 🥲 `}
+          question={`밈글밈글은 ${profile?.nickname} 님을 기다리고 있을게요 🥲 `}
           showModal={showModal}
           handleShowModal={handleShowModal}
           setShowModal={setShowModal}
         >
-          <LogOutButton onClick={handleClickLogOut}>로그아웃</LogOutButton>
+          <ConfirmButton _onClick={handleClickLogOut}>로그아웃</ConfirmButton>
         </ConfirmModal>
       )}
     </>
   )
-}
+})
 
 const Container = styled.div`
   width: 100%;
@@ -92,16 +92,6 @@ const CloseButtonBox = styled.div`
   .close-icon {
     cursor: pointer;
   }
-`
-
-const ProfileImage = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  background-size: cover;
-  background-image: url('${(props) => props.src}');
-  background-position: center;
-  background-color: ${({ theme }) => theme.colors.white};
 `
 
 const Nickname = styled.div`
@@ -135,12 +125,6 @@ const Button = styled.button`
       background-color: #dcdcdc;
     }
   }
-`
-
-const LogOutButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
 `
 
 export default ProfileBottom

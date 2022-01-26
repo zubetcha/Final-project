@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { mainApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/swiper.min.css'
-// import 'swiper/css/free-mode'
 import 'swiper/components/scrollbar/scrollbar.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/components/navigation/navigation.min.css'
@@ -40,15 +38,8 @@ const PopularBoardCardSwiper = (props) => {
         keyboard={{
           enabled: true,
         }}
-        // centeredSlides={true}
         slidesPerGroupSkip={1}
         grabCursor={true}
-        // breakpoints={{
-        //   769: {
-        //     slidesPerView: 2,
-        //     slidesPerGroup: 2,
-        //   },
-        // }}
         scrollbar={false}
         autoplay={{
           delay: 5000,
@@ -62,7 +53,7 @@ const PopularBoardCardSwiper = (props) => {
           <SwiperSlide className="popular-swiper-slide" key={popularImages.boardId}>
             <div className="PopularBoardCard">
               <div className="PopularBoardCard_1" onClick={() => history.push(`/image/detail/${popularImages.boardId}`)}>
-                <img className="PopularBoardCard_Image" src={popularImages.imageUrl}></img>
+                <img className="PopularBoardCard_Image" src={popularImages.imageUrl} alt="명예의 밈글"></img>
               </div>
               <PopularBoardCardBack index={index} />
             </div>

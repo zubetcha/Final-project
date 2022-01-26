@@ -1,6 +1,9 @@
 import styled from 'styled-components'
-import React from 'react'
-
+import React from 'react/index'
+import MemegleVertical from '../styles/image/background/Memegle_vertical.svg'
+import MemegleHeight from '../styles/image/background/Memegle_height.svg'
+import MemegleHello from '../styles/image/background/Memegle_hello.svg'
+import MemegleMemegle from '../styles/image/background/Memegle_memegle.svg'
 import Mollu from '../styles/image/background/노랑_몰루.png'
 import Jjajja from '../styles/image/background/노랑_짜짜.png'
 import Holymoly from '../styles/image/background/노랑_홀리몰리과카몰리.png'
@@ -15,11 +18,19 @@ import WhateverTv from '../styles/image/background/blue_WhateverTV.png'
 import HimsoonJin from '../styles/image/background/blue_Himsumjjin.png'
 import Smile from '../styles/image/background/하단_스마일.png'
 
-const Background = () => {
+const Background = React.memo(() => {
   return (
     <>
       <Wrap>
-        <img className="bubble JjajjaYellow" src={Jjajja} alt="" />
+        <div className="MemegleBack">
+          <img className="MemegleVertical" src={MemegleVertical} />
+          <img className="MemegleHeight" src={MemegleHeight} />
+          <div className="MemegleHellonMemegle">
+            <img className="MemegleHello" src={MemegleHello} />
+            <img className="MemegleMemegle" src={MemegleMemegle} />
+          </div>
+        </div>
+        {/* <img className="bubble JjajjaYellow" src={Jjajja} alt="" />
         <img className="bubble MolluYellow" src={Mollu} alt="" />
         <img className="bubble HolymolyYellow" src={Holymoly} alt="" />
         <img className="bubble cute" src={Cute} alt="" />
@@ -34,21 +45,11 @@ const Background = () => {
         <div className="bottomSection">
           <img className="bottomicons" src={Smile} alt="" />
           <img className="bottomicons-2" src={Smile} alt="" />
-        </div>
-        {/* 애니메이션 줄것만 따로 사용 */}
-        {/* <img className="jjajja" src={Jjajja} alt="" />
-            <img className="holymoly" src={Holymoly} alt="" />
-            <img className="cute" src={Cute} alt="" />
-            <img className="loveu" src={Loveu} alt="" />
-            <img className="kingreceive" src={KingReceive} alt="" />
-            <img className="letsgo" src={Letsgo} alt="" />
-            <img className="nicetomeetu" src={NiceToMeetU} alt="" />
-            <img className="title" src={Mimgle} alt="" />
-            <img className="bottomicons" src={Smile} alt="" /> */}
+        </div> */}
       </Wrap>
     </>
   )
-}
+})
 
 export default Background
 
@@ -58,11 +59,11 @@ const Wrap = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: white;
+  /* background-color: white; */
 
   z-index: -999;
 
-  .bottomSection {
+  /* .bottomSection {
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -70,23 +71,16 @@ const Wrap = styled.div`
   }
   .bottomicons {
     position: absolute;
-    /* top: 0;
-    right: 0; */
     bottom: 0;
     left: 0;
-    /* height: 100%; */
     z-index: 5;
   }
   .bottomicons-2 {
     position: absolute;
-    /* top: 0;
-    right: 0; */
     bottom: 0;
     left: 1775px;
-    /* height: 100%; */
     z-index: 5;
   }
-  /* @media screen and (min-width: 500px) { */
   .title {
     position: absolute;
     top: -470px;
@@ -613,6 +607,79 @@ const Wrap = styled.div`
       right: -25px;
       width: 21rem;
       height: 7.5rem;
+    }
+  } */
+  .MemegleBack {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* background-color: white; */
+    background-color: #2b2b2b;
+  }
+
+  .MemegleVertical {
+    max-width: 120rem;
+    width: fit-content;
+    max-height: 25rem;
+    height: fit-content;
+    position: absolute;
+    bottom: 0;
+  }
+  .MemegleHeight {
+    max-width: 30rem;
+    width: fit-content;
+    height: 115rem;
+    position: absolute;
+    left: 90%;
+    bottom: 0;
+  }
+  .MemegleHello {
+    width: 20rem;
+    height: fit-content;
+    position: absolute;
+    left: 95%;
+    bottom: 80%;
+  }
+  .MemegleMemegle {
+    width: 45rem;
+    height: fit-content;
+    position: relative;
+    top: 50%;
+    left: 0%;
+  }
+  .MemegleHellonMemegle {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+  }
+  @media screen and (max-width: 1200px) {
+    .MemegleBack {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-color: white; */
+      background-color: #e0e0e0;
+    }
+    .MemegleVertical {
+      display: none;
+    }
+    .MemegleHeight {
+      display: none;
+    }
+    .MemegleHello {
+      display: none;
+    }
+    .MemegleMemegle {
+      display: none;
+    }
+    .MemegleHellonMemegle {
+      display: none;
     }
   }
 `
