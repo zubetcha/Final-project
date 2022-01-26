@@ -38,7 +38,7 @@ const ImageDetailList = (props) => {
           <ArrowBackIcon className="icon" onClick={() => history.replace('/image')} />
         </Header>
         <Container>
-          <InfinityScroll callNext={getImageList} paging={{ next: imageData.has_next }}>
+          <InfinityScroll type="white" callNext={getImageList} paging={{ next: imageData.has_next }}>
             {imageData.image_list.map((image, i) => {
               return <OneDetailImageCard ref={imageRefs.current[i]} key={`image-detail-${image.boardId}`} image={image} />
             })}
@@ -53,7 +53,8 @@ const ImageDetailList = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  margin: 56px 0 90px;
+  margin: 56px 0 0;
+  padding: 0 0 90px;
   overflow-x: hidden;
   overflow-y: scroll;
   -ms-overflow-style: none;
