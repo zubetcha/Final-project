@@ -28,23 +28,4 @@ const BackGround = styled.div`
   margin: 100px 0 0 0;
 `
 
-const Flex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
-const Text = styled.div`
-  width: 250px;
-  height: 50px;
-  margin: 0 0 20px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 20px;
-  font-weight: 600;
-`
-
 export default GoogleLoginHandler

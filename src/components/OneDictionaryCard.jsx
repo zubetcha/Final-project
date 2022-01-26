@@ -106,7 +106,8 @@ const DictSummary = styled.div`
 
 const DictLikeCount = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  padding: 0 0 0 3px;
+  padding: 0 0 0 7px;
+  margin: 3px 0 0 0;
   color: ${({ theme }) => theme.colors.grey};
 `
 

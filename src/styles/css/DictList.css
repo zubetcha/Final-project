@@ -38,9 +38,10 @@
   z-index: 2;
 
   font-size: 14px;
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   transition-duration: 0.2s;
 }
 .NewDictAddButton_1:hover {
@@ -87,6 +88,7 @@
   margin: 0;
   padding: 25px;
   font-size: 16px;
+  font-display: swap;
   display: flex;
   justify-content: center;
 }
@@ -210,6 +212,7 @@
   color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
   user-select: none;
+  padding: 0 0 2px 0;
 }
 .rc-pagination-prev:hover button,
 .rc-pagination-next:hover button {

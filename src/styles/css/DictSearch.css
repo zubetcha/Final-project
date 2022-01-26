@@ -27,9 +27,10 @@
   padding: 15px;
   margin: 0 0 20px 0;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 1.125rem;
+  font-display: swap;
   font-weight: normal;
 }
 
@@ -48,7 +49,7 @@
   justify-content: center;
   padding: 15px;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: normal;
@@ -71,7 +72,7 @@
   justify-content: center;
   align-items: center;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: normal;
