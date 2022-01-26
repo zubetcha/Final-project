@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import '../../styles/css/DictEdit.css'
 import { useDispatch } from 'react-redux'
 import { dictApi } from '../../shared/api'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
-import { Header } from '../../components'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
+import { Header, ConfirmModal, ConfirmButton } from '../../components'
 
 const DictEdit = (props) => {
   const dispatch = useDispatch()

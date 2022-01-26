@@ -49,11 +49,11 @@ const ConfirmBox = styled.div`
   -webkit-appearance: none;
   -webkit-box-pack: flex-end;
   -ms-flex-pack: flex-end;
-  gap: 24px;
   .cancel-button {
     font-size: ${({ theme }) => theme.fontSizes.base};
     color: ${({ theme }) => theme.colors.grey};
     padding: 0;
+    margin: 0 24px 0 0;
   }
 `
 

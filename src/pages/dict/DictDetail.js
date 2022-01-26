@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictDetail.css'
 import { useDispatch } from 'react-redux'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -6,10 +6,9 @@ import { history } from '../../redux/ConfigureStore'
 import { dictApi, likeApi } from '../../shared/api'
 import { ReactComponent as EmptyBookMarkIcon } from '../../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_filled.svg'
-import { Header, Footer, DictRelatedYoutube } from '../../components'
+import { Header, Footer, DictRelatedYoutube, AlertModal, ConfirmModal, ConfirmButton } from '../../components'
 import { Grid, ProfileImage } from '../../elements'
 import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
-import { AlertModal, ConfirmModal, ConfirmButton } from '../../components/modal'
 
 const DictDetail = (props) => {
   const dispatch = useDispatch()
