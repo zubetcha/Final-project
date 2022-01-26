@@ -616,7 +616,7 @@ const Wrap = styled.div`
     top: 0;
     left: 0;
     /* background-color: white; */
-    background-color: #2b2b2b;
+    background-color: #515151;
   }
 
   .MemegleVertical {
