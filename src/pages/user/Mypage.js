@@ -171,8 +171,8 @@ const UserProfile = styled.div`
   flex-shrink: 0;
   flex-basis: 360px;
   .edit-icon {
-    width: 18px;
-    height: 18px;
+    width: 20;
+    height: 20;
     cursor: pointer;
     margin: 0 0 0 3px;
   }
