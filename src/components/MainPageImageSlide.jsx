@@ -3,7 +3,7 @@ import '../styles/css/MainPageImageSlide.css'
 import MainCarousel_1 from '../styles/image/main_carousel_2.gif'
 import MainCarousel_2 from '../styles/image/main_carousel_3.jpeg'
 
-const MainPageImageSlide = ({ type }) => {
+const MainPageImageSlide = React.memo(({ type }) => {
   return (
     <>
       <div className="MainPageSlideLayout">
@@ -13,6 +13,6 @@ const MainPageImageSlide = ({ type }) => {
       </div>
     </>
   )
-}
+})
 
 export default MainPageImageSlide

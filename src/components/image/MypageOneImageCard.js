@@ -4,7 +4,7 @@ import { history } from '../../redux/ConfigureStore'
 import { imageApi } from '../../shared/api'
 
 import { Grid } from '../../elements'
-import { ConfirmModal, ConfirmButton } from '../modal'
+import { ConfirmModal, ConfirmButton } from '..'
 import { ReactComponent as DeleteIcon } from '../../styles/icons/bin.svg'
 import { ReactComponent as EmptyHeart } from '../../styles/icons/heart_blank.svg'
 

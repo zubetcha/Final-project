@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { history } from '../../redux/ConfigureStore'
 import styled from 'styled-components'
-import { PostCard, Header, Footer, DictNavBar, SpeedDialButton } from '../../components'
+import { PostCard, Header, Footer, DictNavBar, SpeedDialButton, ConfirmModal, ConfirmButton } from '../../components'
 import Pagination from 'rc-pagination'
 import { dictQuestionApi } from '../../shared/api'
 import { Grid, Title } from '../../elements'
-import '../../index.css'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
 import SearchPage from '../../shared/SearchPage'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 

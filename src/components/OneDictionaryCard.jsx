@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { history } from '../redux/ConfigureStore'
 import { likeApi } from '../shared/api'
 
-import Grid from '../elements/Grid'
-import { ConfirmModal, ConfirmButton } from './modal'
+import { Grid } from '../elements'
+import { ConfirmModal, ConfirmButton } from '.'
 
 import { ReactComponent as EmptyBookMarkIcon } from '../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
