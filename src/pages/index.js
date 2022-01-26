@@ -26,6 +26,7 @@ import DictStat from './dict/DictStat'
 import ImageList from './image/ImageList'
 import ImageDetail from './image/ImageDetail'
 import ImageUpload from './image/ImageUpload'
+import ImageDetailList from './image/ImageDetailList'
 
 export {
   Main,
@@ -51,4 +52,5 @@ export {
   DictHistory,
   DictMyMeMe,
   DictStat,
+  ImageDetailList,
 }
