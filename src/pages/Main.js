@@ -87,7 +87,6 @@ const Main = (props) => {
             spaceBetween={30}
             lazy={true}
             grabCursor={true}
-            // centeredSlides={true}
             breakpoints={{
               769: {
                 slidesPerView: 1,
@@ -127,7 +126,7 @@ const Main = (props) => {
         <div className="MainPageFeedBackSection" onClick={() => window.open('https://forms.gle/xmfGQt2WsPQhiHg87', '_blank')}>
           <div className="MainPageFeedBackText1">피드백 남기고 스타벅스 커피 받아가자</div>
           <div className="MainPageFeedBackBar">
-            <svg width="65" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="50" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line y1="0.5" x2="65" y2="0.5" stroke="black" />
             </svg>
           </div>
