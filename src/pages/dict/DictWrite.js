@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import '../../styles/css/DictWrite.css'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
 import { Header } from '../../components'
@@ -31,16 +30,34 @@ const DictWrite = (props) => {
     }
   }
 
-  const onChangeTitle = (e) => {
-    setTitle(e.target.value)
+  const debounceFunction = (callback, delay) => {
+    let timer
+    return (...args) => {
+      // 실행한 함수(setTimeout())를 취소
+      clearTimeout(timer)
+      // delay가 지나면 callback 함수를 실행
+      timer = setTimeout(() => callback(...args), delay)
+    }
+  }
+
+  const printValue = useCallback(
+    debounceFunction((value) => console.log(value), 500),
+    []
+  )
+
+  const onChangeTitle = async (e) => {
+    printValue(e.target.value)
+    await setTitle(e.target.value)
   }
 
   const onChangeSummary = async (e) => {
-    setSummary(e.target.value)
+    printValue(e.target.value)
+    await setSummary(e.target.value)
   }
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value)
+  const onChangeContent = async (e) => {
+    printValue(e.target.value)
+    await setContent(e.target.value)
   }
 
   const addDict = () => {

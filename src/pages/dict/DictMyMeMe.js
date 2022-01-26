@@ -8,8 +8,6 @@ import { history } from '../../redux/ConfigureStore'
 
 const isLogin = localStorage.getItem('token')
 
-console.log(isLogin)
-
 const DictMyMeMe = (props) => {
   return (
     <>

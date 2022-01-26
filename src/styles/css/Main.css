@@ -35,10 +35,11 @@
   line-height: normal;
   /* background-image: linear-gradient(transparent 60%, #ffe330 40%); */
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
 }
 
 .MainPageCarouselText_2 {
@@ -55,6 +56,7 @@
 .main-swiper-slide {
   text-align: center;
   font-size: 18px;
+  font-display: swap;
   background: #fff;
 
   /* Center slide text vertically */
@@ -116,10 +118,11 @@
   line-height: normal;
   /* background-image: linear-gradient(transparent 60%, #ffe330 40%); */
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
 }
 
 .MainPageTagList {
@@ -139,6 +142,7 @@
   padding: 6px 12px;
   color: black;
   font-size: 14px;
+  font-display: swap;
   margin: 0 12px 10px 0;
 }
 .MainPageTag:hover {
@@ -164,13 +168,14 @@
 
 .MainPageTagMoreButton1 {
   display: flex;
-  font-size: 12px;
   margin: 5px 55px 0 0;
   position: absolute;
 
-  font-family: 'YdestreetL';
+  font-family: 'YdestreetL', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-weight: normal;
+  font-size: 12px;
+  font-display: swap;
 
   -webkit-appearance: none;
 }
@@ -193,10 +198,11 @@
   line-height: normal;
   /* background-image: linear-gradient(transparent 60%, #ffe330 40%); */
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
 }
 
 .MainPageTopPostList {
@@ -228,13 +234,15 @@
 
 .MainPageTagMoreButton2 {
   display: flex;
-  font-size: 12px;
+
   margin: 5px 55px 0 0;
   position: absolute;
 
-  font-family: 'YdestreetL';
+  font-family: 'YdestreetL', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
+  font-size: 12px;
   font-weight: normal;
+  font-display: swap;
 
   -webkit-appearance: none;
 }
@@ -251,15 +259,16 @@
   display: flex;
   justify-self: flex-start;
   margin: 30px 0 20px 0;
-  font-size: 18px;
-  font-weight: 700;
+
   width: fit-content;
   line-height: normal;
   /* background-image: linear-gradient(transparent 60%, #ffe330 40%); */
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: 700;
+  font-display: swap;
 }
 
 .MainPagePopularBoardList {
@@ -291,6 +300,7 @@
   margin-bottom: 25px;
   font-size: 14px;
   font-weight: 400;
+  font-display: swap;
 }
 
 .MainPagePopularBoardWriter {
@@ -300,6 +310,7 @@
   align-items: flex-end;
   font-size: 12px;
   font-weight: 400;
+  font-display: swap;
 }
 
 .MainPageTagMoreButton_3 {
@@ -325,10 +336,11 @@
   margin: 5px 55px 0 0;
   position: absolute;
 
-  font-family: 'YdestreetL';
+  font-family: 'YdestreetL', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 12px;
   font-weight: normal;
+  font-display: swap;
 
   -webkit-appearance: none;
 }
@@ -358,6 +370,7 @@
   border-radius: 50px;
   background-color: #00a0ff;
   font-size: 35px;
+  font-display: swap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -370,10 +383,11 @@
   width: fit-content;
   height: 50px;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 16px;
   font-weight: 400;
+  font-display: swap;
 }
 
 /* 피드백 영역 */
@@ -393,22 +407,24 @@
 }
 
 .MainPageFeedBackText1 {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  width: 60%;
+  font-display: swap;
+  width: 80%;
 }
 
 .MainPageFeedBackBar {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
-  margin: 0 0 0 10px;
+  width: 15%;
+  margin: 0 10px 0 0;
 }
 
 .MainPageFeedBackText2 {
   font-size: 0.85rem;
   font-weight: 400;
+  font-display: swap;
   width: 5%;
   margin: 0 20px 0 0;
 }
