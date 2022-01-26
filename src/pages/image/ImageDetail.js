@@ -5,8 +5,7 @@ import { history } from '../../redux/ConfigureStore'
 import { imageApi, likeApi } from '../../shared/api'
 
 import { Grid, ProfileImage } from '../../elements'
-import ImageWrapper from '../../components/image/ImageWrapper'
-import { ShareBottomSheet, Footer, ConfirmModal, ConfirmButton } from '../../components'
+import { ShareBottomSheet, Footer, ConfirmModal, ConfirmButton, ImageWrapper } from '../../components'
 
 import { ReactComponent as DeleteIcon } from '../../styles/icons/size(28*28)(30*30)/bin_28dp.svg'
 import { ReactComponent as ShareIcon } from '../../styles/icons/size(28*28)(30*30)/share_28dp.svg'

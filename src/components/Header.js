@@ -6,8 +6,7 @@ import { actionCreators as mypageActions } from '../redux/modules/mypage'
 import { mypageApi } from '../shared/api'
 
 import { Grid, ProfileImage } from '../elements'
-import ProfileBottom from './ProfileBottom'
-import { AlarmModal } from './modal'
+import { AlarmModal, ProfileBottom } from '.'
 import { ReactComponent as ArrowBackIcon } from '../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
 

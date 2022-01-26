@@ -36,6 +36,8 @@ const ImageDetailList = (props) => {
       <ImageWrapper>
         <Header>
           <ArrowBackIcon className="icon" onClick={() => history.replace('/image')} />
+          <div className="location">짤방</div>
+          <div className="empty" />
         </Header>
         <Container>
           <InfinityScroll type="white" callNext={getImageList} paging={{ next: imageData.has_next }}>
@@ -74,8 +76,23 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  /* border-bottom: 1px solid ${({ theme }) => theme.colors.grey}; */
+  border-bottom: 0.5px solid #1f1f1f;
   background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .location {
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+    color: #fff;
+    cursor: default;
+  }
+  .empty {
+    width: 24px;
+    height: 100%;
+  }
 `
 
 export default ImageDetailList

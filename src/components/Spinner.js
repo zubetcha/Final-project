@@ -5,7 +5,7 @@ import WifiSpinner from '../styles/image/wifi.gif'
 import RobotSpinner from '../styles/image/spinner.png'
 import RobotSpinnerWhite from '../styles/image/spinner_white.png'
 
-const Spinner = ({ children, type }) => {
+const Spinner = React.memo(({ children, type }) => {
   const styles = {
     type: type,
   }
@@ -20,7 +20,7 @@ const Spinner = ({ children, type }) => {
       </Grid>
     </>
   )
-}
+})
 
 const SpinnerBox = styled.div`
   max-width: 320px;

@@ -7,11 +7,9 @@ import { actionCreators as imageActions } from '../../redux/modules/image'
 import { history } from '../../redux/ConfigureStore'
 
 import { Title, Grid } from '../../elements'
-import { Header, Footer, SpeedDialButton, Spinner } from '../../components'
+import { Header, Footer, SpeedDialButton, Spinner, OneImageCard, ConfirmModal, ConfirmButton } from '../../components'
 import InfinityScroll from '../../shared/InfinityScroll'
 import ImageUpload from '../image/ImageUpload'
-import OneImageCard from '../../components/image/OneImageCard'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const ImageList = (props) => {
