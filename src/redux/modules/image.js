@@ -32,13 +32,13 @@ const initialState = {
 /* middleware */
 const getImageListDB = (page) => {
   return async function (dispatch, getState, { history }) {
-    const size = 13
     dispatch(loading(true))
+    const size = 13
     await imageApi
       .getImageList(page, size)
       .then((response) => {
         let is_next = null
-        if (response.data.data.length < 13) {
+        if (response.data.data.length < size) {
           is_next = false
         } else {
           response.data.data.pop()

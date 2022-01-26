@@ -35,7 +35,7 @@ const ImageDetailList = (props) => {
     <>
       <ImageWrapper>
         <Header>
-          <ArrowBackIcon className="icon" onClick={() => history.goBack()} />
+          <ArrowBackIcon className="icon" onClick={() => history.replace('/image')} />
         </Header>
         <Container>
           <InfinityScroll callNext={getImageList} paging={{ next: imageData.has_next }}>

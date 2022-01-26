@@ -100,7 +100,7 @@ const OneDetailImageCard = forwardRef((props, ref) => {
         <Grid flex_center height="fit-content">
           <img src={image?.thumbNail} style={{ width: '100%' }} alt="짤 이미지" />
         </Grid>
-        <Grid flex_align padding="10px 16px 16px">
+        <Grid flex_align padding="10px 16px 20px">
           {isLiked ? <FullHeartIcon className="icon" onClick={handleClickLike} /> : <EmptyHeartIcon className="icon" onClick={handleClickLike} />}
           <ImageLikeCount>{likeCount}</ImageLikeCount>
         </Grid>
