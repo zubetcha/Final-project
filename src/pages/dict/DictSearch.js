@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictSearch.css'
-import { useDispatch } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import { dictApi } from '../../shared/api'
-import { Header, OneDictionaryCard, PostCard, Footer } from '../../components'
+import { Header, OneDictionaryCard, PostCard, Footer, ConfirmModal, ConfirmButton } from '../../components'
 import { Title, Grid } from '../../elements'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
 
 const DictSearch = (props) => {
-  const dispatch = useDispatch()
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false

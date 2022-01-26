@@ -5,9 +5,8 @@ import { actionCreators as imageActions } from '../../redux/modules/image'
 import { likeApi } from '../../shared/api'
 import { history } from '../../redux/ConfigureStore'
 
-import ShareBottomSheet from '../ShareBottomSheet'
+import { ShareBottomSheet, ConfirmModal, ConfirmButton } from '..'
 import { Grid } from '../../elements'
-import { ConfirmModal, ConfirmButton } from '../modal'
 
 import { ReactComponent as ShareIcon } from '../../styles/icons/share.svg'
 import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/heart_blank.svg'

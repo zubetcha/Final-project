@@ -4,14 +4,13 @@ import { history } from '../../redux/ConfigureStore'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
 import styled from 'styled-components'
 import { dictQuestionApi } from '../../shared/api'
-import { ConfirmModal, AlertModal, ConfirmButton } from '../../components/modal'
+import { ConfirmModal, AlertModal, ConfirmButton } from '../../components'
 import CommentTest from '../CommentTest'
 import { Grid } from '../../elements'
 import { ReactComponent as ICuriousToo } from '../../styles/icons/quiz_black_24dp.svg'
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg'
 import { ReactComponent as ThreedotIcon } from '../../styles/icons/more.svg'
-import '../../index.css'
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
@@ -234,7 +233,6 @@ const Header = styled.header`
 const HeaderQuestion = styled.div`
   font-family: 'YdestreetB';
   font-style: normal;
-  font-weight: bold;
   font-size: ${({ theme }) => theme.fontSizes.xl};
   /* line-height: 29px; */
   display: flex;

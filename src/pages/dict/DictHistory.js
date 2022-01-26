@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictHistory.css'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { dictApi } from '../../shared/api'
-import { Header, Footer } from '../../components'
+import { Header, Footer, ConfirmModal, ConfirmButton } from '../../components'
 import SearchPage from '../../shared/SearchPage'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
 import { ProfileImage } from '../../elements'
 
 const DictEditHistory = (props) => {
