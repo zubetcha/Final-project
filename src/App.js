@@ -30,9 +30,9 @@ import {
   DictSearch,
   DictStat,
   NotFound,
+  ImageDetailList,
 } from './pages'
-import MobileFrame from './components/MobileFrame'
-import Background from './components/Background'
+import { MobileFrame, Background } from './components'
 import NaverLoginHandler from './shared/NaverLoginHandler'
 import KakaoLoginHandler from './shared/KakaoLoginHandler'
 import GoogleLoginHandler from './shared/GoogleLoginHandler'
@@ -71,6 +71,7 @@ function App() {
                 <Route path="/image" exact component={ImageList} />
                 <Route path="/image/detail/:imageId" exact component={ImageDetail} />
                 <Route path="/image/upload" exact component={ImageUpload} />
+                <Route path="/image/detail" exact component={ImageDetailList} />
                 {/* Social Login Redirect Handler */}
                 <Route path="/redirect/naver" component={NaverLoginHandler} />
                 <Route path="/redirect/kakao" component={KakaoLoginHandler} />
