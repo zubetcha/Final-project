@@ -616,7 +616,7 @@ const Wrap = styled.div`
     top: 0;
     left: 0;
     /* background-color: white; */
-    background-color: #515151;
+    background-color: #2b2b2b;
   }
 
   .MemegleVertical {
@@ -664,7 +664,7 @@ const Wrap = styled.div`
       top: 0;
       left: 0;
       /* background-color: white; */
-      background-color: #e0e0e0;
+      background-color: #515151;
     }
     .MemegleVertical {
       display: none;
