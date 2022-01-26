@@ -56,6 +56,9 @@ const ImageList = (props) => {
   //   setLoading(true)
   //   setTimeout(() => setLoading(false), 700)
   // }, [])
+  useEffect(() => {
+    dispatch(imageActions.initImageList())
+  }, [])
 
   useEffect(() => {
     dispatch(imageActions.getImageListDB(0))
@@ -67,7 +70,6 @@ const ImageList = (props) => {
       .catch((error) => {
         console.log('명예의 전당 이미지 불러오기 문제 발생', error.response)
       })
-    dispatch(imageActions.initImageList())
   }, [dispatch])
 
   return (
@@ -94,7 +96,7 @@ const ImageList = (props) => {
                 <InfinityScroll callNext={getImageList} paging={{ next: image_data.has_next }}>
                   <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
                     {image_data.image_list.map((image) => {
-                      return <OneImageCard key={image.boardId} image={image} />
+                      return <OneImageCard key={image?.boardId} image={image} />
                     })}
                   </Masonry>
                 </InfinityScroll>
