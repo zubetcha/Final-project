@@ -29,7 +29,7 @@ const ImageUpload = ({ preview, fileInput }) => {
   return (
     <>
       <ImageWrapper>
-        <Grid flex_between padding="0 16px 16px">
+        <Grid flex_between padding="16px">
           <CloseIcon
             className="icon"
             onClick={() => {

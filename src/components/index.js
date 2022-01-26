@@ -1,9 +1,22 @@
+import ImageWrapper from './image/ImageWrapper'
+import MyPageOneImageCard from './image/MypageOneImageCard'
+import OneDetailImageCard from './image/OneDetailImageCard'
+import OneImageCard from './image/OneImageCard'
+
+import AlarmModal from './modal/AlarmModal'
+import AlertModal from './modal/AlertModal'
+import ConfirmModal from './modal/ConfirmModal'
+import DoubleCheckModal from './modal/DoubleCheckModal'
+import ConfirmButton from './modal/ConfirmButton'
+
 import Background from './Background'
 import BottomPopup from './BottomPopup'
+
 import DictChart from './DictChart'
 import DictMyScrapbook from './DictMyScrapbook'
 import DictNavBar from './DictNavBar'
 import DictRelatedYoutube from './DictRelatedYoutube'
+
 import EditProfile from './EditProfile'
 import Footer from './Footer'
 import GoogleButton from './GoogleLogin'
@@ -28,6 +41,15 @@ import Spinner from './Spinner'
 import TodayDictCardSwiper from './TodayDictCardSwiper'
 
 export {
+  ImageWrapper,
+  MyPageOneImageCard,
+  OneDetailImageCard,
+  OneImageCard,
+  AlarmModal,
+  AlertModal,
+  ConfirmModal,
+  DoubleCheckModal,
+  ConfirmButton,
   Background,
   BottomPopup,
   DictChart,

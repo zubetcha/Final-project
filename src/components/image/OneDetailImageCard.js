@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, forwardRef } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
 import { history } from '../../redux/ConfigureStore'
 import { imageApi, likeApi } from '../../shared/api'
 
 import { Grid, ProfileImage } from '../../elements'
-import ImageWrapper from '../../components/image/ImageWrapper'
-import { ShareBottomSheet, Footer, ConfirmModal, ConfirmButton } from '../../components'
+import { ShareBottomSheet, ConfirmModal, ConfirmButton } from '..'
 
 import { ReactComponent as DeleteIcon } from '../../styles/icons/size(28*28)(30*30)/bin_28dp.svg'
 import { ReactComponent as ShareIcon } from '../../styles/icons/size(28*28)(30*30)/share_28dp.svg'
 import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/size(28*28)(30*30)/heart_blank_28dp.svg'
 import { ReactComponent as FullHeartIcon } from '../../styles/icons/size(28*28)(30*30)/heart_filled_28dp.svg'
-import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 
-const ImageDetail = (props) => {
-  const boardId = useParams().imageId
+const OneDetailImageCard = forwardRef((props, ref) => {
+  const { image } = props
   const username = localStorage.getItem('username')
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
 
-  const [imageData, setImageData] = useState('')
-  const [likeCount, setLikeCount] = useState(0)
-  const [isLiked, setIsLiked] = useState(false)
-  const [createdAt, setCreatedAt] = useState('')
-  const [thumbNail, setThumbNail] = useState('')
+  const [likeCount, setLikeCount] = useState(image.likeCnt)
+  const [isLiked, setIsLiked] = useState(image.isLike)
   const [shareVisible, setShareVisible] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -51,7 +45,7 @@ const ImageDetail = (props) => {
     }
     if (isLiked) {
       await likeApi
-        .likeBoard(boardId)
+        .likeBoard(image?.boardId)
         .then((response) => {
           setIsLiked(false)
           setLikeCount(likeCount - 1)
@@ -61,7 +55,7 @@ const ImageDetail = (props) => {
         })
     } else {
       await likeApi
-        .likeBoard(boardId)
+        .likeBoard(image?.boardId)
         .then((response) => {
           setIsLiked(true)
           setLikeCount(likeCount + 1)
@@ -76,7 +70,7 @@ const ImageDetail = (props) => {
     e.preventDefault()
     e.stopPropagation()
     await imageApi
-      .deleteImage(boardId)
+      .deleteImage(image?.boardId)
       .then((response) => {})
       .then(() => {
         window.location.replace('/image')
@@ -86,58 +80,32 @@ const ImageDetail = (props) => {
       })
   }
 
-  useEffect(() => {
-    imageApi
-      .getImageDetail(boardId)
-      .then((response) => {
-        const image_data = response.data.data
-        setImageData(image_data)
-        setLikeCount(image_data.likeCnt)
-        setIsLiked(image_data.isLike)
-        setThumbNail(image_data.thumbNail)
-        const createdDate = image_data.createdAt.split('T')[0]
-        setCreatedAt(createdDate)
-      })
-      .catch((error) => {
-        console.log('상세 이미지를 불러오는 데 문제가 발생했습니다.', error.response)
-      })
-  }, [boardId])
-
   return (
     <>
-      <ImageWrapper>
-        <Grid flex_between height="56px" padding="0 16px">
-          <ArrowBackIcon
-            className="icon"
-            onClick={() => {
-              // history.replace('/image')
-              history.goBack()
-            }}
-          />
-        </Grid>
+      <Container ref={ref}>
         <Grid flex_between padding="16px">
           <Grid flex_align>
-            <ProfileImage src={imageData.profileImageUrl} size="40" />
+            <ProfileImage src={image?.profileImageUrl} size="40" />
             <div style={{ paddingLeft: '10px', display: 'flex', flexDirection: 'column' }}>
-              <ImageWriter>{imageData.writer}</ImageWriter>
-              <ImageCreatedAt>{createdAt}</ImageCreatedAt>
+              <ImageWriter>{image?.writer}</ImageWriter>
+              <ImageCreatedAt>{image?.createdAt.split('T')[0]}</ImageCreatedAt>
             </div>
           </Grid>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ShareIcon className="icon" onClick={handleShareVisible} />
-            {imageData && imageData.username === username && <DeleteIcon className="icon" style={{ margin: '0 0 0 16px' }} onClick={handleShowModal} />}
+            {image.username === username && <DeleteIcon className="icon" style={{ margin: '0 0 0 16px' }} onClick={handleShowModal} />}
+            {/* <DeleteIcon className="icon" style={{ margin: '0 0 0 16px' }} onClick={handleShowModal} /> */}
           </div>
         </Grid>
         <Grid flex_center height="fit-content">
-          <img src={imageData.thumbNail} style={{ width: '100%' }} alt="짤 이미지" />
+          <img src={image?.thumbNail} style={{ width: '100%' }} alt="짤 이미지" />
         </Grid>
-        <Grid flex_align padding="10px 16px 16px">
+        <Grid flex_align padding="10px 16px 20px">
           {isLiked ? <FullHeartIcon className="icon" onClick={handleClickLike} /> : <EmptyHeartIcon className="icon" onClick={handleClickLike} />}
           <ImageLikeCount>{likeCount}</ImageLikeCount>
         </Grid>
-        <Footer />
-        <ShareBottomSheet type="image" shareVisible={shareVisible} setShareVisible={setShareVisible} thumbNail={thumbNail} boardId={boardId} />
-      </ImageWrapper>
+      </Container>
+      <ShareBottomSheet type="image" shareVisible={shareVisible} setShareVisible={setShareVisible} thumbNail={image?.thumbNail} boardId={image?.boardId} />
       <ConfirmModal question="밈짤을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
         <ConfirmButton _onClick={handleDeleteImage}>삭제</ConfirmButton>
       </ConfirmModal>
@@ -146,7 +114,13 @@ const ImageDetail = (props) => {
       </ConfirmModal>
     </>
   )
-}
+})
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`
 
 const ImageWriter = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.base};
@@ -163,4 +137,4 @@ const ImageLikeCount = styled.span`
   padding: 0 0 0 5px;
 `
 
-export default ImageDetail
+export default OneDetailImageCard
