@@ -123,9 +123,7 @@ const Main = (props) => {
         <div className="MainPageFeedBackSection" onClick={() => window.open('https://forms.gle/xmfGQt2WsPQhiHg87', '_blank')}>
           <div className="MainPageFeedBackText1">피드백 남기고 스타벅스 커피 받아가자</div>
           <div className="MainPageFeedBackBar">
-            <svg width="50" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line y1="0.5" x2="65" y2="0.5" stroke="black" />
-            </svg>
+            <MainFeedBackBarIcon />
           </div>
           <div className="MainPageFeedBackText2">Go!</div>
         </div>
@@ -141,9 +139,7 @@ const Main = (props) => {
           <div className="MainPageTagMoreButton_1">
             <div className="MainPageTagMoreButton_1st" onClick={() => history.push('/dict')}>
               <div className="MainPageTagMoreButton1">More</div>
-              <svg width="96" height="30" viewBox="0 0 96 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 29H93L65.1497 1" stroke="black" strokeWidth="2" />
-              </svg>
+              <MainMoreIcon strokeWidth="2" />
             </div>
           </div>
         </div>
@@ -155,9 +151,7 @@ const Main = (props) => {
           <div className="MainPageTagMoreButton_2">
             <div className="MainPageTagMoreButton_2nd" onClick={() => history.push('/image')}>
               <div className="MainPageTagMoreButton2">More</div>
-              <svg width="96" height="30" viewBox="0 0 96 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 29H93L65.1497 1" stroke="black" strokeWidth="2" />
-              </svg>
+              <MainMoreIcon strokeWidth="2" />
             </div>
           </div>
         </div>

@@ -14,8 +14,6 @@ function SearchPage(props) {
     localStorage.setItem('keywords', JSON.stringify(keywords))
   }, [keywords])
 
-  //state를 다루는 함수는 handle 보통 많이 붙인다.
-
   //검색어 추가
   const handleAddKeyword = (text) => {
     const newKeyword = {
@@ -38,7 +36,6 @@ function SearchPage(props) {
     setKeywords([])
   }
 
-  //자식 컴포넌트에서 setState를 못하기때문에 그거를 바꿔주는 함수를 선언후 그 함수를 넘겨야함
   return (
     <SearchBarPage>
       <SearchBar onAddKeyword={handleAddKeyword}></SearchBar>

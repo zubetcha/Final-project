@@ -8,7 +8,7 @@ import { history } from '../../redux/ConfigureStore'
 
 const isLogin = localStorage.getItem('token')
 
-const DictMyMeMe = (props) => {
+const DictMyMeMe = () => {
   return (
     <>
       <Header location="오픈 밈사전"></Header>
