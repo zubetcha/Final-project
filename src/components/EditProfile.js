@@ -90,7 +90,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
       setUsedNickname('')
     }
     if (nickname !== '') {
-      if (nickname === passedNickname && isValidNickname === true) {
+      if ((nickname === passedNickname && isValidNickname === true) || nickname === my.nickname) {
         dispatch(mypageActions.editNicknameDB(userId, nickname))
         if (imageFile) {
           const uploadFile = fileInput.current.files[0]
