@@ -9,6 +9,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Lazy, Autoplay, Keyboard, Pagination } from 'swiper'
 import { Header, Footer, AlertModal, MainPageImageSlide, PopularBoardCardSwiper } from '../components'
 import { Grid } from '../elements'
+import { ReactComponent as MainMoreIcon } from '../styles/icons/mainMore.svg'
+import { ReactComponent as MainFeedBackBarIcon } from '../styles/icons/mainFeedBackBar.svg'
 
 import 'swiper/swiper.min.css'
 import 'swiper/components/lazy/lazy.min.css'
