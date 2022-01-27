@@ -42,10 +42,11 @@
   background-color: #ffe330;
   cursor: pointer;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 18px;
   font-weight: normal;
+  font-display: swap;
 }
 
 .JoinButton_login {
@@ -59,10 +60,11 @@
   background-color: none;
   cursor: pointer;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 18px;
   font-weight: normal;
+  font-display: swap;
 }
 
 .LoginOrJoinInputs_login {
@@ -129,10 +131,11 @@
   justify-content: center;
   align-items: center;
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 18px;
   font-weight: normal;
+  font-display: swap;
 
   z-index: 2;
 }
@@ -147,6 +150,7 @@
   height: 48px;
   font-size: 15px;
   font-weight: 500;
+  font-display: swap;
 }
 
 .SocialLoginHR {
@@ -156,6 +160,7 @@
   justify-content: center;
   color: rgba(0, 0, 0, 0.4);
   font-size: 14px;
+  font-display: swap;
   margin: 55px 0 20px 0;
 }
 

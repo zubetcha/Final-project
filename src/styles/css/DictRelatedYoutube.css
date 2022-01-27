@@ -7,8 +7,8 @@
   width: fit-content;
   height: fit-content;
   font-size: 14px;
-  margin-right: 5px;
-  margin-left: -10px;
+  font-display: swap;
+  margin: 1px 0 0 -10px;
 }
 
 .expandIcon {
@@ -19,7 +19,6 @@
 .DictRelatedYoutubeSwiper {
   width: 12rem !important;
   background-color: transparent !important;
-  /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -41,10 +40,11 @@
 }
 
 .DictRealatedYoutubeGuide {
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: normal;
+  font-display: swap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,10 +52,11 @@
 }
 
 .None {
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: normal;
+  font-display: swap;
   display: flex;
   justify-content: center;
   align-items: center;

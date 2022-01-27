@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import useScript from '../util/useScript'
 
-import BottomPopup from './BottomPopup'
-import AlertModal from './modal/AlertModal'
+import { AlertModal, BottomPopup } from '.'
 import { ReactComponent as LinkCopyIcon } from '../styles/icons/link.svg'
 import { KakaoShareButton } from '../shared/kakaoShare'
 import { KakaoImageShareButton } from '../shared/kakaoImageShare'
@@ -72,11 +71,7 @@ const ShareBottomSheet = (props) => {
               닫기
             </button>
           </div>
-          {showModal && (
-            <AlertModal showModal={showModal}>
-              <AlertText>링크 복사 완료!</AlertText>
-            </AlertModal>
-          )}
+          {showModal && <AlertModal showModal={showModal}>링크 복사 완료!</AlertModal>}
         </Container>
       </BottomPopup>
     </>
@@ -144,9 +139,6 @@ const ShareBody = styled.div`
     align-items: center;
     justify-content: center;
   }
-`
-const AlertText = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
 `
 
 export default ShareBottomSheet

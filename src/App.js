@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { history } from './redux/ConfigureStore'
 import styled, { ThemeProvider } from 'styled-components'
@@ -29,9 +29,10 @@ import {
   ImageUpload,
   DictSearch,
   DictStat,
+  NotFound,
+  ImageDetailList,
 } from './pages'
-import MobileFrame from './components/MobileFrame'
-import Background from './components/Background'
+import { MobileFrame, Background } from './components'
 import NaverLoginHandler from './shared/NaverLoginHandler'
 import KakaoLoginHandler from './shared/KakaoLoginHandler'
 import GoogleLoginHandler from './shared/GoogleLoginHandler'
@@ -47,32 +48,37 @@ function App() {
             <BackgroundOpacity />
             <Background className="BackgroundPage" />
             <MobileFrame className="MobileFramePage">
-              <Route path="/" exact component={Main} />
-              <Route path="/join" exact component={Auth(Join, false)} />
-              <Route path="/login" exact component={Auth(Login, false)} />
-              <Route path="/mypage" exact component={Auth(Mypage, true)} />
-              <Route path="/quiz" exact component={QuizIntro} />
-              <Route path="/quiz/:category" exact component={Quiz} />
-              <Route path="/quiz/:category/result" exact component={QuizResult} />
-              <Route path="/dict/question" exact component={PostList} />
-              <Route path="/dict/question/detail/:questionId" exact component={PostDetail} />
-              <Route path="/dict/question/write" exact component={Auth(PostWrite, true)} />
-              <Route path="/dict/question/edit/:questionId" exact component={Auth(PostEdit, true)} />
-              <Route path="/dict" exact component={DictList} />
-              <Route path="/dict/write" exact component={Auth(DictWrite, true)} />
-              <Route path="/dict/edit/:dictId" exact component={Auth(DictEdit, true)} />
-              <Route path="/dict/detail/:dictId" exact component={DictDetail} />
-              <Route path="/dict/search/:keyword" exact component={DictSearch} />
-              <Route path="/dict/history/:dictId" exact component={DictHistory} />
-              <Route path="/dict/mymeme" exact component={DictMyMeMe} />
-              <Route path="/dict/stat" exact component={DictStat} />
-              <Route path="/image" exact component={ImageList} />
-              <Route path="/image/detail/:imageId" exact component={ImageDetail} />
-              <Route path="/image/upload" exact component={ImageUpload} />
-              {/* Social Login Redirect Handler */}
-              <Route path="/redirect/naver" component={NaverLoginHandler} />
-              <Route path="/redirect/kakao" component={KakaoLoginHandler} />
-              <Route path="/redirect/google" component={GoogleLoginHandler} />
+              <Switch>
+                <Route path="/" exact component={Main} />
+                <Route path="/join" exact component={Auth(Join, false)} />
+                <Route path="/login" exact component={Auth(Login, false)} />
+                <Route path="/mypage" exact component={Auth(Mypage, true)} />
+                <Route path="/quiz" exact component={QuizIntro} />
+                <Route path="/quiz/:category" exact component={Quiz} />
+                <Route path="/quiz/:category/result" exact component={QuizResult} />
+                <Route path="/dict/question" exact component={PostList} />
+                <Route path="/dict/question/detail/:questionId" exact component={PostDetail} />
+                <Route path="/dict/question/write" exact component={Auth(PostWrite, true)} />
+                <Route path="/dict/question/edit/:questionId" exact component={Auth(PostEdit, true)} />
+                <Route path="/dict" exact component={DictList} />
+                <Route path="/dict/write" exact component={Auth(DictWrite, true)} />
+                <Route path="/dict/edit/:dictId" exact component={Auth(DictEdit, true)} />
+                <Route path="/dict/detail/:dictId" exact component={DictDetail} />
+                <Route path="/dict/search/:keyword" exact component={DictSearch} />
+                <Route path="/dict/history/:dictId" exact component={DictHistory} />
+                <Route path="/dict/mymeme" exact component={DictMyMeMe} />
+                <Route path="/dict/stat" exact component={DictStat} />
+                <Route path="/image" exact component={ImageList} />
+                <Route path="/image/detail/:imageId" exact component={ImageDetail} />
+                <Route path="/image/upload" exact component={ImageUpload} />
+                <Route path="/image/detail" exact component={ImageDetailList} />
+                {/* Social Login Redirect Handler */}
+                <Route path="/redirect/naver" component={NaverLoginHandler} />
+                <Route path="/redirect/kakao" component={KakaoLoginHandler} />
+                <Route path="/redirect/google" component={GoogleLoginHandler} />
+                {/* Error Handeling */}
+                <Route component={NotFound} />
+              </Switch>
             </MobileFrame>
           </ConnectedRouter>
         </ThemeProvider>

@@ -13,6 +13,7 @@
   height: 4rem;
   font-size: 15px;
   font-weight: 500;
+  font-display: swap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,4 +32,5 @@
   height: 4rem;
   font-size: 15px;
   font-weight: 500;
+  font-display: swap;
 }

@@ -35,26 +35,6 @@
 
   z-index: 1;
 }
-/* 
-#area {
-  width: 150px;
-  height: 150px;
-  border: 2px solid black;
-  border-radius: 0 0 0 0;
-  margin: 0 auto;
-}
-
-.yellow {
-  background-color: #ffd400;
-}
-
-.red {
-  background-color: #f97d39;
-}
-
-.blue {
-  background-color: #6698fc;
-} */
 
 .TodayDictCard_Title {
   word-break: keep-all;
@@ -62,18 +42,26 @@
   height: fit-content;
 
   font-size: 1rem;
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .TodayDictCard_Summary {
   font-size: 0.875rem;
+  font-display: swap;
   text-align: left;
   word-break: keep-all;
   width: 100%;
   height: fit-content;
   padding: 14px 0 0 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .swiper-container {

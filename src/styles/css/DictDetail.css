@@ -27,6 +27,7 @@
   height: fit-content;
   font-size: 0.9rem;
   font-weight: 600;
+  font-display: swap;
 }
 
 .OneDictCardDetailInfo_Vertical {
@@ -42,6 +43,7 @@
   width: fit-content;
   height: fit-content;
   font-size: 0.875rem;
+  font-display: swap;
   display: flex;
   line-height: 1.8;
 }
@@ -52,7 +54,9 @@
 
 .OneDictCardDetailInfoLikeCnt {
   font-size: 0.875rem;
-  margin: 0 0 0 5px;
+  font-display: swap;
+  margin: 3px 0 0 0;
+  padding: 0 0 0 7px;
 
   color: rgba(135, 140, 146, 1);
 
@@ -79,17 +83,6 @@
   padding: 10px 20px 10px 10px;
 }
 
-.OneDictCardDetailInfoFirstWriterProfileImage {
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-right: 5px;
-  border: 2px solid #000;
-}
-
 .OneDictCardDetailInfoFirstWriterCreatedAt {
   display: flex;
   flex-direction: column;
@@ -102,10 +95,12 @@
 
 .OneDictCardDetailInfoFirstWriter {
   font-size: 0.75rem;
+  font-display: swap;
 }
 
 .OneDictCardDetailInfoCreatedAt {
   font-size: 0.65rem;
+  font-display: swap;
   color: rgba(135, 140, 146, 1);
 }
 
@@ -114,17 +109,6 @@
   height: 50px;
   border: 0.5px solid rgb(200, 200, 200);
   margin: 0px 10px 0 5px;
-}
-
-.OneDictCardDetailInfoRecentWriterProfileImage {
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-right: 5px;
-  border: 2px solid #000;
 }
 
 .OneDictCardDetailInfoRecentWriterModifiedAt {
@@ -139,10 +123,12 @@
 
 .OneDictCardDetailInfoRecentWriter {
   font-size: 0.75rem;
+  font-display: swap;
 }
 
 .OneDictCardDetailInfoModifiedAt {
   font-size: 0.65rem;
+  font-display: swap;
   color: rgba(135, 140, 146, 1);
 }
 
@@ -175,10 +161,11 @@
   left: 43.3%;
   transform: translateX(-33.3%);
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: normal;
+  font-display: swap;
   cursor: pointer;
 
   z-index: 100;
@@ -215,10 +202,11 @@
   left: 56.6%;
   transform: translateX(-66.6%);
 
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: normal;
+  font-display: swap;
   cursor: pointer;
 
   z-index: 100;
@@ -243,7 +231,8 @@
 
 .OneDictCardDetailInfoText {
   font-size: 0.875rem;
-  font-family: 'YdestreetB';
+  font-family: 'YdestreetB', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
 }

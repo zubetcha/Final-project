@@ -4,15 +4,13 @@ import { history } from '../../redux/ConfigureStore'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
 import styled from 'styled-components'
 import { dictQuestionApi } from '../../shared/api'
-import ConfirmModal from '../../components/modal/ConfirmModal'
-import AlertModal from '../../components/modal/AlertModal'
+import { ConfirmModal, AlertModal, ConfirmButton } from '../../components'
 import CommentTest from '../CommentTest'
-import Grid from '../../elements/Grid'
+import { Grid } from '../../elements'
 import { ReactComponent as ICuriousToo } from '../../styles/icons/quiz_black_24dp.svg'
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg'
 import { ReactComponent as ThreedotIcon } from '../../styles/icons/more.svg'
-import '../../index.css'
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
@@ -198,11 +196,11 @@ const PostDetail = (props) => {
       {noChangeModal && <AlertModal showModal={noChangeModal}>질문 답변 채택 후 수정 삭제가 불가능합니다.</AlertModal>}
       {showModal && (
         <ConfirmModal question="질문을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <ModalButton onClick={handleDeleteQuestion}>삭제</ModalButton>
+          <ConfirmButton _onClick={handleDeleteQuestion}>삭제</ConfirmButton>
         </ConfirmModal>
       )}
       <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
-        <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+        <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
       </ConfirmModal>
     </>
   )
@@ -235,7 +233,6 @@ const Header = styled.header`
 const HeaderQuestion = styled.div`
   font-family: 'YdestreetB';
   font-style: normal;
-  font-weight: bold;
   font-size: ${({ theme }) => theme.fontSizes.xl};
   /* line-height: 29px; */
   display: flex;
@@ -374,12 +371,6 @@ const ModalChang = styled.div`
       padding: 0;
     }
   }
-`
-
-const ModalButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
 `
 
 export default PostDetail

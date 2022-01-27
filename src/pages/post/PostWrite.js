@@ -2,10 +2,8 @@ import React, { useRef, useState, createRef } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
-import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
-import { history } from '../../redux/ConfigureStore'
-import Header from '../../components/Header'
+import { Header } from '../../components'
 
 const PostWrite = (props) => {
   const dispatch = useDispatch()
@@ -197,7 +195,6 @@ const PWFooter = styled.div`
     font-family: 'YdestreetB';
     font-style: normal;
     font-weight: normal;
-    font-weight: 700;
     z-index: 100;
     transition-duration: 0.3s;
     &:active {

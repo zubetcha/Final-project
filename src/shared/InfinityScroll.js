@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const InfinityScroll = ({ children, callNext, paging }) => {
+const InfinityScroll = ({ children, callNext, paging, type }) => {
   const spinnerRef = useRef(null)
   const handleObserver = new IntersectionObserver(([{ isIntersecting }]) => {
     if (isIntersecting) {
@@ -26,7 +26,7 @@ const InfinityScroll = ({ children, callNext, paging }) => {
       {children}
       {paging.next && (
         <Spinner ref={spinnerRef}>
-          <CircularProgress color="inherit" />
+          <CircularProgress sx={{ color: `${type === 'white' ? '#FFFFFF' : '#444444'}` }} />
         </Spinner>
       )}
     </>

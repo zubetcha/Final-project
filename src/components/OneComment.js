@@ -2,18 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
-import { dictQuestionApi } from '../shared/api'
-import ConfirmModal from '../components/modal/ConfirmModal'
-import AlertModal from '../components/modal/AlertModal'
+import { commentApi, dictQuestionApi } from '../shared/api'
+import { ConfirmModal, ConfirmButton } from '.'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/heart_blank.svg'
 import { ReactComponent as FullHeartIcon } from '../styles/icons/heart_filled.svg'
 import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
 import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
-import Grid from '../elements/Grid'
-import { commentApi } from '../shared/api'
+import { Grid, ProfileImage } from '../elements'
 import { history } from '../redux/ConfigureStore'
 
-const OneComment = (props) => {
+const OneComment = React.memo((props) => {
   const dispatch = useDispatch()
 
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
@@ -31,19 +29,7 @@ const OneComment = (props) => {
   const [isSelected, setIsSelected] = React.useState(props.isSelected)
   const [selectModal, setSelectModal] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
-  const [alreadySelectModal, setAlreadySelectModal] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
-
-  const handleCloseAlreadySelectModal = () => {
-    setTimeout(() => {
-      setAlreadySelectModal(false)
-    }, 1000)
-  }
-
-  const handleAlreadySelectModal = () => {
-    setAlreadySelectModal(true)
-    handleCloseAlreadySelectModal()
-  }
 
   const handleClickLike = async (e) => {
     e.preventDefault()
@@ -113,7 +99,7 @@ const OneComment = (props) => {
     <>
       <Wrap>
         <Grid flex_align>
-          <Commentprofile src={props.profileImageUrl} alt="" />
+          <ProfileImage src={props.profileImageUrl} size="40" border margin="0 12px 0 20px" />
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <UserName>{props.commentWriter}</UserName>
             <CreatedAt>{createdAt}</CreatedAt>
@@ -139,10 +125,9 @@ const OneComment = (props) => {
 
         {selectModal && (
           <ConfirmModal question="채택 후 변경이 불가합니다. 이 답변을 채택하시겠습니까?" showModal={selectModal} handleShowModal={handleSelectModal} setShowModal={setSelectModal}>
-            <ModalButton onClick={handleClickIsSelected}>채택</ModalButton>
+            <ConfirmButton _onClick={handleClickIsSelected}>채택</ConfirmButton>
           </ConfirmModal>
         )}
-        {alreadySelectModal && <AlertModal showModal={alreadySelectModal}>답변 채택 후 변경할 수 없습니다.</AlertModal>}
       </Wrap>
       <ContentWrap>
         <Content>{props.commentContent}</Content>
@@ -156,29 +141,21 @@ const OneComment = (props) => {
 
         {showModal && (
           <ConfirmModal question="댓글을 삭제하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-            <ModalButton onClick={delComment}>삭제</ModalButton>
+            <ConfirmButton _onClick={delComment}>삭제</ConfirmButton>
           </ConfirmModal>
         )}
         <ConfirmModal showModal={showLoginModal} setShowModal={setShowLoginModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
-          <ModalButton onClick={() => history.push('/login')}>이동</ModalButton>
+          <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
         </ConfirmModal>
       </ContentWrap>
     </>
   )
-}
+})
 
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #e5e5e5;
-`
-
-const Commentprofile = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 150px;
-  border: 2px solid black;
-  margin: 0 12px 0 20px;
 `
 
 const UserName = styled.div`
@@ -249,11 +226,5 @@ const Number = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.base};
   font-weight: 300;
   margin: 0 0 0 5px;
-`
-
-const ModalButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
 `
 export default OneComment
