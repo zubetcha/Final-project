@@ -36,7 +36,7 @@ const QuizIntro = (props) => {
           </Grid>
           {levelList.map((level, index) => {
             return (
-              <div className="subject-button-box" onClick={() => history.push(`/quiz/${level}`)}>
+              <div className="subject-button-box" key={`quiz-${index}`} onClick={() => history.push(`/quiz/${level}`)}>
                 <button className="subject-button">Lv. {index + 1}</button>
               </div>
             )

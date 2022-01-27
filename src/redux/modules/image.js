@@ -9,7 +9,7 @@ const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
 const DELETE_IMAGE = 'DELETE_IMAGE'
 const LOADING = 'LOADING'
 const INIT_IMAGE_LIST = 'INIT_IMAGE_LIST'
-const GET_BOARDID = 'GET_BOARDID'
+const GET_CLICKED_BOARDID = 'GET_CLICKED_BOARDID'
 
 /* action creator */
 const getImageList = createAction(GET_IMAGE_LIST, (image_data) => ({ image_data }))
@@ -18,7 +18,7 @@ const uploadImage = createAction(UPLOAD_IMAGE, (image) => ({ image }))
 const deleteImage = createAction(DELETE_IMAGE, (boardId) => ({ boardId }))
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }))
 const initImageList = createAction(INIT_IMAGE_LIST, () => ({}))
-const getBoardId = createAction(GET_BOARDID, (boardId) => ({ boardId }))
+const getClickedBoardId = createAction(GET_CLICKED_BOARDID, (clickedBoardId) => ({ clickedBoardId }))
 
 /* initial state */
 const initialState = {
@@ -26,7 +26,7 @@ const initialState = {
   page: 0,
   has_next: false,
   is_loading: false,
-  boardId: null,
+  clickedBoardId: null,
 }
 
 /* middleware */
@@ -147,9 +147,9 @@ export default handleActions(
         draft.page = 0
         draft.has_next = false
       }),
-    [GET_BOARDID]: (state, action) =>
+    [GET_CLICKED_BOARDID]: (state, action) =>
       produce(state, (draft) => {
-        draft.boardId = action.payload.boardId
+        draft.clickedBoardId = action.payload.clickedBoardId
       }),
   },
   initialState
@@ -165,7 +165,7 @@ const actionCreators = {
   deleteImage,
   deleteImageDB,
   initImageList,
-  getBoardId,
+  getClickedBoardId,
 }
 
 export { actionCreators }

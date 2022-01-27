@@ -67,7 +67,7 @@ const OneImageCard = React.memo(({ image, type }) => {
 
   const handleMoveDetail = () => {
     history.push('/image/detail')
-    dispatch(imageActions.getBoardId(boardId))
+    dispatch(imageActions.getClickedBoardId(boardId))
   }
 
   const drawCanvas = function () {
