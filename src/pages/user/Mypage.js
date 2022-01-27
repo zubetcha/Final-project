@@ -4,8 +4,7 @@ import Masonry from 'react-masonry-css'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as mypageActions } from '../../redux/modules/mypage'
 
-import { Header, Footer, EditProfile, PostCard, OneDictionaryCard } from '../../components'
-import MyPageOneImageCard from '../../components/image/MypageOneImageCard'
+import { Header, Footer, EditProfile, PostCard, OneDictionaryCard, MyPageOneImageCard } from '../../components'
 import { Grid } from '../../elements'
 import { ReactComponent as EditIcon } from '../../styles/icons/edit.svg'
 

@@ -5,7 +5,7 @@ import { userApi } from '../shared/api'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
 
 import { Grid } from '../elements'
-import { DoubleCheckModal, AlertModal, ConfirmButton } from './modal'
+import { DoubleCheckModal, AlertModal, ConfirmButton } from '.'
 import Backdrop from '@mui/material/Backdrop'
 import { ReactComponent as CloseIcon } from '../styles/icons/X_24dp.svg'
 import { ReactComponent as CameraIcon } from '../styles/icons/camera.svg'
@@ -43,7 +43,6 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
   const handleChangeNickname = (e) => {
     const nicknameRegExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,10}$/
     const currentNickname = e.target.value
-    console.log(currentNickname)
     setNickname(currentNickname)
     if (currentNickname !== '' && nicknameRegExp.test(currentNickname)) {
       setIsValidNickname(true)
@@ -91,7 +90,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
       setUsedNickname('')
     }
     if (nickname !== '') {
-      if (nickname === passedNickname && isValidNickname === true) {
+      if ((nickname === passedNickname && isValidNickname === true) || nickname === my.nickname) {
         dispatch(mypageActions.editNicknameDB(userId, nickname))
         if (imageFile) {
           const uploadFile = fileInput.current.files[0]

@@ -4,9 +4,8 @@ import { history } from '../../redux/ConfigureStore'
 import { useDispatch } from 'react-redux'
 import { actionCreators as imageActions } from '../../redux/modules/image'
 
-import Grid from '../../elements/Grid'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
-import ImageWrapper from '../../components/image/ImageWrapper'
+import { Grid } from '../../elements'
+import { ConfirmModal, ConfirmButton, ImageWrapper } from '../../components'
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
 
 const ImageUpload = ({ preview, fileInput }) => {
@@ -29,7 +28,7 @@ const ImageUpload = ({ preview, fileInput }) => {
   return (
     <>
       <ImageWrapper>
-        <Grid flex_between padding="0 16px 16px">
+        <Grid flex_between padding="16px">
           <CloseIcon
             className="icon"
             onClick={() => {

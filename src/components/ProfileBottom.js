@@ -6,8 +6,7 @@ import { actionCreators as userActions } from '../redux/modules/user'
 import { ReactComponent as CloseIcon } from '../styles/icons/size(28*28)(30*30)/close_28dp.svg'
 
 import { Grid, ProfileImage } from '../elements'
-import BottomPopup from './BottomPopup'
-import { ConfirmModal, ConfirmButton } from './modal'
+import { BottomPopup, ConfirmModal, ConfirmButton } from '.'
 
 const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
   const dispatch = useDispatch()
@@ -87,7 +86,10 @@ const CloseButtonBox = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: flex-end;
+  -webkit-appearance: none;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
   padding: 16px 16px 0;
   .close-icon {
     cursor: pointer;

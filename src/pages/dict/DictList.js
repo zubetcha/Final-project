@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictList.css'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
@@ -6,9 +6,8 @@ import { history } from '../../redux/ConfigureStore'
 import Pagination from 'rc-pagination'
 import SearchPage from '../../shared/SearchPage'
 import { dictApi } from '../../shared/api'
-import { DictNavBar, SpeedDialButton, TodayDictCardSwiper, Header, Footer, OneDictionaryCard } from '../../components'
+import { DictNavBar, SpeedDialButton, TodayDictCardSwiper, Header, Footer, OneDictionaryCard, ConfirmModal, ConfirmButton } from '../../components'
 import { Grid, Title } from '../../elements'
-import { ConfirmModal, ConfirmButton } from '../../components/modal'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const DictList = () => {

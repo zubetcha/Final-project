@@ -7,7 +7,7 @@ import { actionCreators as userActions } from '../../redux/modules/user'
 import { KakaoButton, GoogleButton, NaverButton, Footer } from '../../components'
 import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
 import { Grid } from '../../elements'
-import { AlertModal } from '../../components/modal'
+import { AlertModal } from '../../components'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Login = () => {

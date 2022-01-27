@@ -1,11 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import '../../styles/css/DictWrite.css'
 import { useDispatch } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import { actionCreators as dictActions } from '../../redux/modules/dict'
-import { Header } from '../../components'
+import { Header, ConfirmModal, DoubleCheckModal, AlertModal, ConfirmButton } from '../../components'
 import { dictApi } from '../../shared/api'
-import { ConfirmModal, DoubleCheckModal, AlertModal, ConfirmButton } from '../../components/modal'
 
 const DictWrite = () => {
   const dispatch = useDispatch()

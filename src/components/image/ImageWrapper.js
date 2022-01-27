@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  padding: 24px 0;
   background-color: ${({ theme }) => theme.colors.black};
   z-index: 10000;
   .icon {

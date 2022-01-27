@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { actionCreators as imageActions } from '../../redux/modules/image'
 import { likeApi } from '../../shared/api'
 import { history } from '../../redux/ConfigureStore'
 
-import ShareBottomSheet from '../ShareBottomSheet'
+import { ShareBottomSheet, ConfirmModal, ConfirmButton } from '..'
 import { Grid } from '../../elements'
-import { ConfirmModal, ConfirmButton } from '../modal'
 
 import { ReactComponent as ShareIcon } from '../../styles/icons/share.svg'
 import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/heart_blank.svg'
 import { ReactComponent as FullHeartIcon } from '../../styles/icons/heart_filled.svg'
 
 const OneImageCard = React.memo(({ image, type }) => {
+  const dispatch = useDispatch()
   const boardId = image.boardId
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
@@ -63,6 +65,11 @@ const OneImageCard = React.memo(({ image, type }) => {
     }
   }
 
+  const handleMoveDetail = () => {
+    history.push('/image/detail')
+    dispatch(imageActions.getBoardId(boardId))
+  }
+
   const drawCanvas = function () {
     const img = new Image()
     const canvas = canvasRef.current
@@ -105,9 +112,7 @@ const OneImageCard = React.memo(({ image, type }) => {
         onMouseLeave={() => {
           setHover(false)
         }}
-        onClick={() => {
-          history.push(`/image/detail/${image && image.boardId}`)
-        }}
+        onClick={handleMoveDetail}
       >
         <ImageThumbnail ref={imgRef} src={image && image.thumbNail}></ImageThumbnail>
         {/* <canvas ref={canvasRef}></canvas> */}

@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
-import { OneComment } from '../components'
+import { OneComment, ConfirmModal, ConfirmButton } from '../components'
 import { ReactComponent as SendIcon } from '../styles/icons/send.svg'
 import MemegleLogo from '../styles/image/smileIcon_Yellow.png'
 import { useHistory } from 'react-router'
-import { ConfirmModal, ConfirmButton } from '../components/modal'
 import { ProfileImage } from '../elements'
 
 const CommentTest = ({ question }) => {
@@ -44,7 +43,7 @@ const CommentTest = ({ question }) => {
         return 1
       }
       return 0
-  })
+    })
 
   React.useEffect(() => {
     if (now_profile === null) {
