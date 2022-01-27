@@ -111,7 +111,7 @@ export default handleActions(
       }),
     [EDIT_PROFILE_IMAGE]: (state, action) =>
       produce(state, (draft) => {
-        draft.myProfile = { ...draft.myProfile, profileImageUrl: action.payload.newProfileImageUrl }
+        draft.myProfile = { ...draft.myProfile, profileImage: action.payload.newProfileImageUrl }
         draft.myPageData = { ...draft.myPageData, profileImageUrl: action.payload.newProfileImageUrl }
       }),
     [EDIT_NICKNAME]: (state, action) =>
