@@ -62,6 +62,7 @@ const QuizPaper = (props) => {
                 {quiz?.choice[3]}
               </button>
             </QuizBox>
+            <Grid height="40px" />
           </Wrapper>
         </>
       ) : (
@@ -79,10 +80,9 @@ const QuizPaper = (props) => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px 0 0;
+  padding: 20px 0 40px;
   display: flex;
   flex-direction: column;
-  align-items: start;
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 360px;
@@ -90,6 +90,13 @@ const Wrapper = styled.div`
   .quiz-category {
     font-size: ${({ theme }) => theme.fontSizes.xl};
     font-weight: 600;
+  }
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
 
@@ -151,7 +158,7 @@ const QuizBox = styled.div`
   position: relative;
   width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.black};
-  margin: 20px 0 0;
+  margin: 20px 0;
   transition: background-color 0.1s ease-in-out;
 
   .answer-btn {
