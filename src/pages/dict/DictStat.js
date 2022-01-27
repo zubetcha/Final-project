@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 import 'swiper/swiper.min.css'
 
-const DictStat = (props) => {
+const DictStat = () => {
   const nowTime = dayjs().format('HH:mm')
 
   const [rankList, setRankList] = useState('')

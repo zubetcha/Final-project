@@ -6,23 +6,11 @@ const KakaoButton = (props) => {
   let _apiKey = process.env.REACT_APP_KAKAO_API_KEY
   let _callBack = process.env.REACT_APP_KAKAO_CALLBACK_URL
 
-  function randomString() {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'
-    const stringLength = 6
-    let randomstring = ''
-    for (let i = 0; i < stringLength; i++) {
-      const rnum = Math.floor(Math.random() * chars.length)
-      randomstring += chars.substring(rnum, rnum + 1)
-    }
-    return randomstring
-  }
-  let newState = randomString()
-
   return (
     <>
       <a
         onClick={() => {
-          window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${_apiKey}&redirect_uri=https://memegle.xyz/redirect/kakao&response_type=code`
+          window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${_apiKey}&redirect_uri=${_callBack}&response_type=code`
         }}
       >
         <Background>

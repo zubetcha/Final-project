@@ -1,8 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { dictQuestionApi } from '../../shared/api'
-import { applyMiddleware } from 'redux'
-import { Login } from '../../pages'
 
 // /* action type */ 목록/상세/작성/수정/삭제/검색
 const GET_QUESTION = 'GET_QUESTION'
