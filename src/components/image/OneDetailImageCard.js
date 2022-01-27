@@ -13,6 +13,7 @@ import { ReactComponent as FullHeartIcon } from '../../styles/icons/size(28*28)(
 
 const OneDetailImageCard = forwardRef((props, ref) => {
   const { image } = props
+
   const username = localStorage.getItem('username')
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')

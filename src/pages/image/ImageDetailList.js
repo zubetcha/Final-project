@@ -11,19 +11,19 @@ import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_i
 
 const ImageDetailList = (props) => {
   const dispatch = useDispatch()
-  const imageData = useSelector((state) => state.image)
-  const boardId = imageData.boardId
-  const index = imageData.image_list.findIndex((image) => image.boardId === boardId)
-  /* map 메소드 안의 여러 DOM 요소 중 하나를 참조해야 할 때*/
-  const imageRefs = useRef(imageData.image_list.map(() => createRef()))
 
-  const getImageList = () => {
-    dispatch(imageActions.getImageListDB(imageData.page))
-  }
+  const imageData = useSelector((state) => state.image)
+  const clickedBoardId = imageData.clickedBoardId
+  const index = imageData.image_list.findIndex((image) => image.boardId === clickedBoardId)
+  const imageRefs = useRef(imageData.image_list.map(() => createRef()))
 
   useEffect(() => {
     imageRefs.current[index]?.current.scrollIntoView()
   }, [])
+
+  const getImageList = () => {
+    dispatch(imageActions.getImageListDB(imageData.page))
+  }
 
   useEffect(() => {
     if (imageData.image_list.length === 0) {
