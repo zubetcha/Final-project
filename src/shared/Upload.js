@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { actionCreators as imageActions } from '../redux/modules/image'
-import { actionCreators as postActions } from '../redux/modules/post'
 
 const Upload = () => {
   const fileInput = React.useRef()
