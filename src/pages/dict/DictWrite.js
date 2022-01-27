@@ -7,7 +7,7 @@ import { Header } from '../../components'
 import { dictApi } from '../../shared/api'
 import { ConfirmModal, DoubleCheckModal, AlertModal, ConfirmButton } from '../../components/modal'
 
-const DictWrite = (props) => {
+const DictWrite = () => {
   const dispatch = useDispatch()
 
   const [title, setTitle] = React.useState('')
@@ -33,9 +33,7 @@ const DictWrite = (props) => {
   const debounceFunction = (callback, delay) => {
     let timer
     return (...args) => {
-      // 실행한 함수(setTimeout())를 취소
       clearTimeout(timer)
-      // delay가 지나면 callback 함수를 실행
       timer = setTimeout(() => callback(...args), delay)
     }
   }
@@ -67,7 +65,7 @@ const DictWrite = (props) => {
 
   const doubleCheckDict = async () => {
     const dictName = title
-    // dispatch(dictActions.doubleCheckDictDB(dictName), [])
+
     if (title !== '') {
       dictApi
         .dobleCheckDict(dictName)

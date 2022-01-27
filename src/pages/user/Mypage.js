@@ -9,7 +9,7 @@ import MyPageOneImageCard from '../../components/image/MypageOneImageCard'
 import { Grid } from '../../elements'
 import { ReactComponent as EditIcon } from '../../styles/icons/edit.svg'
 
-const Mypage = (props) => {
+const Mypage = () => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = React.useState(false)

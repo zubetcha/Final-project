@@ -11,7 +11,7 @@ import { Grid, Title } from '../../elements'
 import { ConfirmModal, ConfirmButton } from '../../components/modal'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
-const DictList = (props) => {
+const DictList = () => {
   const dispatch = useDispatch()
 
   const userId = localStorage.getItem('id')
