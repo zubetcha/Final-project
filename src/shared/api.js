@@ -72,6 +72,7 @@ export const dictApi = {
   dictMyScrapList: (userId) => instance.get('/api/myMeme/dict', { userId: userId }),
   /* 추가 */
   getDictStat: () => instance.get('/api/stat/dict'),
+  getDictEditLive: (dictId) => instance.get(`api/dict/${dictId}/health`, { dictId: dictId }),
 }
 
 export const quizApi = {
