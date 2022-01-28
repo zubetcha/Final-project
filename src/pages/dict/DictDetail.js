@@ -9,6 +9,7 @@ import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_
 import { Header, Footer, DictRelatedYoutube, AlertModal, ConfirmModal, ConfirmButton } from '../../components'
 import { Grid, ProfileImage } from '../../elements'
 import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
+import swal from 'sweetalert'
 
 const DictDetail = (props) => {
   const dispatch = useDispatch()
@@ -26,8 +27,35 @@ const DictDetail = (props) => {
   const [createdAt, setCreatedAt] = useState('')
   const [modifiedAt, setModifiedAt] = useState('')
   const [relatedVideo, setRelatedVideo] = useState([])
+  const [editLive, setEditLive] = React.useState(false)
 
   const [showModal, setShowModal] = useState(false)
+
+  const getDictEditLive = async () => {
+    let response = await dictApi.getDictEditLive(dictId)
+    const _editLive = response.data.data
+    console.log(response)
+    setEditLive(_editLive)
+  }
+
+  React.useEffect((dictId) => {
+    getDictEditLive(dictId)
+
+    const interval = setInterval(() => {
+      getDictEditLive(dictId)
+    }, 10000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const onClickEditButton = () => {
+    if (editLive === false) {
+      swal('앗! 다른 사람이 수정중이에요. 잠시만 기다려주세요!')
+    } else if (!isLogin) {
+      setShowModal(true)
+    } else {
+      history.push(`/dict/edit/${dictId}`)
+    }
+  }
 
   const getDictDetailDB = async () => {
     await dictApi
@@ -84,14 +112,6 @@ const DictDetail = (props) => {
   const handleCopy = () => {
     setCopyLink(true)
     setTimeout(() => setCopyLink(false), 1000)
-  }
-
-  const handleClickEdit = () => {
-    if (!isLogin) {
-      setShowModal(true)
-    } else {
-      history.push(`/dict/edit/${dictId}`)
-    }
   }
 
   React.useEffect(() => {
@@ -169,7 +189,7 @@ const DictDetail = (props) => {
             <div className="OneDictCardDetailInfoModifiedHistoryButton_1">편집 기록</div>
             <div className="OneDictCardDetailInfoModifiedHistoryButton_2"></div>
           </div>
-          <div className="OneDictCardDetailInfoModifiedButton" onClick={handleClickEdit}>
+          <div className="OneDictCardDetailInfoModifiedButton" onClick={onClickEditButton}>
             <div className="OneDictCardDetailInfoModifiedButton_1">편집하기</div>
             <div className="OneDictCardDetailInfoModifiedButton_2"></div>
           </div>
