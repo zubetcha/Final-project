@@ -22,15 +22,7 @@ const Background = React.memo(() => {
   return (
     <>
       <Wrap>
-        <div className="MemegleBack">
-          <img className="MemegleVertical" src={MemegleVertical} />
-          <img className="MemegleHeight" src={MemegleHeight} />
-          <div className="MemegleHellonMemegle">
-            <img className="MemegleHello" src={MemegleHello} />
-            <img className="MemegleMemegle" src={MemegleMemegle} />
-          </div>
-        </div>
-        {/* <img className="bubble JjajjaYellow" src={Jjajja} alt="" />
+        <img className="bubble JjajjaYellow" src={Jjajja} alt="" />
         <img className="bubble MolluYellow" src={Mollu} alt="" />
         <img className="bubble HolymolyYellow" src={Holymoly} alt="" />
         <img className="bubble cute" src={Cute} alt="" />
@@ -45,7 +37,7 @@ const Background = React.memo(() => {
         <div className="bottomSection">
           <img className="bottomicons" src={Smile} alt="" />
           <img className="bottomicons-2" src={Smile} alt="" />
-        </div> */}
+        </div>
       </Wrap>
     </>
   )
@@ -59,11 +51,11 @@ const Wrap = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  /* background-color: white; */
+  background-color: white;
 
   z-index: -999;
 
-  /* .bottomSection {
+  .bottomSection {
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -607,79 +599,6 @@ const Wrap = styled.div`
       right: -25px;
       width: 21rem;
       height: 7.5rem;
-    }
-  } */
-  .MemegleBack {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* background-color: white; */
-    background-color: #2b2b2b;
-  }
-
-  .MemegleVertical {
-    max-width: 120rem;
-    width: fit-content;
-    max-height: 25rem;
-    height: fit-content;
-    position: absolute;
-    bottom: 0;
-  }
-  .MemegleHeight {
-    max-width: 30rem;
-    width: fit-content;
-    height: 115rem;
-    position: absolute;
-    left: 90%;
-    bottom: 0;
-  }
-  .MemegleHello {
-    width: 20rem;
-    height: fit-content;
-    position: absolute;
-    left: 95%;
-    bottom: 80%;
-  }
-  .MemegleMemegle {
-    width: 45rem;
-    height: fit-content;
-    position: relative;
-    top: 50%;
-    left: 0%;
-  }
-  .MemegleHellonMemegle {
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    top: 30%;
-    left: 10%;
-  }
-  @media screen and (max-width: 1200px) {
-    .MemegleBack {
-      width: 100vw;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      /* background-color: white; */
-      background-color: #515151;
-    }
-    .MemegleVertical {
-      display: none;
-    }
-    .MemegleHeight {
-      display: none;
-    }
-    .MemegleHello {
-      display: none;
-    }
-    .MemegleMemegle {
-      display: none;
-    }
-    .MemegleHellonMemegle {
-      display: none;
     }
   }
 `

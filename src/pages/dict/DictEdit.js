@@ -13,15 +13,23 @@ const DictEdit = (props) => {
   const [content, setContent] = React.useState('')
   const [recentWriter, setRecentWriter] = React.useState('')
   const [showModal, setShowModal] = React.useState(false)
+  const [editLive, setEditLive] = React.useState(false)
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
   }
 
+  const getDictEditLive = async () => {
+    let response = await dictApi.getDictEditLive(dictId)
+    const _editLive = response.data.data
+
+    setEditLive(_editLive)
+  }
+
   const getDictListDB = async () => {
     let response = await dictApi.getDictDetail(dictId)
-
     const _dict = response.data.data
+
     setDict(_dict)
     setSummary(_dict.summary)
     setContent(_dict.meaning)
@@ -29,6 +37,15 @@ const DictEdit = (props) => {
 
   React.useEffect(() => {
     getDictListDB()
+  }, [])
+
+  React.useEffect((dictId) => {
+    getDictEditLive(dictId)
+
+    const interval = setInterval(() => {
+      getDictEditLive(dictId)
+    }, 10000)
+    return () => clearInterval(interval)
   }, [])
 
   const dictId = Number(props.match.params.dictId)
