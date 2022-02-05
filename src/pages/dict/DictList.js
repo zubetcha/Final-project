@@ -10,7 +10,7 @@ import { DictNavBar, SpeedDialButton, TodayDictCardSwiper, Header, Footer, OneDi
 import { Grid, Title } from '../../elements'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
-const DictList = (props) => {
+const DictList = () => {
   const dispatch = useDispatch()
 
   const userId = localStorage.getItem('id')

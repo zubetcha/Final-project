@@ -18,8 +18,6 @@ function History({ keywords, onRemoveKeyword, onClearKeywords }) {
             <KeywordContainer key={id}>
               <Keyword>{text}</Keyword>
               <RemoveButton
-                //눌렸을때 해야하는거라 arrow function을 사용하여 실행
-                //그냥 함수 쓰면은 그려지자마자 바로 실행됨
                 onClick={() => {
                   onRemoveKeyword(id)
                 }}

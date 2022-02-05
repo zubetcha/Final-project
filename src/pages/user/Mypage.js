@@ -8,7 +8,7 @@ import { Header, Footer, EditProfile, PostCard, OneDictionaryCard, MyPageOneImag
 import { Grid } from '../../elements'
 import { ReactComponent as EditIcon } from '../../styles/icons/edit.svg'
 
-const Mypage = (props) => {
+const Mypage = () => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = React.useState(false)

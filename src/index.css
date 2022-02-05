@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 code {
@@ -15,9 +13,6 @@ code {
   font-weight: 300;
   font-display: swap;
   src: local('Pretendard Variable'), url('./styles/fonts/Pretendard-Light.woff2') format('woff2'), url('styles/fonts/Pretendard-Light.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -26,9 +21,6 @@ code {
   font-weight: 400;
   font-display: swap;
   src: local('Pretendard Variable'), url('./styles/fonts/Pretendard-Regular.woff2') format('woff2'), url('styles/fonts/Pretendard-Regular.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -37,9 +29,6 @@ code {
   font-weight: 500;
   font-display: swap;
   src: local('Pretendard Variable'), url('./styles/fonts/Pretendard-Medium.woff2') format('woff2'), url('styles/fonts/Pretendard-Medium.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -48,9 +37,6 @@ code {
   font-weight: 600;
   font-display: swap;
   src: local('Pretendard Variable'), url('./styles/fonts/Pretendard-SemiBold.woff2') format('woff2'), url('styles/fonts/Pretendard-SemiBold.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -59,9 +45,6 @@ code {
   font-weight: 700;
   font-display: swap;
   src: local('Pretendard Variable'), url('styles/fonts/Pretendard-Bold.woff2') format('woff2'), url('styles/fonts/Pretendard-Bold.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -70,9 +53,6 @@ code {
   font-weight: normal;
   font-display: swap;
   src: local('YdestreetB'), url('styles/fonts/YdestreetB.woff2') format('woff2'), url('styles/fonts/YdestreetB.woff') format('woff');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -81,7 +61,4 @@ code {
   font-weight: normal;
   font-display: swap;
   src: local('YdestretL'), url('styles/fonts/YdestreetL.woff2') format('woff2'), url('styles/fonts/YdestreetL.woff2') format('woff2');
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
