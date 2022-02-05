@@ -24,7 +24,6 @@ import DictMyMeMe from './dict/DictMyMeMe'
 import DictStat from './dict/DictStat'
 
 import ImageList from './image/ImageList'
-import ImageDetail from './image/ImageDetail'
 import ImageUpload from './image/ImageUpload'
 import ImageDetailList from './image/ImageDetailList'
 
@@ -46,7 +45,6 @@ export {
   DictWrite,
   DictDetail,
   ImageList,
-  ImageDetail,
   ImageUpload,
   DictSearch,
   DictHistory,

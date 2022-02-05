@@ -22,6 +22,8 @@ html, body, div, span, applet, object, iframe,
       font-weight: 400;
       font-size: 16px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
     }
 
 *, *::before, *::after {

@@ -124,6 +124,7 @@ const joinDB = (username, nickname, password, passwordCheck) => {
       .then((res) => {
         history.push('/login')
         dispatch(loading(false))
+        
       })
       .catch((err) => {
         dispatch(loading(false))
