@@ -10,7 +10,7 @@ import { Grid } from '../../elements'
 import { AlertModal } from '../../components'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const Login = (props) => {
+const Login = () => {
   const dispatch = useDispatch()
 
   const loading = useSelector((state) => state.user.is_loading)

@@ -11,7 +11,6 @@ const INIT_FIRST_LOGIN = 'SET_FIRST_LOGIN'
 const LOADING = 'LOADING'
 const FAIL_LOGIN = 'FAIL_LOGIN'
 
-// const logIn = createAction(LOG_IN, (user) => ({ user }))
 const logOut = createAction(LOG_OUT, (user) => ({ user }))
 const getUser = createAction(GET_USER, (user) => ({ user }))
 const setUser = createAction(SET_USER, (user) => ({ user }))
@@ -53,8 +52,7 @@ const kakaoLoginDB = (code) => {
       })
       .catch((err) => {
         console.log('카카오로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
         dispatch(loading(false))
       })
   }
@@ -83,8 +81,7 @@ const naverLoginDB = (code, state) => {
       })
       .catch((err) => {
         console.log('네이버로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
         dispatch(loading(false))
       })
   }
@@ -113,8 +110,7 @@ const googleLoginDB = (code) => {
       })
       .catch((err) => {
         console.log('구글로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
         dispatch(loading(false))
       })
   }
@@ -128,6 +124,7 @@ const joinDB = (username, nickname, password, passwordCheck) => {
       .then((res) => {
         history.push('/login')
         dispatch(loading(false))
+        
       })
       .catch((err) => {
         dispatch(loading(false))
@@ -142,7 +139,6 @@ const logInDB = (username, password) => {
     userApi
       .login(username, password)
       .then((res) => {
-        // setCookie('token', res.headers.authorization, 3)
         localStorage.setItem('token', res.headers.authorization)
         localStorage.setItem('username', res.data.data.username)
         localStorage.setItem('nickname', res.data.data.nickname)
@@ -161,7 +157,6 @@ const logInDB = (username, password) => {
 
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
-    // deleteCookie('token')
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('nickname')
