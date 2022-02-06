@@ -94,6 +94,7 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   padding: 16px 16px 0;
+  margin: 0 0 80px;
 `
 const CuriousHelp = styled.div`
   display: flex;
@@ -113,9 +114,4 @@ const CuriousHelp = styled.div`
     align-items: center;
     margin: 0 0 0 8px;
   }
-`
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
 `

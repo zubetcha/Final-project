@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../styles/css/DictRelatedYoutube.css'
 import { styled } from '@mui/material/styles'
 import MuiAccordion from '@mui/material/Accordion'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
-import { useDispatch } from 'react-redux'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { dictApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 
@@ -15,26 +13,13 @@ import 'swiper/components/scrollbar/scrollbar.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/components/navigation/navigation.min.css'
 
-const RelatedYoutube = (props) => {
+const RelatedYoutube = ({ relatedVideo }) => {
   SwiperCore.use([Pagination, Navigation, Scrollbar])
-  const dispatch = useDispatch()
-  const dictId = Number(window.location.href.split('/', 6).slice(5))
   const [expanded, setExpanded] = React.useState(false)
-  const [relatedVideo, setRelatedVideo] = React.useState([])
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
-
-  const DictRelatedVideo = async () => {
-    let response = await dictApi.getDictDetail(dictId)
-
-    setRelatedVideo(response.data.data.relatedYoutube)
-  }
-
-  React.useEffect((dictId) => {
-    DictRelatedVideo(dictId)
-  }, [])
 
   let hasVideo = relatedVideo.length !== 0
 
@@ -79,8 +64,8 @@ const RelatedYoutube = (props) => {
               loop={false}
             >
               {relatedVideo.map((relatedVideo) => (
-                <SwiperSlide className="DictRelatedYoutubeSwiper">
-                  <div className="DictRelatedYoutubeList" key={relatedVideo.dictId}>
+                <SwiperSlide className="DictRelatedYoutubeSwiper" key={relatedVideo.youtubeId}>
+                  <div className="DictRelatedYoutubeList">
                     <img
                       className="DictRealatedYoutubeThumbNail"
                       src={relatedVideo.thumbNail}

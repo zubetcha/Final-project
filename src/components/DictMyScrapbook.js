@@ -4,17 +4,14 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
-import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { ReactComponent as EmptyBookMarkIcon } from '../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
 import { ReactComponent as DictLinkCopyIcon } from '../styles/icons/link.svg'
 import { dictApi } from '../shared/api'
 import { AlertModal } from '.'
 
-const DictMyScrapbook = (props) => {
-  const dispatch = useDispatch()
+const DictMyScrapbook = React.memo((props) => {
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
@@ -86,6 +83,6 @@ const DictMyScrapbook = (props) => {
       <AlertModal showModal={copyLink}>링크 복사 완료!</AlertModal>
     </>
   )
-}
+})
 
 export default DictMyScrapbook

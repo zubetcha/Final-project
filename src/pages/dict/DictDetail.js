@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../../styles/css/DictDetail.css'
-import { useDispatch } from 'react-redux'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { history } from '../../redux/ConfigureStore'
 import { dictApi, likeApi } from '../../shared/api'
@@ -12,13 +11,9 @@ import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
 import swal from 'sweetalert'
 
 const DictDetail = (props) => {
-  const dispatch = useDispatch()
-
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
-
-  const [show, setShow] = useState(false)
 
   const [dict, setDict] = useState([])
   const [like, setLike] = useState(false)
@@ -30,11 +25,11 @@ const DictDetail = (props) => {
   const [editLive, setEditLive] = React.useState(false)
 
   const [showModal, setShowModal] = useState(false)
+  const [copyLink, setCopyLink] = useState(false)
 
   const getDictEditLive = async () => {
     let response = await dictApi.getDictEditLive(dictId)
     const _editLive = response.data.data
-    console.log(response)
     setEditLive(_editLive)
   }
 
@@ -48,7 +43,7 @@ const DictDetail = (props) => {
   }, [])
 
   const onClickEditButton = () => {
-    if (editLive === false) {
+    if (!editLive) {
       swal('앗! 다른 사람이 수정중이에요. 잠시만 기다려주세요!')
     } else if (!isLogin) {
       setShowModal(true)
@@ -107,8 +102,6 @@ const DictDetail = (props) => {
 
   const currentUrl = window.location.href
 
-  const [copyLink, setCopyLink] = useState(false)
-
   const handleCopy = () => {
     setCopyLink(true)
     setTimeout(() => setCopyLink(false), 1000)
@@ -146,7 +139,7 @@ const DictDetail = (props) => {
           </Grid>
           <Grid>
             <div className="OneDictCardDetailInfo_RelatedVideo">
-              <DictRelatedYoutube />
+              <DictRelatedYoutube relatedVideo={relatedVideo} />
             </div>
           </Grid>
           <Grid flex_between>

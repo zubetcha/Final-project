@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { dictApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -17,12 +16,7 @@ import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 const TodayDictCardSwiper = (props) => {
   SwiperCore.use([Pagination, Navigation, Scrollbar])
 
-  const dispatch = useDispatch()
-
   const [todayDict, setTodayDict] = useState([])
-
-  const [color, setColor] = useState('')
-  const colors = ['yellow', 'coral', 'blue']
 
   React.useEffect(() => {
     getTodayDictList()

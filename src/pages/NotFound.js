@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Grid } from '../elements'
 import RobotSpinner from '../styles/image/spinner.png'
 
-const NotFound = (props) => {
+const NotFound = React.memo((props) => {
   return (
     <>
       <Grid flex_center height="100%">
@@ -21,7 +21,7 @@ const NotFound = (props) => {
       </Grid>
     </>
   )
-}
+})
 
 const SpinnerBox = styled.div`
   max-width: 300px;

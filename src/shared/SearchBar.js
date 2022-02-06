@@ -1,24 +1,10 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { history } from '../redux/ConfigureStore'
-import { useDispatch } from 'react-redux'
 import { dictApi } from '../shared/api'
 
 function SearchBar({ onAddKeyword }, props) {
-  const dispatch = useDispatch()
-
   const [keyword, setKeyword] = useState('')
-
-  const [pageSize, setPageSize] = useState(10)
-  const [totalCount, setTotalCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const searchDictDB = async () => {
-    let response = await dictApi.searchDict(keyword, pageSize, currentPage)
-    let searchTotalLength = await dictApi.tellMeTotalLengthSearch(keyword)
-
-    setTotalCount(searchTotalLength.data.data)
-  }
 
   const handleKeyword = (e) => {
     setKeyword(e.target.value)
@@ -28,7 +14,6 @@ function SearchBar({ onAddKeyword }, props) {
     if (keyword && e.keyCode === 13) {
       onAddKeyword(keyword)
       setKeyword('')
-      searchDictDB(keyword)
       history.push(`/dict/search/${keyword}`)
     }
   }

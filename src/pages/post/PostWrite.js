@@ -106,7 +106,7 @@ const PWHeader = styled.div`
     width: 100%;
     border: none;
     padding: 16px;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
     color: ${({ theme }) => theme.colors.black};
     word-spacing: 1;
     background-color: ${({ theme }) => theme.colors.bg};
@@ -132,6 +132,7 @@ const PWBody = styled.div`
     font-family: 'Pretendard Variable';
     font-style: normal;
     font-weight: 300;
+    line-height: 1.6;
     color: ${({ theme }) => theme.colors.black};
     overflow-y: hidden;
     word-spacing: 1;
