@@ -1,12 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/cookie'
-import { applyMiddleware } from 'redux'
-import axios from 'axios'
 import { userApi } from '../../shared/api'
-import swal from 'sweetalert'
-
-const { Kakao } = window
 
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
@@ -16,7 +11,6 @@ const INIT_FIRST_LOGIN = 'SET_FIRST_LOGIN'
 const LOADING = 'LOADING'
 const FAIL_LOGIN = 'FAIL_LOGIN'
 
-// const logIn = createAction(LOG_IN, (user) => ({ user }))
 const logOut = createAction(LOG_OUT, (user) => ({ user }))
 const getUser = createAction(GET_USER, (user) => ({ user }))
 const setUser = createAction(SET_USER, (user) => ({ user }))
@@ -52,13 +46,14 @@ const kakaoLoginDB = (code) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
       .catch((err) => {
         console.log('카카오로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
+        dispatch(loading(false))
       })
   }
 }
@@ -80,13 +75,14 @@ const naverLoginDB = (code, state) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
       .catch((err) => {
         console.log('네이버로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
+        dispatch(loading(false))
       })
   }
 }
@@ -108,13 +104,14 @@ const googleLoginDB = (code) => {
         await localStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
+        dispatch(loading(false))
 
         await history.replace('/')
       })
       .catch((err) => {
         console.log('구글로그인 에러', err)
-        // window.alert('로그인에 실패하였습니다.')
-        history.replace('/login') // 로그인 실패하면 로그인화면으로 돌려보냄
+        history.replace('/login')
+        dispatch(loading(false))
       })
   }
 }
@@ -125,12 +122,12 @@ const joinDB = (username, nickname, password, passwordCheck) => {
     userApi
       .join(username, nickname, password, passwordCheck)
       .then((res) => {
-        dispatch(loading(true))
         history.push('/login')
+        dispatch(loading(false))
       })
       .catch((err) => {
         dispatch(loading(false))
-        swal('이미 등록된 사용자 입니다! 아이디 또는 닉네임을 변경해주세요')
+        console.log('회원가입 문제 발생', err.response)
       })
   }
 }
@@ -141,7 +138,6 @@ const logInDB = (username, password) => {
     userApi
       .login(username, password)
       .then((res) => {
-        // setCookie('token', res.headers.authorization, 3)
         localStorage.setItem('token', res.headers.authorization)
         localStorage.setItem('username', res.data.data.username)
         localStorage.setItem('nickname', res.data.data.nickname)
@@ -160,13 +156,14 @@ const logInDB = (username, password) => {
 
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
-    // deleteCookie('token')
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('nickname')
     localStorage.removeItem('id')
     dispatch(loading(false))
     dispatch(logOut())
+    dispatch(loading(false))
+    history.replace('/')
   }
 }
 
@@ -174,6 +171,8 @@ const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
     const username = localStorage.getItem('username')
     const tokenCheck = document.cookie
+    dispatch(loading(false))
+
     if (tokenCheck) {
       dispatch(setUser({ userId: username }))
     } else {
@@ -187,6 +186,8 @@ const SetLogin = () => {
     const username = localStorage.getItem('username')
     const userId = localStorage.getItem('id')
     const token = document.cookie.split('=')[1]
+    dispatch(loading(false))
+
     if (username !== null && token !== '') {
       dispatch(loading(false))
       dispatch(setLogin({ username: username, userId: userId }))

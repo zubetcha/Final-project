@@ -3,22 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import '../../styles/css/Login.css'
 import styled from 'styled-components'
-import swal from 'sweetalert'
 import { actionCreators as userActions } from '../../redux/modules/user'
-import KaKaoLogin from 'react-kakao-login'
-import KakaoButton from '../../components/KakaoLogin'
-import GoogleButton from '../../components/GoogleLogin'
-import NaverButton from '../../components/NaverLogin'
-import kakaotalk from '../../styles/image/kakaotalk.svg'
-import naver from '../../styles/image/naver.svg'
-import googleColor from '../../styles/image/google_color.svg'
-import Footer from '../../components/Footer'
+import { KakaoButton, GoogleButton, NaverButton, Footer } from '../../components'
 import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
-import Grid from '../../elements/Grid'
-import AlertModal from '../../components/modal/AlertModal'
+import { Grid } from '../../elements'
+import { AlertModal } from '../../components'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const Login = (props) => {
+const Login = () => {
   const dispatch = useDispatch()
 
   const loading = useSelector((state) => state.user.is_loading)

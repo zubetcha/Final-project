@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as NaverLogo } from '../styles/image/naver.svg'
 
@@ -22,7 +22,7 @@ const NaverButton = (props) => {
     <>
       <a
         onClick={() => {
-          window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${_clientId}&redirect_uri=https://memegle.xyz/redirect/naver&state=${newState}`
+          window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${_clientId}&redirect_uri=${_callBack}&state=${newState}`
         }}
       >
         <Background>

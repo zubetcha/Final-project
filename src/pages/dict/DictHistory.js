@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictHistory.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
-import { actionCreators as dictActions } from '../../redux/modules/dict'
 import { dictApi } from '../../shared/api'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import { Header, Footer, ConfirmModal, ConfirmButton } from '../../components'
 import SearchPage from '../../shared/SearchPage'
-import ConfirmModal from '../../components/modal/ConfirmModal'
+import { ProfileImage } from '../../elements'
 
 const DictEditHistory = (props) => {
   const dispatch = useDispatch()
@@ -39,14 +37,6 @@ const DictEditHistory = (props) => {
     setFirstCreatedAt(response.data.data.firstCreatedAt.split('T')[0])
   }
 
-  const showSearchBar = () => {
-    if (show === false) {
-      setShow(true)
-    } else {
-      setShow(false)
-    }
-  }
-
   const handleClickEdit = () => {
     if (!isLogin) {
       setShowModal(true)
@@ -63,9 +53,9 @@ const DictEditHistory = (props) => {
         <div className="DictHistoryListText">"{isDict.title}"에 대한 편집기록</div>
         <div className="DictHistoryListSection">
           {dictHistory.map((dictId) => (
-            <div className="DictHistoryList" key={dictId.id}>
+            <div className="DictHistoryList" key={dictId.historyId}>
               <div className="DictWriterInfo">
-                <img className="DictWriterProfileImage" src={dictId.writerProfileImage} />
+                <ProfileImage src={dictId.writerProfileImage} size="35" border margin="0 10px 0 0" />
                 <div className="DictWriter">{dictId.writer} 님의 편집 내역</div>
               </div>
               <div className="DictHistoryCreatedAt">편집일 : {dictId.createdAt.split('T', 1)}</div>
@@ -73,7 +63,7 @@ const DictEditHistory = (props) => {
           ))}
           <div className="DictHistoryList">
             <div className="DictHistoryFirstWriterInfo">
-              <img className="DictFirstWriterProfileImage" src={isDict.firstWriterProfileImage} />
+              <ProfileImage src={isDict.firstWriterProfileImage} size="35" border margin="0 10px 0 0" />
               <div className="DictHistoryFirstWriter">{isDict.firstWriter} 님의 단어 등록</div>
             </div>
             <div className="DictHistoryFirstCreatedAt">등록일 : {firstCreatedAt}</div>
@@ -88,8 +78,8 @@ const DictEditHistory = (props) => {
         </div>
       </div>
       <Footer />
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
       </ConfirmModal>
     </>
   )
@@ -101,11 +91,6 @@ const SearchBarSection = styled.div`
   width: 100%;
   height: fit-content;
   z-index: 5;
-`
-
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default DictEditHistory

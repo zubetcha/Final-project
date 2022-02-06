@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
-import 'moment/locale/ko'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { dictApi } from '../../shared/api'
 
-import DictNavBar from '../../components/DictNavBar'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import OneRankingCard from '../../components/OneRankingCard'
-import DictChart from '../../components/DictChart'
-import OneQnaQuestion from '../../components/OneQnaQuestion'
-import Grid from '../../elements/Grid'
-import Title from '../../elements/Title'
-import Spinner from '../../components/Spinner'
+import { DictNavBar, Header, Footer, OneRankingCard, DictChart, OneQnaQuestion } from '../../components'
+import { Grid, Title } from '../../elements'
+import CircularProgress from '@mui/material/CircularProgress'
 
 import 'swiper/swiper.min.css'
 
-const DictStat = (props) => {
-  const nowTime = moment().format('HH:mm')
+const DictStat = () => {
+  const nowTime = dayjs().format('HH:mm')
 
   const [rankList, setRankList] = useState('')
   const [chartData, setChartData] = useState('')
@@ -55,7 +49,9 @@ const DictStat = (props) => {
             <Title>열정적인 밈글러 top3</Title>
             <div className="rank-container">
               {loading ? (
-                <Spinner type="white" />
+                <Grid flex_center height="100%">
+                  <CircularProgress size={24} color="inherit" />
+                </Grid>
               ) : (
                 <>
                   <OneRankingCard rank={rankList[1]} index={1} />
@@ -138,7 +134,6 @@ const RankSection = styled.section`
     width: 100%;
     height: 204px;
     background-color: #fff;
-    box-shadow: 0 4px 35px 4px hsl(0deg 0% 64% / 25%);
     border: 2px solid ${({ theme }) => theme.colors.line};
     padding: 20px 0;
     margin: 16px 0 0;
@@ -180,7 +175,6 @@ const ChartSection = styled.section`
     height: 360px;
     padding: 20px;
     margin: 16px 0 0;
-    box-shadow: 0 4px 35px 4px hsl(0deg 0% 64% / 25%);
     border: 2px solid ${({ theme }) => theme.colors.line};
     display: flex;
     flex-direction: column;
@@ -189,7 +183,7 @@ const ChartSection = styled.section`
     .updated-at {
       width: 100%;
       text-align: right;
-      font-size: ${({ theme }) => theme.fontSizes.base};
+      font-size: ${({ theme }) => theme.fontSizes.small};
     }
     .chart-text {
       font-size: ${({ theme }) => theme.fontSizes.lg};

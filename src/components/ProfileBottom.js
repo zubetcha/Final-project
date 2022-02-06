@@ -5,11 +5,10 @@ import { history } from '../redux/ConfigureStore'
 import { actionCreators as userActions } from '../redux/modules/user'
 import { ReactComponent as CloseIcon } from '../styles/icons/size(28*28)(30*30)/close_28dp.svg'
 
-import Grid from '../elements/Grid'
-import BottomPopup from './BottomPopup'
-import ConfirmModal from './modal/ConfirmModal'
+import { Grid, ProfileImage } from '../elements'
+import { BottomPopup, ConfirmModal, ConfirmButton } from '.'
 
-const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
+const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = useState(false)
@@ -36,7 +35,7 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
             <CloseIcon className="close-icon" onClick={() => setShowProfile(false)} fill="#444" />
           </CloseButtonBox>
           <Grid flex_center column padding="0 0 16px" borderBottom="1px solid #e5e5e5">
-            <ProfileImage src={profile?.profileImage} />
+            <ProfileImage src={profile?.profileImage} size="60" />
             <Nickname>{profile?.nickname}</Nickname>
           </Grid>
           <Grid flex_around padding="16px 20px">
@@ -56,13 +55,19 @@ const ProfileBottom = ({ profile, showProfile, setShowProfile }) => {
       </BottomPopup>
 
       {showModal && (
-        <ConfirmModal question="로그아웃 하시겠어요?" showModal={showModal} handleShowModal={handleShowModal} setShowModal={setShowModal}>
-          <LogOutButton onClick={handleClickLogOut}>로그아웃</LogOutButton>
+        <ConfirmModal
+          title="정말 로그아웃 하시겠어요?"
+          question={`밈글밈글은 ${profile?.nickname} 님을 기다리고 있을게요 🥲 `}
+          showModal={showModal}
+          handleShowModal={handleShowModal}
+          setShowModal={setShowModal}
+        >
+          <ConfirmButton _onClick={handleClickLogOut}>로그아웃</ConfirmButton>
         </ConfirmModal>
       )}
     </>
   )
-}
+})
 
 const Container = styled.div`
   width: 100%;
@@ -81,26 +86,19 @@ const CloseButtonBox = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: flex-end;
+  -webkit-appearance: none;
+  -webkit-box-pack: flex-end;
+  -ms-flex-pack: flex-end;
   padding: 16px 16px 0;
   .close-icon {
     cursor: pointer;
   }
 `
 
-const ProfileImage = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  background-size: cover;
-  background-image: url('${(props) => props.src}');
-  background-position: center;
-  background-color: ${({ theme }) => theme.colors.white};
-`
-
 const Nickname = styled.div`
   padding: 16px 0 0;
-  font-weight: 500;
+  font-weight: 600;
   cursor: default;
 `
 
@@ -129,11 +127,6 @@ const Button = styled.button`
       background-color: #dcdcdc;
     }
   }
-`
-
-const LogOutButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default ProfileBottom

@@ -3,16 +3,16 @@ import '../styles/css/MainPageImageSlide.css'
 import MainCarousel_1 from '../styles/image/main_carousel_2.gif'
 import MainCarousel_2 from '../styles/image/main_carousel_3.jpeg'
 
-const MainPageImageSlide = ({ type }) => {
+const MainPageImageSlide = React.memo(({ type }) => {
   return (
     <>
       <div className="MainPageSlideLayout">
         <div className="SlideImage">
-          <img src={type === 'quiz' ? MainCarousel_1 : MainCarousel_2} />
+          <img src={type === 'quiz' ? MainCarousel_1 : MainCarousel_2} alt="메인페이지 캐러셀 이미지" />
         </div>
       </div>
     </>
   )
-}
+})
 
 export default MainPageImageSlide

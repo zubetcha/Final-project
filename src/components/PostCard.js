@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { dictQuestionApi } from '../shared/api'
 import { useHistory } from 'react-router'
-import '../index.css'
 import { ReactComponent as ViewIcon } from '../styles/icons/조회_18dp.svg'
-import { ReactComponent as EmptyHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_blank_28dp.svg'
-import { ReactComponent as FullHeartIcon } from '../styles/icons/size(28*28)(30*30)/heart_filled_28dp.svg'
 import { ReactComponent as CommentIcon } from '../styles/icons/댓글_18dp.svg'
 import { ReactComponent as ICuriousToo } from '../styles/icons/quiz_black_24dp.svg'
 
-import { BiBadge, BiBadgeCheck } from 'react-icons/bi'
 import Grid from '../elements/Grid'
+import '../index.css'
 
-const PostCard = ({ question }) => {
+const PostCard = React.memo(({ question }) => {
   const history = useHistory()
 
   const onC = () => {
@@ -77,7 +74,7 @@ const PostCard = ({ question }) => {
       </FullWrap>
     </>
   )
-}
+})
 
 export default PostCard
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import History from '../shared/SearchHistory'
+import { useDispatch } from 'react-redux'
 import SearchBar from '../shared/SearchBar'
 
 function SearchPage(props) {
@@ -14,8 +13,6 @@ function SearchPage(props) {
     //array 타입을 string형태로 바꾸기 위해 json.stringfy를 사용한다.
     localStorage.setItem('keywords', JSON.stringify(keywords))
   }, [keywords])
-
-  //state를 다루는 함수는 handle 보통 많이 붙인다.
 
   //검색어 추가
   const handleAddKeyword = (text) => {
@@ -39,7 +36,6 @@ function SearchPage(props) {
     setKeywords([])
   }
 
-  //자식 컴포넌트에서 setState를 못하기때문에 그거를 바꿔주는 함수를 선언후 그 함수를 넘겨야함
   return (
     <SearchBarPage>
       <SearchBar onAddKeyword={handleAddKeyword}></SearchBar>

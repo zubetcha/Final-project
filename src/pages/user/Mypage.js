@@ -1,20 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import Masonry from 'react-masonry-css'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as mypageActions } from '../../redux/modules/mypage'
-import '../../styles/css/Mypage.css'
 
-import Masonry from 'react-masonry-css'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import EditProfile from '../../components/mypage/EditProfile'
-import PostCard from '../../components/PostCard'
-import MyPageOneImageCard from '../../components/image/MypageOneImageCard'
-import OneDictionaryCard from '../../components/OneDictionaryCard'
-import Grid from '../../elements/Grid'
+import { Header, Footer, EditProfile, PostCard, OneDictionaryCard, MyPageOneImageCard } from '../../components'
+import { Grid } from '../../elements'
 import { ReactComponent as EditIcon } from '../../styles/icons/edit.svg'
 
-const Mypage = (props) => {
+const Mypage = () => {
   const dispatch = useDispatch()
 
   const [showModal, setShowModal] = React.useState(false)
@@ -65,7 +59,7 @@ const Mypage = (props) => {
     if (my == null) {
       dispatch(mypageActions.getMypageDataDB())
     }
-  }, [])
+  }, [dispatch, my])
 
   return (
     <>
@@ -176,8 +170,8 @@ const UserProfile = styled.div`
   flex-shrink: 0;
   flex-basis: 360px;
   .edit-icon {
-    width: 18px;
-    height: 18px;
+    width: 20;
+    height: 20;
     cursor: pointer;
     margin: 0 0 0 3px;
   }
@@ -196,7 +190,7 @@ const UserProfile = styled.div`
     }
 
     .user-activity-info {
-      padding: 0 20px;
+      padding: 5px 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;

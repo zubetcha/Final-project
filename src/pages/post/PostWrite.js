@@ -1,12 +1,9 @@
 import React, { useRef, useState, createRef } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
-import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as AddPhotoIcon } from '../../styles/icons/size(28*28)(30*30)/addphoto_30dp.svg'
-import { history } from '../../redux/ConfigureStore'
-import Header from '../../components/Header'
+import { Header } from '../../components'
 
 const PostWrite = (props) => {
   const dispatch = useDispatch()
@@ -123,13 +120,17 @@ const PWHeader = styled.div`
 const PWBody = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444;
+  border-bottom: 2px solid #000;
   .writedesc {
     width: 100%;
     /* min-height: 10rem; */
     border: none;
     padding: 16px;
     resize: none;
+<<<<<<< HEAD
+=======
+    line-height: 1.6;
+>>>>>>> 1c18f66015b63eef4263bacd5c7295e5220d32d0
     font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;
@@ -185,8 +186,8 @@ const PWFooter = styled.div`
 
   .postbtn {
     position: absolute;
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 48px;
     border: 2px solid ${({ theme }) => theme.colors.black};
   }
   .btn-1 {
@@ -195,7 +196,9 @@ const PWFooter = styled.div`
     background-color: #00a0ff;
     /* ${({ theme }) => theme.colors.blue}; */
     font-size: ${({ theme }) => theme.fontSizes.xl};
-    font-weight: 700;
+    font-family: 'YdestreetB';
+    font-style: normal;
+    font-weight: normal;
     z-index: 100;
     transition-duration: 0.3s;
     &:active {

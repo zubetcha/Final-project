@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
+import Masonry from 'react-masonry-css'
 import { useDispatch, useSelector } from 'react-redux'
 import { imageApi } from '../../shared/api'
 import { actionCreators as imageActions } from '../../redux/modules/image'
 import { history } from '../../redux/ConfigureStore'
 
-import Title from '../../elements/Title'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import { Title, Grid } from '../../elements'
+import { Header, Footer, SpeedDialButton, Spinner, OneImageCard, ConfirmModal, ConfirmButton } from '../../components'
 import InfinityScroll from '../../shared/InfinityScroll'
-import Masonry from 'react-masonry-css'
 import ImageUpload from '../image/ImageUpload'
-import OneImageCard from '../../components/image/OneImageCard'
-import ConfirmModal from '../../components/modal/ConfirmModal'
-import SpeedDialButton from '../../components/SpeedDialButton'
-import Spinner from '../../components/Spinner'
-import { RiEditLine } from 'react-icons/ri'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const ImageList = (props) => {
   const dispatch = useDispatch()
@@ -55,9 +50,12 @@ const ImageList = (props) => {
     }
   }
 
+  // useEffect(() => {
+  //   setLoading(true)
+  //   setTimeout(() => setLoading(false), 700)
+  // }, [])
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 700)
+    dispatch(imageActions.initImageList())
   }, [])
 
   useEffect(() => {
@@ -70,18 +68,17 @@ const ImageList = (props) => {
       .catch((error) => {
         console.log('명예의 전당 이미지 불러오기 문제 발생', error.response)
       })
-    dispatch(imageActions.initImageList())
-  }, [])
+  }, [dispatch])
 
   return (
     <>
-      <Wrapper>
+      <Grid flex column padding="60px 0 0" height="100%">
         <Header location="짤방"></Header>
         {loading ? (
           <Spinner />
         ) : (
           <>
-            <PopularSection>
+            <Grid padding="16px">
               <Title>명예의 밈짤</Title>
               <Container>
                 <PopularGridLayout>
@@ -90,38 +87,38 @@ const ImageList = (props) => {
                   })}
                 </PopularGridLayout>
               </Container>
-            </PopularSection>
-            <GeneralSection>
+            </Grid>
+            <Grid padding="0 16px 90px">
               <Title>짤 방앗간</Title>
               <Container>
                 <InfinityScroll callNext={getImageList} paging={{ next: image_data.has_next }}>
                   <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
                     {image_data.image_list.map((image) => {
-                      return <OneImageCard key={image.boardId} image={image} />
+                      return <OneImageCard key={image?.boardId} image={image} />
                     })}
                   </Masonry>
                 </InfinityScroll>
               </Container>
-            </GeneralSection>
+            </Grid>
             <SpeedDialButton _onClick={handleClickWrite}>
               {isLogin ? (
                 <>
                   <FileInputLabel htmlFor="file" className="upload-label">
-                    <RiEditLine size="28" fill="#FFFFFF" />
+                    <WriteIcon fill="#FFFFFF" />
                   </FileInputLabel>
                   <FileInput type="file" id="file" className="upload-file" accept="image/jpg, image/jpeg, image/png, image/gif" ref={fileInput} onChange={handleChangeFile} />
                 </>
               ) : (
-                <RiEditLine size="28" fill="#FFFFFF" />
+                <WriteIcon fill="#FFFFFF" />
               )}
             </SpeedDialButton>
           </>
         )}
         {preview && <ImageUpload preview={preview} fileInput={fileInput} />}
         <Footer />
-      </Wrapper>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      </Grid>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
       </ConfirmModal>
     </>
   )
@@ -145,24 +142,6 @@ const FileInput = styled.input`
   height: 1px;
   clip: rect(0, 0, 0, 0);
   border: 0;
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
-  height: 100%;
-  padding: 60px 0 0;
-`
-
-const PopularSection = styled.div`
-  width: 100%;
-  padding: 16px;
-`
-
-const GeneralSection = styled.div`
-  width: 100%;
-  padding: 0 16px 90px;
 `
 
 const Container = styled.div`
@@ -200,11 +179,6 @@ const PopularGridLayout = styled.div`
       grid-row: 2 / 3;
     }
   }
-`
-
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default ImageList

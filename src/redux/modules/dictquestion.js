@@ -1,10 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { dictQuestionApi } from '../../shared/api'
-import { applyMiddleware } from 'redux'
-import moment from 'moment'
-import 'moment'
-import { Login } from '../../pages'
 
 // /* action type */ 목록/상세/작성/수정/삭제/검색
 const GET_QUESTION = 'GET_QUESTION'
@@ -109,7 +105,7 @@ const editQuestionDB = (questionId, title, uploadFile, content) => {
         const _question = { ...question, thumbNail: uploadFile }
         dispatch(editQuestion(questionId, _question))
 
-        // history.replace(`/dict/question/detail/${questionId}`)
+        history.replace(`/dict/question/detail/${questionId}`)
       })
       .catch((err) => {
         console.log('게시글 수정하는데 문제 발생', err.response)

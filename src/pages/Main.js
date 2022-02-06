@@ -5,15 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionCreators as userActions } from '../redux/modules/user'
 import styled from 'styled-components'
 
-import MainPageImageSlide from '../components/MainPageImageSlide'
-import PopularBoardCardSwiper from '../components/PopularBoardCardSwiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Lazy, Autoplay, Keyboard, Pagination } from 'swiper'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import AlertModal from '../components/modal/AlertModal'
-import Grid from '../elements/Grid'
-import { ReactComponent as PlusIcon } from '../styles/icons/add.svg'
+import { Header, Footer, AlertModal, MainPageImageSlide, PopularBoardCardSwiper } from '../components'
+import { Grid } from '../elements'
+import { ReactComponent as MainMoreIcon } from '../styles/icons/mainMore.svg'
+import { ReactComponent as MainFeedBackBarIcon } from '../styles/icons/mainFeedBackBar.svg'
 
 import 'swiper/swiper.min.css'
 import 'swiper/components/lazy/lazy.min.css'
@@ -38,7 +35,7 @@ const Main = (props) => {
   const handleCloseModal = () => {
     setTimeout(() => {
       setShowModal(false)
-    }, 2500)
+    }, 2000)
   }
 
   const handleShowModal = () => {
@@ -75,7 +72,6 @@ const Main = (props) => {
     }
     submitVisitors()
   }, [])
-
   return (
     <>
       <Header location="Memegle" />
@@ -90,7 +86,6 @@ const Main = (props) => {
             spaceBetween={30}
             lazy={true}
             grabCursor={true}
-            // centeredSlides={true}
             breakpoints={{
               769: {
                 slidesPerView: 1,
@@ -130,9 +125,7 @@ const Main = (props) => {
         <div className="MainPageFeedBackSection" onClick={() => window.open('https://forms.gle/xmfGQt2WsPQhiHg87', '_blank')}>
           <div className="MainPageFeedBackText1">피드백 남기고 스타벅스 커피 받아가자</div>
           <div className="MainPageFeedBackBar">
-            <svg width="65" height="1" viewBox="0 0 65 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line y1="0.5" x2="65" y2="0.5" stroke="black" />
-            </svg>
+            <MainFeedBackBarIcon />
           </div>
           <div className="MainPageFeedBackText2">Go!</div>
         </div>
@@ -140,7 +133,7 @@ const Main = (props) => {
           <div className="MainPageTagName">오늘의 밈</div>
           <div className="MainPageTagList">
             {todayMemes.map((todayMemes) => (
-              <div className="MainPageTag" key={todayMemes.id} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
+              <div className="MainPageTag" key={todayMemes.dictId} onClick={() => history.push(`/dict/detail/${todayMemes.dictId}`)}>
                 {todayMemes.dictName}
               </div>
             ))}
@@ -148,9 +141,7 @@ const Main = (props) => {
           <div className="MainPageTagMoreButton_1">
             <div className="MainPageTagMoreButton_1st" onClick={() => history.push('/dict')}>
               <div className="MainPageTagMoreButton1">More</div>
-              <svg width="96" height="30" viewBox="0 0 96 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 29H93L65.1497 1" stroke="black" strokeWidth="2" />
-              </svg>
+              <MainMoreIcon strokeWidth="2" />
             </div>
           </div>
         </div>
@@ -162,38 +153,25 @@ const Main = (props) => {
           <div className="MainPageTagMoreButton_2">
             <div className="MainPageTagMoreButton_2nd" onClick={() => history.push('/image')}>
               <div className="MainPageTagMoreButton2">More</div>
-              <svg width="96" height="30" viewBox="0 0 96 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 29H93L65.1497 1" stroke="black" strokeWidth="2" />
-              </svg>
+              <MainMoreIcon strokeWidth="2" />
             </div>
           </div>
         </div>
-        {/* <div className="MainPageAddButtonSection">
-          <div className="MainPageAddButtonSectionHr"></div>
-          <div className="MainPageAddButton">
-            <PlusIcon width="24px" height="24px" />
-          </div>
-          <div className="MainPageAddButtonGuideText">나도 추가하러 가보자!</div>
-        </div> */}
       </div>
       <Footer />
       {showModal && (
         <AlertModal showModal={showModal}>
-          <WelcomeMessage>
-            <span className="username">{nickname}</span>님 만반잘부! 🙋🏻
-          </WelcomeMessage>
+          <Username>{nickname}</Username> 님 만반잘부! 🙋🏻
         </AlertModal>
       )}
     </>
   )
 }
 
-const WelcomeMessage = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  .username {
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.blue};
-  }
+const Username = styled.span`
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default Main

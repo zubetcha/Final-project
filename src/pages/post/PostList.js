@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { history } from '../../redux/ConfigureStore'
 import styled from 'styled-components'
-import PostCard from '../../components/PostCard'
+import { PostCard, Header, Footer, DictNavBar, SpeedDialButton, ConfirmModal, ConfirmButton } from '../../components'
 import Pagination from 'rc-pagination'
 import { dictQuestionApi } from '../../shared/api'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import DictNavBar from '../../components/DictNavBar'
-import SpeedDialButton from '../../components/SpeedDialButton'
-import Grid from '../../elements/Grid'
-import '../../index.css'
-import ConfirmModal from '../../components/modal/ConfirmModal'
-import Title from '../../elements/Title'
+import { Grid, Title } from '../../elements'
 import SearchPage from '../../shared/SearchPage'
-
-import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
-import { RiEditLine } from 'react-icons/ri'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const PostList = (props) => {
   const userId = localStorage.getItem('id')
@@ -73,10 +64,10 @@ const PostList = (props) => {
       </Container>
       <Footer />
       <SpeedDialButton _onClick={handleClickWrite}>
-        <RiEditLine size="28" fill="#FFFFFF" />
+        <WriteIcon fill="#FFFFFF" />
       </SpeedDialButton>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
       </ConfirmModal>
     </>
   )
@@ -124,42 +115,8 @@ const CuriousHelp = styled.div`
     margin: 0 0 0 8px;
   }
 `
-
-const Addbtn = styled.div`
-  width: 280px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-family: 'YdestreetB';
-  font-style: normal;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 2;
-  /* transform: translateX(-50%); */
-  margin: 15px 0 30px 0;
-  transition-duration: 0.2s;
-  &:hover {
-    left: calc(50%);
-    transform: translate(4px, 10%);
-  }
-`
-
-const AddbtnShadow = styled.div`
-  width: 280px;
-  height: 40px;
-  top: 19px;
-  left: calc(50%);
-  transform: translateX(calc(-50% + 4px));
-  background-color: white;
-  border: 1px solid black;
-  position: absolute;
-  z-index: -1;
-`
 const MoveLoginButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.base};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 0;
 `

@@ -1,34 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { history } from '../../redux/ConfigureStore'
+import React from 'react'
 
 import '../../styles/css/DictMyMeme.css'
-import styled from 'styled-components'
 
-import { dictApi } from '../../shared/api'
-import DictNavBar from '../../components/DictNavBar'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import DictMyScrapbook from '../../components/DictMyScrapbook'
-import Title from '../../elements/Title'
-import Grid from '../../elements/Grid'
+import { DictNavBar, Header, Footer, DictMyScrapbook } from '../../components'
+import { Title, Grid } from '../../elements'
+import { history } from '../../redux/ConfigureStore'
 
-const DictMyMeMe = (props) => {
-  const dispatch = useDispatch()
+const isLogin = localStorage.getItem('token')
 
-  const [show, setShow] = useState(false)
-  const [scrapList, setScrapList] = React.useState([])
-
-  const DictMySrcapListDB = async () => {
-    let response = await dictApi.dictMyScrapList()
-
-    setScrapList(response.data.data)
-  }
-
-  React.useEffect(() => {
-    DictMySrcapListDB()
-  }, [])
-
+const DictMyMeMe = () => {
   return (
     <>
       <Header location="오픈 밈사전"></Header>
@@ -39,7 +19,27 @@ const DictMyMeMe = (props) => {
         </Grid>
         <div className="MyDictMemeSection">
           <div className="MyDictMemeList">
-            <DictMyScrapbook />
+            {isLogin ? (
+              <DictMyScrapbook />
+            ) : (
+              <div className="MyDictMemePlzLoginSection">
+                <div className="MyDictMemePlzLoginText">로그인이 필요한 서비스에요</div>
+
+                <div
+                  className="MyDictMemeGoToLogin"
+                  onClick={() => {
+                    history.push('/login')
+                  }}
+                >
+                  <button className="MyDictMemeGoToLogin1">로그인 하고 스크랩 해볼래요</button>
+                  <button className="MyDictMemeGoToLogin2">
+                    <svg width="46" height="10" viewBox="0 0 96 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 29H93L65.1497 1" stroke="black" stroke-width="5" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

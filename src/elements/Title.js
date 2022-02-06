@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Title = ({ children }) => {
+const Title = React.memo(({ children }) => {
   return (
     <>
       <TextBox>
@@ -9,7 +9,7 @@ const Title = ({ children }) => {
       </TextBox>
     </>
   )
-}
+})
 
 const TextBox = styled.div`
   display: flex;

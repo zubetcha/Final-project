@@ -3,11 +3,7 @@ import styled from 'styled-components'
 import '../styles/css/DictNavBar.css'
 import { NavLink } from 'react-router-dom'
 
-const DictNavBar = () => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
-
+const DictNavBar = React.memo(() => {
   return (
     <>
       <nav className="DictNavWrapper">
@@ -38,7 +34,7 @@ const DictNavBar = () => {
       </nav>
     </>
   )
-}
+})
 
 const StyledNavLink = styled(NavLink)`
   width: fit-content;
@@ -48,6 +44,7 @@ const StyledNavLink = styled(NavLink)`
   justify-content: center;
   padding: 10px 0 7px;
   border-bottom: 3px solid transparent !important;
+
   &.active {
     color: #00a0ff !important;
     border-bottom: 3px solid #00a0ff !important;
@@ -63,7 +60,7 @@ const StyledNavLink = styled(NavLink)`
     font-size: ${({ theme }) => theme.fontSizes.lg};
     font-weight: normal;
     transition: color 0.2s ease-in-out;
-    :hover {
+    &:hover {
       color: ${({ theme }) => theme.colors.blue};
     }
   }

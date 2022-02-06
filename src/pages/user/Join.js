@@ -1,19 +1,13 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/Join.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
-import swal from 'sweetalert'
 import { actionCreators as userActions } from '../../redux/modules/user'
 import { userApi } from '../../shared/api'
-import kakaotalk from '../../styles/image/kakaotalk.svg'
-import naver from '../../styles/image/naver.svg'
-import googleColor from '../../styles/image/google_color.svg'
 import styled from 'styled-components'
-import DoubleCheckModal from '../../components/modal/DoubleCheckModal'
-import Footer from '../../components/Footer'
+import { Footer, DoubleCheckModal, AlertModal, ConfirmButton } from '../../components'
 import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
-import Grid from '../../elements/Grid'
-import AlertModal from '../../components/modal/AlertModal'
+import { Grid } from '../../elements'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Join = () => {
@@ -192,7 +186,7 @@ const Join = () => {
             </div>
           </div>
           <div className="LoginOrJoinInputs_join">
-            <label className="JoinInputLabel_Username" for="UsernameInput_Join">
+            <label className="JoinInputLabel_Username" htmlFor="UsernameInput_Join">
               아이디
             </label>
             <DoubleCheckBox>
@@ -215,7 +209,7 @@ const Join = () => {
               </button>
             </DoubleCheckBox>
             {username.length > 0 && <SpanUsername className={`message ${isUsername ? 'success' : 'error'}`}>{usernameMessage}</SpanUsername>}
-            <label className="JoinInputLabel_Nickname" for="NicknameInput_Join">
+            <label className="JoinInputLabel_Nickname" htmlFor="NicknameInput_Join">
               닉네임
             </label>
             <DoubleCheckBox>
@@ -239,7 +233,7 @@ const Join = () => {
               </button>
             </DoubleCheckBox>
             {nickname.length > 0 && <SpanNickname className={`message ${isNickname ? 'success' : 'error'}`}>{nicknameMessage}</SpanNickname>}
-            <label className="JoinInputLabel_Password" for="PasswordInput_Join">
+            <label className="JoinInputLabel_Password" htmlFor="PasswordInput_Join">
               비밀번호
             </label>
             <input
@@ -249,12 +243,11 @@ const Join = () => {
               type="password"
               placeholder="영어 대소문자, 숫자, 특수문자(!@#$%^&*()._-) 6~16자"
               onChange={onChangePassword}
-              passwordText="비밀번호 (숫자+영문자+특수문자 조합으로 8자리 이상)"
               title="비밀번호"
               value={password}
             />
             {password.length > 0 && <SpanPassword className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</SpanPassword>}
-            <label className="JoinInputLabel_PasswordCheck" for="PasswordCheckInput_Join">
+            <label className="JoinInputLabel_PasswordCheck" htmlFor="PasswordCheckInput_Join">
               비밀번호 확인
             </label>
             <input
@@ -264,9 +257,13 @@ const Join = () => {
               type="password"
               placeholder="영어 대소문자, 숫자, 특수문자(!@#$%^&*()._-) 6~16자"
               onChange={onChangePasswordCheck}
-              passwordText=" "
               title="비밀번호 확인"
               value={passwordCheck}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  join()
+                }
+              }}
             />
             {setPasswordCheck.length > 0 && <SpanPasswordCheck className={`message ${isPasswordCheck ? 'success' : 'error'}`}>{passwordCheckMessage}</SpanPasswordCheck>}
             <div
@@ -292,12 +289,12 @@ const Join = () => {
       {doubleCheck === null && null}
       {doubleCheck === true && (
         <DoubleCheckModal title="사용 가능합니다!" doubleCheck={doubleCheck} setDoubleCheck={setDoubleCheck}>
-          <ConfirmButton onClick={() => setDoubleCheck(null)}>확인</ConfirmButton>
+          <ConfirmButton _onClick={() => setDoubleCheck(null)}>확인</ConfirmButton>
         </DoubleCheckModal>
       )}
       {doubleCheck === false && (
-        <DoubleCheckModal type="exist-onlyConfirm" title="이미 사용 중입니다!" doubleCheck={doubleCheck} setDoubleCheck={setDoubleCheck}>
-          <ConfirmButton onClick={() => setDoubleCheck(null)}>확인</ConfirmButton>
+        <DoubleCheckModal type="exist-onlyConfirm" title="이미 사용 중이에요!" doubleCheck={doubleCheck} setDoubleCheck={setDoubleCheck}>
+          <ConfirmButton _onClick={() => setDoubleCheck(null)}>확인</ConfirmButton>
         </DoubleCheckModal>
       )}
       <AlertModal showModal={showAlert}>아이디와 비밀번호를 모두 입력해 주세요!</AlertModal>
@@ -336,11 +333,6 @@ const SpanPasswordCheck = styled.span`
   font-size: 12px;
   margin-bottom: -10px;
   color: #ffa07a;
-`
-
-const ConfirmButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 const Logo = styled.div`

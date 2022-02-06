@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../../styles/css/DictList.css'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
-import axios from 'axios'
-import { actionCreators as dictActions } from '../../redux/modules/dict'
 import Pagination from 'rc-pagination'
 import SearchPage from '../../shared/SearchPage'
 import { dictApi } from '../../shared/api'
-import DictNavBar from '../../components/DictNavBar'
-import SpeedDialButton from '../../components/SpeedDialButton'
-import TodayDictCardSwiper from '../../components/TodayDictCardSwiper'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import Grid from '../../elements/Grid'
-import Title from '../../elements/Title'
-import OneDictionaryCard from '../../components/OneDictionaryCard'
-import ConfirmModal from '../../components/modal/ConfirmModal'
-import { ReactComponent as EmptyBookMarkIcon } from '../../styles/icons/bookmark_blank.svg'
-import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_filled.svg'
-import { RiEditLine } from 'react-icons/ri'
+import { DictNavBar, SpeedDialButton, TodayDictCardSwiper, Header, Footer, OneDictionaryCard, ConfirmModal, ConfirmButton } from '../../components'
+import { Grid, Title } from '../../elements'
+import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
-const DictList = (props) => {
+const DictList = () => {
   const dispatch = useDispatch()
 
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
 
-  const [show, setShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [dict, setDict] = useState([])
   const [pageSize, setPageSize] = useState(10)
@@ -51,14 +39,6 @@ const DictList = (props) => {
 
     setDict(response.data.data)
     setTotalCount(totalLength.data.data)
-  }
-
-  const showSearchBar = () => {
-    if (show === false) {
-      setShow(true)
-    } else {
-      setShow(false)
-    }
   }
 
   const handleClickWrite = () => {
@@ -89,7 +69,7 @@ const DictList = (props) => {
           </div>
           <div className="DictList">
             {dict.map((dict) => (
-              <OneDictionaryCard key={dict.id} dict={dict} />
+              <OneDictionaryCard key={dict.dictId} dict={dict} />
             ))}
           </div>
           <Pagination simple total={totalCount} current={currentPage} pageSize={pageSize} onChange={(page) => setCurrentPage(page)} />
@@ -97,10 +77,10 @@ const DictList = (props) => {
       </div>
       <Footer />
       <SpeedDialButton _onClick={handleClickWrite}>
-        <RiEditLine size="28" fill="#FFFFFF" />
+        <WriteIcon fill="#FFFFFF" />
       </SpeedDialButton>
-      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용 가능합니다!" question="로그인 페이지로 이동하시겠어요?">
-        <MoveLoginButton onClick={() => history.push('/login')}>이동</MoveLoginButton>
+      <ConfirmModal showModal={showModal} setShowModal={setShowModal} title="로그인 후 이용할 수 있어요!" question="로그인 페이지로 이동하시겠어요?">
+        <ConfirmButton _onClick={() => history.push('/login')}>이동</ConfirmButton>
       </ConfirmModal>
     </>
   )
@@ -113,11 +93,6 @@ const SearchBarSection = styled.div`
   justify-content: center;
   align-items: center;
   padding: 24px 16px 16px;
-`
-
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
 `
 
 export default DictList

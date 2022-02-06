@@ -1,17 +1,3 @@
-@font-face {
-  font-family: 'Pretendard Variable';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../fonts/Pretendard-Bold.woff') format('woff'), url('../fonts/Pretendard-Bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Pretendard Variable';
-  font-style: normal;
-  font-weight: 500;
-  src: url('../fonts/Pretendard-Medium.woff') format('woff'), url('../fonts/Pretendard-Medium.woff2') format('woff2');
-}
-
 .DictMyScrapbook {
   width: 100%;
   height: 100%;
@@ -25,20 +11,22 @@
   width: 100%;
   height: 100%;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: 700;
+  font-display: swap;
 }
 .activeTitle {
   width: 100%;
   height: 100%;
   color: #00a0ff;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: 700;
+  font-display: swap;
 }
 
 .DictMyScrapSummarySection {
@@ -49,13 +37,16 @@
 }
 
 .DictMyScrapSummaryText {
-  width: 70px;
+  max-width: 70px;
+  min-width: 70px;
+  width: 100%;
   height: fit-content;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: 700;
+  font-display: swap;
 }
 
 .DictMyScrapSummary {
@@ -65,10 +56,11 @@
   display: flex;
   align-self: center;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.75rem;
   font-weight: 500;
+  font-display: swap;
 }
 
 .DictMyScrapDescriptionSection {
@@ -80,13 +72,16 @@
 }
 
 .DictMyScrapDescriptionText {
-  width: 70px;
+  max-width: 70px;
+  min-width: 70px;
+  width: 100%;
   height: fit-content;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: 700;
+  font-display: swap;
 }
 
 .DictMyScrapDescription {
@@ -96,10 +91,12 @@
   display: flex;
   align-self: center;
 
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.75rem;
   font-weight: 500;
+  font-display: swap;
+  line-height: 1.8;
 }
 
 .DictMyScrapInfoSection {
@@ -119,10 +116,11 @@
   align-items: center;
 
   color: #878c92;
-  font-family: 'Pretendard Variable';
+  font-family: 'Pretendard Variable', 'AppleSDGothicNeo', sans-serif;
   font-style: normal;
   font-size: 0.875rem;
   font-weight: 500;
+  font-display: swap;
 }
 .DictMyScrapInfo:hover {
   cursor: pointer;
@@ -131,6 +129,7 @@
 .DictMyScrapCount {
   font-size: 0.875rem;
   font-weight: 300;
+  font-display: swap;
   margin: -2px 0 0 5px;
   width: fit-content;
   height: fit-content;
