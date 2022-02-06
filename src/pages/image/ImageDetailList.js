@@ -6,7 +6,6 @@ import { actionCreators as imageActions } from '../../redux/modules/image'
 
 import { ImageWrapper, Footer, OneDetailImageCard } from '../../components'
 import InfinityScroll from '../../shared/InfinityScroll'
-
 import { ReactComponent as ArrowBackIcon } from '../../styles/icons/arrow_back_ios_black_24dp.svg'
 
 const ImageDetailList = (props) => {

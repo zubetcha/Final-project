@@ -34,22 +34,16 @@ const Mypage = () => {
   })
 
   const handleShowDictionary = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(true)
     setShowBoard(false)
     setShowImage(false)
   }
   const handleShowBoard = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(false)
     setShowBoard(true)
     setShowImage(false)
   }
   const handleShowPhoto = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(false)
     setShowBoard(false)
     setShowImage(true)
@@ -69,7 +63,7 @@ const Mypage = () => {
           <UserProfile>
             <ProfileImage src={my && my.profileImageUrl} />
             <div className="profile-info box-1">
-              <div style={{ padding: '60px 0 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ padding: '60px 0 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="user-nickname">{my && my.nickname}</div>
                 <EditIcon className="edit-icon" onClick={handleEditProfile} />
               </div>
@@ -249,6 +243,10 @@ const Filter = styled.div`
     font-size: ${({ theme }) => theme.fontSizes.lg};
     padding: 0 0 12px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.line};
+    transition: color 0.2s ease-in-out;
+    :hover {
+      color: ${({ theme }) => theme.colors.blue};
+    }
   }
   .filter-button-active {
     padding: 0 0 10px;

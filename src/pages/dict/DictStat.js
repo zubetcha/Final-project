@@ -36,7 +36,7 @@ const DictStat = () => {
       }
     }
     getStat()
-    setTimeout(() => setLoading(false), 400)
+    setTimeout(() => setLoading(false), 500)
   }, [])
 
   return (

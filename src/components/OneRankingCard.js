@@ -16,7 +16,6 @@ const OneRankingCard = ({ rank, index, first }) => {
         </div>
         <p className="nickname">{rank?.nickname}</p>
         <Grid flex_center>
-          {/* <AiOutlineThunderbolt /> */}
           <span className="count">쳌 {rank?.postCount}</span>
         </Grid>
       </Container>

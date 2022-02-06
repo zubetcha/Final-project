@@ -81,34 +81,28 @@ const Wrap = styled.div`
     height: 150rem;
   }
   .gguggu {
-    position: absolute;
     top: 680px;
     left: 10px;
     width: 18rem;
     height: 8rem;
   }
   .whatevertv {
-    position: absolute;
     top: 800px;
     right: -20px;
   }
   .himsoonjjin {
-    position: absolute;
     top: 235px;
     left: 500px;
   }
   .JjajjaYellow {
-    position: absolute;
     top: -10px;
     left: 0px;
   }
   .MolluYellow {
-    position: absolute;
     top: 0;
     right: -45px;
   }
   .HolymolyYellow {
-    position: absolute;
     top: -20px;
     left: 0px;
   }
@@ -143,60 +137,21 @@ const Wrap = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    .title {
-      display: none;
-    }
-    .gguggu {
-      display: none;
-    }
-    .kingreceive {
-      display: none;
-    }
-    .JjajjaYellow {
-      display: none;
-    }
-    .cute {
-      display: none;
-    }
-    .HolymolyYellow {
-      display: none;
-    }
-    .letsgo {
-      display: none;
-    }
-    .himsoonjjin {
-      display: none;
-    }
-    .nicetomeetu {
-      display: none;
-    }
-    .MolluYellow {
-      display: none;
-    }
-    .loveu {
-      display: none;
-    }
-    .whatevertv {
-      display: none;
-    }
-    .bottomicons {
-      display: none;
-    }
-    .bottomicons-2 {
+    .titie,
+    .bubble,
+    .bottomSection {
       display: none;
     }
   }
 
   @media screen and (min-width: 900px) {
     .title {
-      position: absolute;
       top: -150px;
       left: 0px;
       width: 100rem;
       height: 80rem;
     }
     .gguggu {
-      position: absolute;
       top: 770px;
       left: 0px;
       width: 9rem;
@@ -272,14 +227,12 @@ const Wrap = styled.div`
 
   @media screen and (min-width: 1120px) {
     .title {
-      position: absolute;
       top: -200px;
       left: 0px;
       width: 120rem;
       height: 90rem;
     }
     .gguggu {
-      position: absolute;
       top: 735px;
       left: 10px;
       width: 11rem;
@@ -355,14 +308,12 @@ const Wrap = styled.div`
 
   @media screen and (min-width: 1400px) {
     .title {
-      position: absolute;
       top: -350px;
       left: -30px;
       width: 140rem;
       height: 110rem;
     }
     .gguggu {
-      position: absolute;
       top: 700px;
       left: 10px;
       width: 14rem;
@@ -521,14 +472,12 @@ const Wrap = styled.div`
 
   @media screen and (min-width: 2000px) {
     .title {
-      position: absolute;
       top: -550px;
       left: -30px;
       width: 170rem;
       height: 140rem;
     }
     .gguggu {
-      position: absolute;
       top: 680px;
       left: 10px;
       width: 18rem;

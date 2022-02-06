@@ -9,7 +9,7 @@ import { ConfirmModal, ConfirmButton } from '.'
 import { ReactComponent as EmptyBookMarkIcon } from '../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
 
-const OneDictionaryCard = React.memo(({ dict }) => {
+const OneDictionaryCard = ({ dict }) => {
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
@@ -68,7 +68,7 @@ const OneDictionaryCard = React.memo(({ dict }) => {
       </ConfirmModal>
     </>
   )
-})
+}
 
 const Container = styled.div`
   width: 100%;

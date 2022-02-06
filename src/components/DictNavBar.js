@@ -26,7 +26,7 @@ const DictNavBar = React.memo(() => {
             </StyledNavLink>
           </li>
           <li className="DictNavEachList">
-            <StyledNavLink to={'/dict/mymeme'} activeClassName={'active'}>
+            <StyledNavLink to="/dict/mymeme" activeClassName={'active'}>
               <div className="DictNavItem">스크랩</div>
             </StyledNavLink>
           </li>

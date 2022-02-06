@@ -50,10 +50,6 @@ const ImageList = (props) => {
     }
   }
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   setTimeout(() => setLoading(false), 700)
-  // }, [])
   useEffect(() => {
     dispatch(imageActions.initImageList())
   }, [])
@@ -74,46 +70,41 @@ const ImageList = (props) => {
     <>
       <Grid flex column padding="60px 0 0" height="100%">
         <Header location="짤방"></Header>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <>
-            <Grid padding="16px">
-              <Title>명예의 밈짤</Title>
-              <Container>
-                <PopularGridLayout>
-                  {bestImageList.map((image) => {
-                    return <OneImageCard type="popular" key={image.boardId} image={image} />
-                  })}
-                </PopularGridLayout>
-              </Container>
-            </Grid>
-            <Grid padding="0 16px 90px">
-              <Title>짤 방앗간</Title>
-              <Container>
-                <InfinityScroll callNext={getImageList} paging={{ next: image_data.has_next }}>
-                  <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-                    {image_data.image_list.map((image) => {
-                      return <OneImageCard key={image?.boardId} image={image} />
-                    })}
-                  </Masonry>
-                </InfinityScroll>
-              </Container>
-            </Grid>
-            <SpeedDialButton _onClick={handleClickWrite}>
-              {isLogin ? (
-                <>
-                  <FileInputLabel htmlFor="file" className="upload-label">
-                    <WriteIcon fill="#FFFFFF" />
-                  </FileInputLabel>
-                  <FileInput type="file" id="file" className="upload-file" accept="image/jpg, image/jpeg, image/png, image/gif" ref={fileInput} onChange={handleChangeFile} />
-                </>
-              ) : (
+
+        <Grid padding="16px">
+          <Title>명예의 밈짤</Title>
+          <Container>
+            <PopularGridLayout>
+              {bestImageList.map((image) => {
+                return <OneImageCard type="popular" key={image.boardId} image={image} />
+              })}
+            </PopularGridLayout>
+          </Container>
+        </Grid>
+        <Grid padding="0 16px 90px">
+          <Title>짤 방앗간</Title>
+          <Container>
+            <InfinityScroll callNext={getImageList} paging={{ next: image_data.has_next }}>
+              <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+                {image_data.image_list.map((image) => {
+                  return <OneImageCard key={image?.boardId} image={image} />
+                })}
+              </Masonry>
+            </InfinityScroll>
+          </Container>
+        </Grid>
+        <SpeedDialButton _onClick={handleClickWrite}>
+          {isLogin ? (
+            <>
+              <FileInputLabel htmlFor="file" className="upload-label">
                 <WriteIcon fill="#FFFFFF" />
-              )}
-            </SpeedDialButton>
-          </>
-        )}
+              </FileInputLabel>
+              <FileInput type="file" id="file" className="upload-file" accept="image/jpg, image/jpeg, image/png, image/gif" ref={fileInput} onChange={handleChangeFile} />
+            </>
+          ) : (
+            <WriteIcon fill="#FFFFFF" />
+          )}
+        </SpeedDialButton>
         {preview && <ImageUpload preview={preview} fileInput={fileInput} />}
         <Footer />
       </Grid>
