@@ -17,7 +17,6 @@ const AlertModal = React.memo(({ showModal, children }) => {
 
 const AlertText = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.base};
-  font-weight: 500;
 `
 
 export default AlertModal

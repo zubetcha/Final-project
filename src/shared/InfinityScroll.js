@@ -36,8 +36,6 @@ const InfinityScroll = ({ children, callNext, paging, type }) => {
 InfinityScroll.defaultProps = {
   children: null,
   callNext: () => {},
-  isNext: false,
-  loading: false,
 }
 
 const Spinner = styled.div`

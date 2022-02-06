@@ -103,7 +103,7 @@ const Nickname = styled.div`
 `
 
 const Button = styled.button`
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 8px 0;
   width: 100px;
   height: auto;

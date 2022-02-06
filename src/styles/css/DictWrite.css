@@ -70,6 +70,10 @@
   font-weight: 700;
   font-display: swap;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.DictCardInputTitleDoubleCheck:hover {
+  color: #00a0ff;
 }
 
 .DictCardInputSummaryContainer {

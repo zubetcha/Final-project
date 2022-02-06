@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../../styles/css/DictHistory.css'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { dictApi } from '../../shared/api'
@@ -9,8 +8,6 @@ import SearchPage from '../../shared/SearchPage'
 import { ProfileImage } from '../../elements'
 
 const DictEditHistory = (props) => {
-  const dispatch = useDispatch()
-
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false

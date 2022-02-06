@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { history } from '../redux/ConfigureStore'
 import { Grid, ProfileImage } from '../elements'
 
-const OneQnaQuestion = React.memo(({ question, index }) => {
+const OneQnaQuestion = ({ question, index }) => {
   const styles = {
     index: index,
   }
@@ -23,7 +23,7 @@ const OneQnaQuestion = React.memo(({ question, index }) => {
       </Container>
     </>
   )
-})
+}
 
 const Container = styled.div`
   position: relative;

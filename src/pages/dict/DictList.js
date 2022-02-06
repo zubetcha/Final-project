@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import '../../styles/css/DictList.css'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import Pagination from 'rc-pagination'
 import SearchPage from '../../shared/SearchPage'
@@ -11,27 +10,16 @@ import { Grid, Title } from '../../elements'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const DictList = () => {
-  const dispatch = useDispatch()
-
   const userId = localStorage.getItem('id')
   const token = localStorage.getItem('token')
   const isLogin = userId !== null && token !== null ? true : false
 
-  const [loading, setLoading] = useState(false)
   const [dict, setDict] = useState([])
   const [pageSize, setPageSize] = useState(10)
   const [totalCount, setTotalCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
 
-  const [like, setLike] = useState(false)
-
   const [showModal, setShowModal] = useState(false)
-
-  React.useEffect(() => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 600)
-    getDictListDB()
-  }, [currentPage])
 
   const getDictListDB = async () => {
     let response = await dictApi.getDictMain(pageSize, currentPage)
@@ -48,6 +36,10 @@ const DictList = () => {
       history.push('/dict/write')
     }
   }
+
+  React.useEffect(() => {
+    getDictListDB()
+  }, [currentPage])
 
   return (
     <>

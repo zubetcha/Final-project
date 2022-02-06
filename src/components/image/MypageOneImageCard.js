@@ -8,7 +8,7 @@ import { ConfirmModal, ConfirmButton } from '..'
 import { ReactComponent as DeleteIcon } from '../../styles/icons/bin.svg'
 import { ReactComponent as EmptyHeart } from '../../styles/icons/heart_blank.svg'
 
-const MyPageOneImageCard = React.memo(({ image }) => {
+const MyPageOneImageCard = ({ image }) => {
   const boardId = image && image.boardId
   const createdDate = image && image.createdAt.split('T')[0]
 
@@ -64,7 +64,7 @@ const MyPageOneImageCard = React.memo(({ image }) => {
       )}
     </>
   )
-})
+}
 
 const Wrapper = styled.div`
   position: relative;

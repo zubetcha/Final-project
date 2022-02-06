@@ -83,6 +83,7 @@ const HeaderSection = styled.div`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom: 2px solid #000;
+
   .alarm-title {
     font-family: 'YdestreetB';
     font-style: normal;
@@ -100,6 +101,7 @@ const BodySection = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
   .first {
     border-top: none !important;
   }

@@ -32,6 +32,7 @@ html, body, div, span, applet, object, iframe,
 
 body {
   color: #000;
+
 }
 
 p, h1, h2, h3, h4 {

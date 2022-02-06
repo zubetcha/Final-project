@@ -11,8 +11,12 @@ import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
 import { Grid, ProfileImage } from '../elements'
 import { history } from '../redux/ConfigureStore'
 
-const OneComment = React.memo((props) => {
+const OneComment = (props) => {
   const dispatch = useDispatch()
+
+  const userId = localStorage.getItem('id')
+  const token = localStorage.getItem('token')
+  const isLogin = userId !== null && token !== null ? true : false
 
   const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionUser = props.username //질문작성자
@@ -20,9 +24,6 @@ const OneComment = React.memo((props) => {
   const questionId = props.questionId
   const commentId = props.commentId
   const createdAt = props.createdAt.split('T')[0] + ' ' + props.createdAt.split('T')[1].split(':')[0] + ':' + props.createdAt.split('T')[1].split(':')[1]
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
 
   const [isLiked, setIsLiked] = React.useState(props.isLike)
   const [likeCount, setLikeCount] = React.useState(props.likeCount)
@@ -150,7 +151,7 @@ const OneComment = React.memo((props) => {
       </ContentWrap>
     </>
   )
-})
+}
 
 const Wrap = styled.div`
   display: flex;

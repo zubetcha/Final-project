@@ -26,7 +26,6 @@ const Main = (props) => {
   const isFirst = useSelector((state) => state.user.is_first)
   const nickname = localStorage.getItem('nickname')
 
-  const [popularBoards, setPopularBoards] = useState([])
   const [popularImages, setPopularImages] = useState([])
   const [todayMemes, setTodayMemes] = useState([])
 
@@ -46,7 +45,6 @@ const Main = (props) => {
   const searchDictDB = async () => {
     let response = await mainApi.mainPage()
 
-    setPopularBoards(response.data.data.popularBoards)
     setPopularImages(response.data.data.popularImages)
     setTodayMemes(response.data.data.todayMemes)
   }
@@ -148,7 +146,7 @@ const Main = (props) => {
         <div className="MainPageTopPostSection">
           <div className="MainPageTopPostText">명예의 밈글</div>
           <Grid padding="16px 16px 0  ">
-            <PopularBoardCardSwiper />
+            <PopularBoardCardSwiper popularImages={popularImages} />
           </Grid>
           <div className="MainPageTagMoreButton_2">
             <div className="MainPageTagMoreButton_2nd" onClick={() => history.push('/image')}>
