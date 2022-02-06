@@ -44,28 +44,6 @@ const Content = styled.div`
 
 const ConfirmBox = styled.div`
   display: flex;
-<<<<<<< HEAD
-  flex-direction: column;
-  justify-content: space-between;
-  .title-box {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-  }
-  .question-box {
-    font-size: ${({ theme }) => theme.fontSizes.base};
-  }
-  .confirm-box {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    -webkit-appearance: none;
-    -webkit-box-pack: flex-end;
-    -ms-flex-pack: flex-end;
-    gap: 24px;
-    .cancel-button {
-      font-size: ${({ theme }) => theme.fontSizes.base};
-      color: ${({ theme }) => theme.colors.grey};
-    }
-=======
   align-items: center;
   justify-content: flex-end;
   -webkit-appearance: none;
@@ -76,7 +54,6 @@ const ConfirmBox = styled.div`
     color: ${({ theme }) => theme.colors.grey};
     padding: 0;
     margin: 0 24px 0 0;
->>>>>>> 1c18f66015b63eef4263bacd5c7295e5220d32d0
   }
 `
 

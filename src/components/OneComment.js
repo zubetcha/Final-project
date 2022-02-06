@@ -11,7 +11,7 @@ import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
 import { Grid, ProfileImage } from '../elements'
 import { history } from '../redux/ConfigureStore'
 
-const OneComment = React.memo((props) => {
+const OneComment = (props) => {
   const dispatch = useDispatch()
 
   const userId = localStorage.getItem('id')
@@ -151,7 +151,7 @@ const OneComment = React.memo((props) => {
       </ContentWrap>
     </>
   )
-})
+}
 
 const Wrap = styled.div`
   display: flex;

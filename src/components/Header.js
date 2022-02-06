@@ -10,7 +10,7 @@ import { AlarmModal, ProfileBottom } from '.'
 import { ReactComponent as ArrowBackIcon } from '../styles/icons/arrow_back_ios_black_24dp.svg'
 import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
 
-const Header = React.memo(({ children, location, type }) => {
+const Header = ({ children, location, type }) => {
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.mypage.myProfile)
   const userId = localStorage.getItem('id')
@@ -100,7 +100,7 @@ const Header = React.memo(({ children, location, type }) => {
       {showAlarm && <AlarmModal showAlarm={showAlarm} setShowAlarm={setShowAlarm} alarmList={alarmList !== undefined ? alarmList : []} profile={profile !== null ? profile : ''} />}
     </>
   )
-})
+}
 
 const NavHeader = styled.nav`
   position: fixed;

@@ -7,7 +7,7 @@ import { Header, Footer } from '../components'
 import QuizIntroImage from '../styles/image/quiz_main_image_3.gif'
 import { Grid } from '../elements'
 
-const QuizIntro = (props) => {
+const QuizIntro = React.memo((props) => {
   const levelList = ['lv1', 'lv2', 'lv3']
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const QuizIntro = (props) => {
       </Wrapper>
     </>
   )
-}
+})
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { mainApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -14,22 +13,9 @@ import '../styles/css/PopularBoardCardSwiper.css'
 
 import SwiperCore, { Pagination, Navigation, Scrollbar } from 'swiper'
 
-const PopularBoardCardSwiper = (props) => {
+const PopularBoardCardSwiper = ({ popularImages }) => {
   SwiperCore.use([Pagination, Navigation, Scrollbar])
 
-  const dispatch = useDispatch()
-
-  const [popularImages, setPopularImages] = useState([])
-
-  const searchDictDB = async () => {
-    let response = await mainApi.mainPage()
-
-    setPopularImages(response.data.data.popularImages)
-  }
-
-  React.useEffect(() => {
-    searchDictDB()
-  }, [])
   return (
     <>
       <Swiper

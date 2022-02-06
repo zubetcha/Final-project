@@ -11,19 +11,10 @@ const DictEdit = (props) => {
   const [dict, setDict] = useState([])
   const [summary, setSummary] = React.useState('')
   const [content, setContent] = React.useState('')
-  const [recentWriter, setRecentWriter] = React.useState('')
   const [showModal, setShowModal] = React.useState(false)
-  const [editLive, setEditLive] = React.useState(false)
 
   const handleShowModal = (e) => {
     setShowModal(!showModal)
-  }
-
-  const getDictEditLive = async () => {
-    let response = await dictApi.getDictEditLive(dictId)
-    const _editLive = response.data.data
-
-    setEditLive(_editLive)
   }
 
   const getDictListDB = async () => {
@@ -39,17 +30,7 @@ const DictEdit = (props) => {
     getDictListDB()
   }, [])
 
-  React.useEffect((dictId) => {
-    getDictEditLive(dictId)
-
-    const interval = setInterval(() => {
-      getDictEditLive(dictId)
-    }, 10000)
-    return () => clearInterval(interval)
-  }, [])
-
   const dictId = Number(props.match.params.dictId)
-  const newRecentWriter = window.localStorage.getItem('nickname')
 
   const debounceFunction = (callback, delay) => {
     let timer

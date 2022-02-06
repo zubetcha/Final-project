@@ -160,10 +160,7 @@ const PWBody = styled.div`
     border: none;
     padding: 16px;
     resize: none;
-<<<<<<< HEAD
-=======
     line-height: 1.6;
->>>>>>> 1c18f66015b63eef4263bacd5c7295e5220d32d0
     font-size: ${({ theme }) => theme.fontSizes.base};
     font-family: 'Pretendard Variable';
     font-style: normal;

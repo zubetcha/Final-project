@@ -19,9 +19,6 @@ const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const [usernameMessage, setUsernameMessage] = useState('')
-  const [passwordMessage, setPasswordMessage] = useState('')
-
   const [isUsername, setIsUsername] = useState('false')
   const [isPassword, setIsPassword] = useState('false')
 
@@ -34,10 +31,8 @@ const Login = () => {
     setUsername(usernameCurrent)
 
     if (!emailRegex.test(usernameCurrent)) {
-      setUsernameMessage('영문+숫자 3~16자')
       setIsUsername(false)
     } else {
-      setUsernameMessage('올바른 형식입니다')
       setIsUsername(true)
     }
   }
@@ -48,10 +43,8 @@ const Login = () => {
     setPassword(passwordCurrent)
 
     if (!passwordRegex.test(passwordCurrent)) {
-      setPasswordMessage('숫자+영문+특수문자 조합으로 6~16자')
       setIsPassword(false)
     } else {
-      setPasswordMessage('올바른 비밀번호입니다')
       setIsPassword(true)
     }
   }

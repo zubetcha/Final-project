@@ -20,34 +20,28 @@ const QuizResult = ({ quiz_list, category }) => {
         return quiz.solution === user_answer_list[i]
       }).length
     : null
-  console.log(user_answer_list)
+
   const [showQuiz, setShowQuiz] = useState(false)
   const [resultText, setResultText] = useState({ sub: '', main: '' })
   const [shareVisible, setShareVisible] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const handleShareVisible = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShareVisible(!shareVisible)
   }
 
   const handleShowQuiz = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowQuiz(!showQuiz)
   }
 
   const handleMoveQuizIntro = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     history.push('/quiz')
     dispatch(quizActions.initAnswer())
   }
 
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => setLoading(false), 2500)
+    setTimeout(() => setLoading(false), 2000)
   }, [])
 
   useEffect(() => {

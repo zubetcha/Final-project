@@ -12,7 +12,7 @@ import { ReactComponent as ShareIcon } from '../../styles/icons/share.svg'
 import { ReactComponent as EmptyHeartIcon } from '../../styles/icons/heart_blank.svg'
 import { ReactComponent as FullHeartIcon } from '../../styles/icons/heart_filled.svg'
 
-const OneImageCard = React.memo(({ image, type }) => {
+const OneImageCard = ({ image }) => {
   const dispatch = useDispatch()
   const boardId = image.boardId
   const userId = localStorage.getItem('id')
@@ -135,7 +135,7 @@ const OneImageCard = React.memo(({ image, type }) => {
       </ConfirmModal>
     </>
   )
-})
+}
 
 const ImageBox = styled.div`
   display: flex;

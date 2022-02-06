@@ -34,22 +34,16 @@ const Mypage = () => {
   })
 
   const handleShowDictionary = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(true)
     setShowBoard(false)
     setShowImage(false)
   }
   const handleShowBoard = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(false)
     setShowBoard(true)
     setShowImage(false)
   }
   const handleShowPhoto = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowDictionary(false)
     setShowBoard(false)
     setShowImage(true)

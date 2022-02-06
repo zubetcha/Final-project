@@ -115,8 +115,3 @@ const CuriousHelp = styled.div`
     margin: 0 0 0 8px;
   }
 `
-const MoveLoginButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 0;
-`
