@@ -162,6 +162,7 @@ const logOutDB = () => {
     localStorage.removeItem('id')
     dispatch(logOut())
     dispatch(loading(false))
+    history.replace('/')
   }
 }
 

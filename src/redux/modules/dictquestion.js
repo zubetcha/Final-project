@@ -105,7 +105,7 @@ const editQuestionDB = (questionId, title, uploadFile, content) => {
         const _question = { ...question, thumbNail: uploadFile }
         dispatch(editQuestion(questionId, _question))
 
-        // history.replace(`/dict/question/detail/${questionId}`)
+        history.replace(`/dict/question/detail/${questionId}`)
       })
       .catch((err) => {
         console.log('게시글 수정하는데 문제 발생', err.response)
