@@ -67,6 +67,20 @@
 
 <img width="1183" alt="frontend-architecture" src="https://user-images.githubusercontent.com/91620721/152487434-808c9789-f532-4694-be26-4a9d1f35c284.png">
 
+<br/>
+
+---
+
+<br/>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/91620721/153640603-69de1ca1-9785-4144-a992-75754f4c935d.png" alt="react" style="width: 15%; margin-left: 20px; margin-right: 20px;">
+  <img src="https://user-images.githubusercontent.com/91620721/153640357-dc9dfe6d-4a5c-40fc-9acb-a78ca9962fb1.png" alt="redux" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153640964-84a4cd77-6792-4cf2-8160-aa9c6378c216.png" alt="axios" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153640816-6788e61d-d25c-490b-be9c-82b4eb02b70a.png" alt="styled-components" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153641062-9c40e5dc-33ba-4d73-97b4-de3b5d87cd98.png" alt="github-actions" width=15%>
+</div>
+
 > **React**
 
 - react-router-dom
@@ -75,11 +89,16 @@
 - recharts
 - dayjs
 - immer
-  > **Redux**
+
+> **Redux**
+
 - redux-actions
 - redux-logger
 - redux-thunk
-  > **Styled-components** > **Axios**
+
+> **Styled-components**
+
+> **Axios**
 
 <br/>
 
