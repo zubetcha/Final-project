@@ -24,7 +24,7 @@ const Main = (props) => {
   const dispatch = useDispatch()
 
   const isFirst = useSelector((state) => state.user.is_first)
-  const nickname = localStorage.getItem('nickname')
+  const nickname = sessionStorage.getItem('nickname')
 
   const [popularImages, setPopularImages] = useState([])
   const [todayMemes, setTodayMemes] = useState([])

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { history } from '../../redux/ConfigureStore'
 import '../../styles/css/Login.css'
@@ -9,9 +9,11 @@ import MemegleIcon from '../../styles/image/smileIcon_Yellow.png'
 import { Grid } from '../../elements'
 import { AlertModal } from '../../components'
 import CircularProgress from '@mui/material/CircularProgress'
+import { IsLoginContext } from '../../shared/IsLoginContext'
 
 const Login = () => {
   const dispatch = useDispatch()
+  const { setIsLogin } = useContext(IsLoginContext)
 
   const loading = useSelector((state) => state.user.is_loading)
   const loginFail = useSelector((state) => state.user.is_failure)
@@ -56,6 +58,7 @@ const Login = () => {
       return
     }
     dispatch(userActions.logInDB(username, password))
+    setIsLogin(true)
   }
 
   useEffect(() => {

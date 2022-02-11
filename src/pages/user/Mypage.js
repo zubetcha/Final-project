@@ -22,8 +22,6 @@ const Mypage = () => {
   const myMemeImageList = my && my.postBoards.filter((post) => post.category === 'IMAGEBOARD')
 
   const handleEditProfile = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowModal(true)
   }
 

@@ -15,7 +15,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   // const cookieList = document.cookie.split('=')
   // const accessToken = cookieList.length === 2 ? cookieList[1] : cookieList[2]
-  const accessToken = localStorage.getItem('token')
+  const accessToken = sessionStorage.getItem('token')
   config.headers.common['authorization'] = `${accessToken}`
   return config
 })
