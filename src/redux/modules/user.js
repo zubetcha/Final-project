@@ -2,6 +2,8 @@ import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/cookie'
 import { userApi } from '../../shared/api'
+import { useContext } from 'react'
+import { IsLoginContext } from '../../shared/IsLoginContext'
 
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
