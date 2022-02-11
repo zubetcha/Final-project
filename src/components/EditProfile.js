@@ -12,7 +12,6 @@ import { ReactComponent as CameraIcon } from '../styles/icons/camera.svg'
 
 const EditProfile = ({ showModal, setShowModal, my }) => {
   const dispatch = useDispatch()
-  const userId = localStorage.getItem('id')
 
   const [imageFile, setImageFile] = useState()
   const [nickname, setNickname] = useState(my.nickname)
@@ -83,7 +82,7 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
   const _editProfile = async () => {
     if (nickname === '' && imageFile) {
       const uploadFile = fileInput.current.files[0]
-      dispatch(mypageActions.editProfileImageDB(userId, uploadFile))
+      dispatch(mypageActions.editProfileImageDB(my.userId, uploadFile))
       setShowModal(false)
       setImageFile()
       setPassedNickname('')
@@ -91,10 +90,10 @@ const EditProfile = ({ showModal, setShowModal, my }) => {
     }
     if (nickname !== '') {
       if ((nickname === passedNickname && isValidNickname === true) || nickname === my.nickname) {
-        dispatch(mypageActions.editNicknameDB(userId, nickname))
+        dispatch(mypageActions.editNicknameDB(my.userId, nickname))
         if (imageFile) {
           const uploadFile = fileInput.current.files[0]
-          dispatch(mypageActions.editProfileImageDB(userId, uploadFile))
+          dispatch(mypageActions.editProfileImageDB(my.userId, uploadFile))
         }
         setShowModal(false)
         setImageFile()

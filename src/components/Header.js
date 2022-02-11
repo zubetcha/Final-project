@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
 import { mypageApi } from '../shared/api'
+import { useIsLoginState } from '../shared/IsLoginContext'
 
 import { Grid, ProfileImage } from '../elements'
 import { AlarmModal, ProfileBottom } from '.'
@@ -12,10 +13,8 @@ import { ReactComponent as BellIcon } from '../styles/icons/notification.svg'
 
 const Header = ({ children, location, type }) => {
   const dispatch = useDispatch()
+  const isLogin = useIsLoginState()
   const profile = useSelector((state) => state.mypage.myProfile)
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
   const alarmList = profile?.alarm?.length > 5 ? profile?.alarm.slice(0, 5) : profile?.alarm
 
   const [showProfile, setShowProfile] = useState(false)

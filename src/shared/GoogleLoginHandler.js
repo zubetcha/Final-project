@@ -8,8 +8,11 @@ const GoogleLoginHandler = (props) => {
 
   let code = new URL(window.location.href).searchParams.get('code')
 
-  React.useEffect(async () => {
-    await dispatch(userActions.googleLoginDB(code))
+  React.useEffect(() => {
+    const googleLogin = async () => {
+      await dispatch(userActions.googleLoginDB(code))
+    }
+    googleLogin()
   }, [])
 
   return (

@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { history } from '../redux/ConfigureStore'
 import { actionCreators as userActions } from '../redux/modules/user'
+import { IsLoginContext } from '../shared/IsLoginContext'
+
 import { ReactComponent as CloseIcon } from '../styles/icons/size(28*28)(30*30)/close_28dp.svg'
 
 import { Grid, ProfileImage } from '../elements'
@@ -10,6 +12,7 @@ import { BottomPopup, ConfirmModal, ConfirmButton } from '.'
 
 const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
   const dispatch = useDispatch()
+  const { setIsLogin } = useContext(IsLoginContext)
 
   const [showModal, setShowModal] = useState(false)
 
@@ -21,6 +24,7 @@ const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
     dispatch(userActions.logOutDB())
     setShowModal(false)
     setShowProfile(false)
+    setIsLogin(false)
   }
 
   return (

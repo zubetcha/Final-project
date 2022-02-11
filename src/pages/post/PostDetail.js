@@ -4,6 +4,8 @@ import { history } from '../../redux/ConfigureStore'
 import { actionCreators as questionActions } from '../../redux/modules/dictquestion'
 import styled from 'styled-components'
 import { dictQuestionApi } from '../../shared/api'
+import { useIsLoginState } from '../../shared/IsLoginContext'
+
 import { ConfirmModal, AlertModal, ConfirmButton } from '../../components'
 import CommentTest from '../CommentTest'
 import { Grid } from '../../elements'
@@ -14,11 +16,9 @@ import { ReactComponent as ThreedotIcon } from '../../styles/icons/more.svg'
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
-  const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
+  const isLogin = useIsLoginState()
+  const username = sessionStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionId = Number(props.match.params.questionId)
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
 
   const [question, setQuestion] = useState([])
   const [isCuriousToo, setIsCuriousToo] = useState(false)

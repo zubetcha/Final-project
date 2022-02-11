@@ -4,14 +4,14 @@ import styled from 'styled-components'
 import { PostCard, Header, Footer, DictNavBar, SpeedDialButton, ConfirmModal, ConfirmButton } from '../../components'
 import Pagination from 'rc-pagination'
 import { dictQuestionApi } from '../../shared/api'
+import { useIsLoginState } from '../../shared/IsLoginContext'
+
 import { Grid, Title } from '../../elements'
 import SearchPage from '../../shared/SearchPage'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const PostList = (props) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [question, setQuestion] = useState([])
   const [pageSize, setPageSize] = useState(10)

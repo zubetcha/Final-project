@@ -2,6 +2,8 @@ import { createAction, handleActions } from 'redux-actions'
 import { produce } from 'immer'
 import { setCookie, deleteCookie } from '../../shared/cookie'
 import { userApi } from '../../shared/api'
+import { useContext } from 'react'
+import { IsLoginContext } from '../../shared/IsLoginContext'
 
 const LOG_OUT = 'LOG_OUT'
 const GET_USER = 'GET_USER'
@@ -40,10 +42,10 @@ const kakaoLoginDB = (code) => {
 
         await setCookie('is_login', REFRESH_TOKEN)
 
-        await localStorage.setItem('token', res.data.data.token)
-        await localStorage.setItem('username', res.data.data.username)
-        await localStorage.setItem('nickname', res.data.data.nickname)
-        await localStorage.setItem('id', res.data.data.userId)
+        await sessionStorage.setItem('token', res.data.data.token)
+        await sessionStorage.setItem('username', res.data.data.username)
+        await sessionStorage.setItem('nickname', res.data.data.nickname)
+        await sessionStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
         dispatch(loading(false))
@@ -69,10 +71,10 @@ const naverLoginDB = (code, state) => {
 
         await setCookie('is_login', REFRESH_TOKEN)
 
-        await localStorage.setItem('token', res.headers.authorization)
-        await localStorage.setItem('username', res.data.data.username)
-        await localStorage.setItem('nickname', res.data.data.nickname)
-        await localStorage.setItem('id', res.data.data.userId)
+        await sessionStorage.setItem('token', res.headers.authorization)
+        await sessionStorage.setItem('username', res.data.data.username)
+        await sessionStorage.setItem('nickname', res.data.data.nickname)
+        await sessionStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
         dispatch(loading(false))
@@ -98,10 +100,10 @@ const googleLoginDB = (code) => {
 
         await setCookie('is_login', REFRESH_TOKEN)
 
-        await localStorage.setItem('token', res.data.data.token)
-        await localStorage.setItem('username', res.data.data.username)
-        await localStorage.setItem('nickname', res.data.data.nickname)
-        await localStorage.setItem('id', res.data.data.userId)
+        await sessionStorage.setItem('token', res.data.data.token)
+        await sessionStorage.setItem('username', res.data.data.username)
+        await sessionStorage.setItem('nickname', res.data.data.nickname)
+        await sessionStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
         dispatch(loading(false))
@@ -138,10 +140,10 @@ const logInDB = (username, password) => {
     userApi
       .login(username, password)
       .then((res) => {
-        localStorage.setItem('token', res.headers.authorization)
-        localStorage.setItem('username', res.data.data.username)
-        localStorage.setItem('nickname', res.data.data.nickname)
-        localStorage.setItem('id', res.data.data.userId)
+        sessionStorage.setItem('token', res.headers.authorization)
+        sessionStorage.setItem('username', res.data.data.username)
+        sessionStorage.setItem('nickname', res.data.data.nickname)
+        sessionStorage.setItem('id', res.data.data.userId)
 
         dispatch(setUser({ username: res.data.data.username, nickname: res.data.data.nickname }))
         history.replace('/')
@@ -156,13 +158,12 @@ const logInDB = (username, password) => {
 
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('nickname')
-    localStorage.removeItem('id')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('nickname')
+    sessionStorage.removeItem('id')
     dispatch(loading(false))
     dispatch(logOut())
-    dispatch(loading(false))
     history.replace('/')
   }
 }

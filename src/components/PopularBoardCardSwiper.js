@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { history } from '../redux/ConfigureStore'
-import { mainApi } from '../shared/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/swiper.min.css'
