@@ -74,7 +74,7 @@
 <br/>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/91620721/153640603-69de1ca1-9785-4144-a992-75754f4c935d.png" alt="react" style="width: 15%; margin-left: 20px; margin-right: 20px;">
+  <img src="https://user-images.githubusercontent.com/91620721/153640603-69de1ca1-9785-4144-a992-75754f4c935d.png" alt="react" width=15%>
   <img src="https://user-images.githubusercontent.com/91620721/153640357-dc9dfe6d-4a5c-40fc-9acb-a78ca9962fb1.png" alt="redux" width=15%>
   <img src="https://user-images.githubusercontent.com/91620721/153640964-84a4cd77-6792-4cf2-8160-aa9c6378c216.png" alt="axios" width=15%>
   <img src="https://user-images.githubusercontent.com/91620721/153640816-6788e61d-d25c-490b-be9c-82b4eb02b70a.png" alt="styled-components" width=15%>
