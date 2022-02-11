@@ -52,9 +52,7 @@ const Wrap = styled.div`
   top: 0;
   left: 0;
   background-color: white;
-
   z-index: -999;
-
   .bottomSection {
     bottom: 0;
     left: 0;
@@ -116,34 +114,29 @@ const Wrap = styled.div`
   .loveu {
     top: 735px;
     right: 195px;
-
     z-index: 2;
   }
   .kingreceive {
     top: 760px;
     left: 150px;
-
     z-index: 2;
   }
   .letsgo {
     top: 150px;
     left: 620px;
-
     z-index: -1;
   }
   .nicetomeetu {
     top: 300px;
     right: 60px;
   }
-
   @media screen and (max-width: 900px) {
-    .titie,
+    .title,
     .bubble,
     .bottomSection {
       display: none;
     }
   }
-
   @media screen and (min-width: 900px) {
     .title {
       top: -150px;
@@ -162,7 +155,6 @@ const Wrap = styled.div`
       left: 100px;
       width: 12rem;
       height: 4.5rem;
-
       z-index: 2;
     }
     .JjajjaYellow {
@@ -188,7 +180,6 @@ const Wrap = styled.div`
       left: 290px;
       width: 12rem;
       height: 4.5rem;
-
       z-index: -1;
     }
     .himsoonjjin {
@@ -214,7 +205,6 @@ const Wrap = styled.div`
       right: 50px;
       width: 10rem;
       height: 3.5rem;
-
       z-index: 2;
     }
     .whatevertv {
@@ -224,7 +214,6 @@ const Wrap = styled.div`
       height: 3.5rem;
     }
   }
-
   @media screen and (min-width: 1120px) {
     .title {
       top: -200px;
@@ -243,7 +232,6 @@ const Wrap = styled.div`
       left: 120px;
       width: 15rem;
       height: 5.5rem;
-
       z-index: 2;
     }
     .JjajjaYellow {
@@ -269,7 +257,6 @@ const Wrap = styled.div`
       left: 350px;
       width: 16rem;
       height: 6rem;
-
       z-index: -1;
     }
     .himsoonjjin {
@@ -295,7 +282,6 @@ const Wrap = styled.div`
       right: 90px;
       width: 12rem;
       height: 4.5rem;
-
       z-index: 2;
     }
     .whatevertv {
@@ -305,7 +291,6 @@ const Wrap = styled.div`
       height: 4.5rem;
     }
   }
-
   @media screen and (min-width: 1400px) {
     .title {
       top: -350px;
@@ -324,7 +309,6 @@ const Wrap = styled.div`
       left: 150px;
       width: 18rem;
       height: 6.5rem;
-
       z-index: 2;
     }
     .JjajjaYellow {
@@ -350,7 +334,6 @@ const Wrap = styled.div`
       left: 530px;
       width: 22rem;
       height: 7.5rem;
-
       z-index: -1;
     }
     .himsoonjjin {
@@ -376,7 +359,6 @@ const Wrap = styled.div`
       right: 155px;
       width: 16rem;
       height: 6rem;
-
       z-index: 2;
     }
     .whatevertv {
@@ -386,7 +368,6 @@ const Wrap = styled.div`
       height: 6rem;
     }
   }
-
   @media screen and (min-width: 1700px) {
     .title {
       position: absolute;
@@ -407,7 +388,6 @@ const Wrap = styled.div`
       left: 150px;
       width: 20rem;
       height: 8rem;
-
       z-index: 2;
     }
     .JjajjaYellow {
@@ -433,7 +413,6 @@ const Wrap = styled.div`
       left: 630px;
       width: 25rem;
       height: 9rem;
-
       z-index: -1;
     }
     .himsoonjjin {
@@ -459,7 +438,6 @@ const Wrap = styled.div`
       right: 195px;
       width: 19rem;
       height: 7rem;
-
       z-index: 2;
     }
     .whatevertv {
@@ -469,7 +447,6 @@ const Wrap = styled.div`
       height: 7rem;
     }
   }
-
   @media screen and (min-width: 2000px) {
     .title {
       top: -550px;
@@ -488,7 +465,6 @@ const Wrap = styled.div`
       left: 150px;
       width: 23rem;
       height: 9rem;
-
       z-index: 2;
     }
     .JjajjaYellow {
@@ -514,7 +490,6 @@ const Wrap = styled.div`
       left: 630px;
       width: 26rem;
       height: 10rem;
-
       z-index: -1;
     }
     .himsoonjjin {
@@ -540,7 +515,6 @@ const Wrap = styled.div`
       right: 195px;
       width: 20rem;
       height: 7.5rem;
-
       z-index: 2;
     }
     .whatevertv {
