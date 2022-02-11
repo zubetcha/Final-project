@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { imageApi } from '../../shared/api'
 import { actionCreators as imageActions } from '../../redux/modules/image'
 import { history } from '../../redux/ConfigureStore'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 import { Title, Grid } from '../../elements'
 import { Header, Footer, SpeedDialButton, Spinner, OneImageCard, ConfirmModal, ConfirmButton } from '../../components'
@@ -14,12 +15,9 @@ import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
 
 const ImageList = (props) => {
   const dispatch = useDispatch()
+  const isLogin = useIsLoginState()
   const fileInput = useRef('')
   const image_data = useSelector((state) => state.image)
-
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
 
   const [preview, setPreview] = useState(null)
   const [loading, setLoading] = useState(false)
