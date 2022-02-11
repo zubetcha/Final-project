@@ -89,7 +89,7 @@
 
 `Redux` : 전역 상태 관리를 위해 사용했습니다. <!-- 왜 사용했는지 이유 추가하기 -->
 
-`Axios` :
+`Axios` : 
 
 `Styled-components` : 컴포넌트 스타일을 관리하고, 스타일 유지보수를 용이하게 하기 위하여 createGlobalStyle과 ThemeProvider를 활용했습니다.
 
