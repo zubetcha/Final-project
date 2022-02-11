@@ -5,10 +5,10 @@ import '../../styles/css/DictMyMeme.css'
 import { DictNavBar, Header, Footer, DictMyScrapbook } from '../../components'
 import { Title, Grid } from '../../elements'
 import { history } from '../../redux/ConfigureStore'
-
-const isLogin = localStorage.getItem('token')
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 const DictMyMeMe = () => {
+  const isLogin = useIsLoginState()
   return (
     <>
       <Header location="오픈 밈사전"></Header>

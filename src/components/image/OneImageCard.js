@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { actionCreators as imageActions } from '../../redux/modules/image'
 import { likeApi } from '../../shared/api'
 import { history } from '../../redux/ConfigureStore'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 import { ShareBottomSheet, ConfirmModal, ConfirmButton } from '..'
 import { Grid } from '../../elements'
@@ -14,10 +15,8 @@ import { ReactComponent as FullHeartIcon } from '../../styles/icons/heart_filled
 
 const OneImageCard = ({ image }) => {
   const dispatch = useDispatch()
+  const isLogin = useIsLoginState()
   const boardId = image.boardId
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
 
   const canvasRef = useRef()
   const imgRef = useRef()

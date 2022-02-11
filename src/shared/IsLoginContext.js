@@ -17,5 +17,5 @@ export function useIsLoginState() {
   if (!context) {
     throw new Error('Cannot find IsLoginProvider')
   }
-  return context
+  return context.isLogin
 }

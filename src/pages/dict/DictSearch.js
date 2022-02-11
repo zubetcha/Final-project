@@ -4,11 +4,10 @@ import { history } from '../../redux/ConfigureStore'
 import { dictApi } from '../../shared/api'
 import { Header, OneDictionaryCard, PostCard, Footer, ConfirmModal, ConfirmButton } from '../../components'
 import { Title, Grid } from '../../elements'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 const DictSearch = (props) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [show, setShow] = useState(false)
 

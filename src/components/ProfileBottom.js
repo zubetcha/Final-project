@@ -17,14 +17,10 @@ const ProfileBottom = React.memo(({ profile, showProfile, setShowProfile }) => {
   const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     setShowModal(!showModal)
   }
 
   const handleClickLogOut = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     dispatch(userActions.logOutDB())
     setShowModal(false)
     setShowProfile(false)

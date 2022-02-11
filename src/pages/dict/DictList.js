@@ -8,11 +8,10 @@ import { dictApi } from '../../shared/api'
 import { DictNavBar, SpeedDialButton, TodayDictCardSwiper, Header, Footer, OneDictionaryCard, ConfirmModal, ConfirmButton } from '../../components'
 import { Grid, Title } from '../../elements'
 import { ReactComponent as WriteIcon } from '../../styles/icons/write.svg'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 const DictList = () => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [dict, setDict] = useState([])
   const [pageSize, setPageSize] = useState(10)

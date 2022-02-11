@@ -11,11 +11,8 @@ import { ReactComponent as QuizIcon } from '../styles/icons/Dockbar_quiz.svg'
 import { ReactComponent as ZzalbangIcon } from '../styles/icons/Dockbar_zzalbang.svg'
 
 const Footer = React.memo((props) => {
-  const isLogin = useIsLoginState().isLogin
+  const isLogin = useIsLoginState()
   console.log(isLogin)
-  // const userId = localStorage.getItem('id')
-  // const token = localStorage.getItem('token')
-  // const isLogin = userId !== null && token !== null ? true : false
   const activeStyle = {
     color: '#00A0FF',
     fill: '#00A0FF',

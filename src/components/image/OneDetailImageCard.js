@@ -2,6 +2,7 @@ import React, { useState, forwardRef } from 'react'
 import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 import { imageApi, likeApi } from '../../shared/api'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 import { Grid, ProfileImage } from '../../elements'
 import { ShareBottomSheet, ConfirmModal, ConfirmButton } from '..'
@@ -14,10 +15,8 @@ import { ReactComponent as FullHeartIcon } from '../../styles/icons/size(28*28)(
 const OneDetailImageCard = forwardRef((props, ref) => {
   const { image } = props
 
-  const username = localStorage.getItem('username')
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const username = sessionStorage.getItem('username')
+  const isLogin = useIsLoginState()
 
   const [likeCount, setLikeCount] = useState(image.likeCnt)
   const [isLiked, setIsLiked] = useState(image.isLike)

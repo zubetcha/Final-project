@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { history } from '../redux/ConfigureStore'
 import { likeApi } from '../shared/api'
+import { useIsLoginState } from '../shared/IsLoginContext'
 
 import { Grid } from '../elements'
 import { ConfirmModal, ConfirmButton } from '.'
@@ -10,9 +11,7 @@ import { ReactComponent as EmptyBookMarkIcon } from '../styles/icons/bookmark_bl
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
 
 const OneDictionaryCard = ({ dict }) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [like, setLike] = useState(dict.like)
   const [likeCount, setLikeCount] = useState(dict.likeCount)

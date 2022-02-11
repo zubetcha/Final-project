@@ -5,6 +5,8 @@ import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import { history } from '../redux/ConfigureStore'
+import { useIsLoginState } from '../shared/IsLoginContext'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { ReactComponent as FillBookMarkIcon } from '../styles/icons/bookmark_filled.svg'
 import { ReactComponent as DictLinkCopyIcon } from '../styles/icons/link.svg'
@@ -12,9 +14,7 @@ import { dictApi } from '../shared/api'
 import { AlertModal } from '.'
 
 const DictMyScrapbook = React.memo((props) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [expanded, setExpanded] = React.useState(false)
   const [scrapList, setScrapList] = React.useState([])
