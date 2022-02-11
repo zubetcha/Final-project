@@ -81,24 +81,22 @@
   <img src="https://user-images.githubusercontent.com/91620721/153641062-9c40e5dc-33ba-4d73-97b4-de3b5d87cd98.png" alt="github-actions" width=15%>
 </div>
 
-> **React**
+<br/>
 
-- react-router-dom
-- react-masonry-css
-- react-spring
-- recharts
-- dayjs
-- immer
+<br/>
 
-> **Redux**
+`React` :
 
-- redux-actions
-- redux-logger
-- redux-thunk
+`Redux` : 전역 상태 관리를 위해 사용했습니다. <!-- 왜 사용했는지 이유 추가하기 -->
 
-> **Styled-components**
+`Axios` : 
 
-> **Axios**
+`Styled-components` : 컴포넌트 스타일을 관리하고, 스타일 유지보수를 용이하게 하기 위하여 createGlobalStyle과 ThemeProvider를 활용했습니다.
+
+`Github Actions` : 개발 외에 투입되는 비용을 줄이기 위해 build부터 배포까지의 워크플로우를 자동화했습니다.
+
+`etc` : immer, redux-actions, redux-logger, redux-thunk, react-masonry-css, react-spring, recharts, dayjs
+
 
 <br/>
 
