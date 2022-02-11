@@ -8,8 +8,11 @@ const KakaoLoginHandler = (props) => {
 
   let code = new URL(window.location.href).searchParams.get('code')
 
-  React.useEffect(async () => {
-    await dispatch(userActions.kakaoLoginDB(code))
+  React.useEffect(() => {
+    const kakaoLogin = async () => {
+      await dispatch(userActions.kakaoLoginDB(code))
+    }
+    kakaoLogin()
   }, [])
 
   return (

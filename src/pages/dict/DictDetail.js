@@ -3,17 +3,17 @@ import '../../styles/css/DictDetail.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { history } from '../../redux/ConfigureStore'
 import { dictApi, likeApi } from '../../shared/api'
+import { useIsLoginState } from '../../shared/IsLoginContext'
+
 import { ReactComponent as EmptyBookMarkIcon } from '../../styles/icons/bookmark_blank.svg'
 import { ReactComponent as FillBookMarkIcon } from '../../styles/icons/bookmark_filled.svg'
+import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
 import { Header, Footer, DictRelatedYoutube, AlertModal, ConfirmModal, ConfirmButton } from '../../components'
 import { Grid, ProfileImage } from '../../elements'
-import { ReactComponent as CopyIcon } from '../../styles/icons/link.svg'
 import swal from 'sweetalert'
 
 const DictDetail = (props) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [dict, setDict] = useState([])
   const [like, setLike] = useState(false)

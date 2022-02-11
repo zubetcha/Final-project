@@ -9,8 +9,11 @@ const NaverLoginHandler = (props) => {
   let code = new URL(window.location.href).searchParams.get('code')
   let state = new URL(window.location.href).searchParams.get('state')
 
-  React.useEffect(async () => {
-    await dispatch(userActions.naverLoginDB(code, state))
+  React.useEffect(() => {
+    const naverLogin = async () => {
+      await dispatch(userActions.naverLoginDB(code, state))
+    }
+    naverLogin()
   }, [])
 
   return (

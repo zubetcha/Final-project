@@ -3,22 +3,21 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
 import { commentApi, dictQuestionApi } from '../shared/api'
+import { history } from '../redux/ConfigureStore'
+import { useIsLoginState } from '../shared/IsLoginContext'
+
 import { ConfirmModal, ConfirmButton } from '.'
+import { Grid, ProfileImage } from '../elements'
 import { ReactComponent as EmptyHeartIcon } from '../styles/icons/heart_blank.svg'
 import { ReactComponent as FullHeartIcon } from '../styles/icons/heart_filled.svg'
 import { ReactComponent as DeleteIcon } from '../styles/icons/bin.svg'
 import { ReactComponent as SelectedIcon } from '../styles/icons/selected.svg'
-import { Grid, ProfileImage } from '../elements'
-import { history } from '../redux/ConfigureStore'
 
 const OneComment = (props) => {
   const dispatch = useDispatch()
+  const isLogin = useIsLoginState()
 
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
-
-  const username = localStorage.getItem('username') // 현재 로그인 한 사람의 아이디
+  const username = sessionStorage.getItem('username') // 현재 로그인 한 사람의 아이디
   const questionUser = props.username //질문작성자
   const commentWriterId = props.commentWriterId
   const questionId = props.questionId

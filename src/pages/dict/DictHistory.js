@@ -6,11 +6,10 @@ import { dictApi } from '../../shared/api'
 import { Header, Footer, ConfirmModal, ConfirmButton } from '../../components'
 import SearchPage from '../../shared/SearchPage'
 import { ProfileImage } from '../../elements'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 const DictEditHistory = (props) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   const [show, setShow] = useState(false)
 

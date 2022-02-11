@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { actionCreators as commentActions } from '../redux/modules/comment'
 import { actionCreators as mypageActions } from '../redux/modules/mypage'
+import { useIsLoginState } from '../shared/IsLoginContext'
+
 import { OneComment, ConfirmModal, ConfirmButton } from '../components'
 import { ReactComponent as SendIcon } from '../styles/icons/send.svg'
 import MemegleLogo from '../styles/image/smileIcon_Yellow.png'
@@ -12,15 +14,12 @@ import { ProfileImage } from '../elements'
 const CommentTest = ({ question }) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const isLogin = useIsLoginState()
   const comment_list = question.commentList
   const now_profile = useSelector((state) => state.mypage.myProfile)
+
   const [comment, setComment] = React.useState('')
   const [showModal, setShowModal] = React.useState(false)
-
-  const userId = localStorage.getItem('id')
-  const cookieList = document.cookie.split('=')
-  const token = cookieList.length === 2 ? cookieList[1] : cookieList[2]
-  const isLogin = userId !== null && token !== undefined ? true : false
 
   const onChangeComment = (e) => {
     setComment(e.target.value)

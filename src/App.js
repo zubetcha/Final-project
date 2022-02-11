@@ -10,6 +10,7 @@ import { MobileFrame, Background, Spinner } from './components'
 import NaverLoginHandler from './shared/NaverLoginHandler'
 import KakaoLoginHandler from './shared/KakaoLoginHandler'
 import GoogleLoginHandler from './shared/GoogleLoginHandler'
+import { IsLoginProvider } from './shared/IsLoginContext'
 
 const Main = lazy(() => import('../src/pages/Main'))
 const QuizIntro = lazy(() => import('../src/pages/QuizIntro'))
@@ -38,49 +39,51 @@ const NotFound = lazy(() => import('../src/pages/NotFound'))
 function App() {
   return (
     <>
-      <Wrapper>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <ConnectedRouter history={history}>
-            <BackgroundOpacity />
-            <Background className="BackgroundPage" />
-            <MobileFrame className="MobileFramePage">
-              <Suspense fallback={<Spinner />}>
-                <Switch>
-                  <Route path="/" exact component={Main} />
-                  <Route path="/join" exact component={Auth(Join, false)} />
-                  <Route path="/login" exact component={Auth(Login, false)} />
-                  <Route path="/mypage" exact component={Auth(Mypage, true)} />
-                  <Route path="/quiz" exact component={QuizIntro} />
-                  <Route path="/quiz/:category" exact component={Quiz} />
-                  <Route path="/quiz/:category/result" exact component={QuizResult} />
-                  <Route path="/dict/question" exact component={PostList} />
-                  <Route path="/dict/question/detail/:questionId" exact component={PostDetail} />
-                  <Route path="/dict/question/write" exact component={Auth(PostWrite, true)} />
-                  <Route path="/dict/question/edit/:questionId" exact component={Auth(PostEdit, true)} />
-                  <Route path="/dict" exact component={DictList} />
-                  <Route path="/dict/write" exact component={Auth(DictWrite, true)} />
-                  <Route path="/dict/edit/:dictId" exact component={Auth(DictEdit, true)} />
-                  <Route path="/dict/detail/:dictId" exact component={DictDetail} />
-                  <Route path="/dict/search/:keyword" exact component={DictSearch} />
-                  <Route path="/dict/history/:dictId" exact component={DictHistory} />
-                  <Route path="/dict/mymeme" exact component={DictMyMeMe} />
-                  <Route path="/dict/stat" exact component={DictStat} />
-                  <Route path="/image" exact component={ImageList} />
-                  <Route path="/image/upload" exact component={ImageUpload} />
-                  <Route path="/image/detail" exact component={ImageDetailList} />
-                  {/* Social Login Redirect Handler */}
-                  <Route path="/redirect/naver" component={NaverLoginHandler} />
-                  <Route path="/redirect/kakao" component={KakaoLoginHandler} />
-                  <Route path="/redirect/google" component={GoogleLoginHandler} />
-                  {/* Wrong Path */}
-                  <Route component={NotFound} />
-                </Switch>
-              </Suspense>
-            </MobileFrame>
-          </ConnectedRouter>
-        </ThemeProvider>
-      </Wrapper>
+      <IsLoginProvider>
+        <Wrapper>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <ConnectedRouter history={history}>
+              <BackgroundOpacity />
+              <Background className="BackgroundPage" />
+              <MobileFrame className="MobileFramePage">
+                <Suspense fallback={<Spinner />}>
+                  <Switch>
+                    <Route path="/" exact component={Main} />
+                    <Route path="/join" exact component={Auth(Join, false)} />
+                    <Route path="/login" exact component={Auth(Login, false)} />
+                    <Route path="/mypage" exact component={Auth(Mypage, true)} />
+                    <Route path="/quiz" exact component={QuizIntro} />
+                    <Route path="/quiz/:category" exact component={Quiz} />
+                    <Route path="/quiz/:category/result" exact component={QuizResult} />
+                    <Route path="/dict/question" exact component={PostList} />
+                    <Route path="/dict/question/detail/:questionId" exact component={PostDetail} />
+                    <Route path="/dict/question/write" exact component={Auth(PostWrite, true)} />
+                    <Route path="/dict/question/edit/:questionId" exact component={Auth(PostEdit, true)} />
+                    <Route path="/dict" exact component={DictList} />
+                    <Route path="/dict/write" exact component={Auth(DictWrite, true)} />
+                    <Route path="/dict/edit/:dictId" exact component={Auth(DictEdit, true)} />
+                    <Route path="/dict/detail/:dictId" exact component={DictDetail} />
+                    <Route path="/dict/search/:keyword" exact component={DictSearch} />
+                    <Route path="/dict/history/:dictId" exact component={DictHistory} />
+                    <Route path="/dict/mymeme" exact component={DictMyMeMe} />
+                    <Route path="/dict/stat" exact component={DictStat} />
+                    <Route path="/image" exact component={ImageList} />
+                    <Route path="/image/upload" exact component={ImageUpload} />
+                    <Route path="/image/detail" exact component={ImageDetailList} />
+                    {/* Social Login Redirect Handler */}
+                    <Route path="/redirect/naver" component={NaverLoginHandler} />
+                    <Route path="/redirect/kakao" component={KakaoLoginHandler} />
+                    <Route path="/redirect/google" component={GoogleLoginHandler} />
+                    {/* Wrong Path */}
+                    <Route component={NotFound} />
+                  </Switch>
+                </Suspense>
+              </MobileFrame>
+            </ConnectedRouter>
+          </ThemeProvider>
+        </Wrapper>
+      </IsLoginProvider>
     </>
   )
 }
