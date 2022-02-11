@@ -67,19 +67,35 @@
 
 <img width="1183" alt="frontend-architecture" src="https://user-images.githubusercontent.com/91620721/152487434-808c9789-f532-4694-be26-4a9d1f35c284.png">
 
-> **React**
+<br/>
 
-- react-router-dom
-- react-masonry-css
-- react-spring
-- recharts
-- dayjs
-- immer
-  > **Redux**
-- redux-actions
-- redux-logger
-- redux-thunk
-  > **Styled-components** > **Axios**
+---
+
+<br/>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/91620721/153640603-69de1ca1-9785-4144-a992-75754f4c935d.png" alt="react" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153640357-dc9dfe6d-4a5c-40fc-9acb-a78ca9962fb1.png" alt="redux" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153640964-84a4cd77-6792-4cf2-8160-aa9c6378c216.png" alt="axios" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153640816-6788e61d-d25c-490b-be9c-82b4eb02b70a.png" alt="styled-components" width=15%>
+  <img src="https://user-images.githubusercontent.com/91620721/153641062-9c40e5dc-33ba-4d73-97b4-de3b5d87cd98.png" alt="github-actions" width=15%>
+</div>
+
+<br/>
+
+<br/>
+
+`React` :
+
+`Redux` : 전역 상태 관리를 위해 사용했습니다. <!-- 왜 사용했는지 이유 추가하기 -->
+
+`Axios` :
+
+`Styled-components` : 컴포넌트 스타일을 관리하고, 스타일 유지보수를 용이하게 하기 위하여 createGlobalStyle과 ThemeProvider를 활용했습니다.
+
+`Github Actions` : 개발 외에 투입되는 비용을 줄이기 위해 build부터 배포까지의 워크플로우를 자동화했습니다.
+
+`etc` : immer, redux-actions, redux-logger, redux-thunk, react-masonry-css, react-spring, recharts, dayjs
 
 <br/>
 
