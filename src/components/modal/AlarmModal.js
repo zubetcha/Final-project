@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import { history } from '../../redux/ConfigureStore'
 
 import { ReactComponent as CloseIcon } from '../../styles/icons/X_24dp.svg'
+import { useIsLoginState } from '../../shared/IsLoginContext'
 
 const AlarmModal = ({ showAlarm, setShowAlarm, alarmList, profile }) => {
-  const userId = localStorage.getItem('id')
-  const token = localStorage.getItem('token')
-  const isLogin = userId !== null && token !== null ? true : false
+  const isLogin = useIsLoginState()
 
   window.addEventListener('keyup', (e) => {
     if (showAlarm && e.key === 'Escape') {
